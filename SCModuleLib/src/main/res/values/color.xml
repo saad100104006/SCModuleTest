@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="main">#FFB600</color>
+
+    <!--ec detail product-->
+    <color name="ec_btn_go_to_shop_page_off">#0055bd</color>
+    <color name="ec_btn_go_to_shop_page_on">#800055bd</color>
+    <color name="ec_btn_go_to_detail_page_on">#80FFFFFF</color>
+    <color name="ec_btn_login_facebook_off">#2675d7</color>
+    <color name="ec_btn_login_facebook_on">#802675d7</color>
+    <color name="ec_btn_login_twitter_on">#8044baff</color>
+    <color name="ec_btn_login_twitter_off">#44baff</color>
+    <color name="ec_btn_login_email_on">#80ffffff</color>
+    <color name="ec_btn_login_email_off">#ffffff</color>
+    <color name="ec_text_login_email">#ff5500</color>
+
+    <color name="ec_point_manager_text_chart">#0063dd</color>
+    <!--copy code-->
+    <color name="back_ground_dialog">#90000000</color>
+
+</resources>

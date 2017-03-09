@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_dark"
+    tools:context="jp.co.scmodule.SCAddGroup">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="132px"
+        android:background="@android:color/black">
+
+        <!--real image size is 40x50px-->
+        <ImageView
+            android:id="@+id/img_left_header"
+            android:layout_width="67px"
+            android:layout_height="80px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="22px"
+            android:scaleType="fitCenter"
+            android:padding="10px"
+            android:src="@drawable/yellow_left_arrow"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="105px"
+        android:paddingRight="105px"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="657px"
+            android:layout_height="45px"
+            android:layout_gravity="center"
+            android:layout_marginRight="0px"
+            android:src="@drawable/header_inviation" />
+
+        <EditText
+            android:id="@+id/edit_info_one_btn_group"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_marginBottom="25px"
+            android:layout_marginLeft="2px"
+            android:layout_marginTop="45px"
+            android:paddingLeft="25px"
+            android:background="@android:color/white"
+            android:hint="メールアドレスを入力"
+            android:singleLine="true"
+            android:tag="39"
+            android:textColorHint="@color/hint_color"
+            android:textSize="16sp" />
+        <ImageView
+            android:id="@+id/btn_contact"
+            android:layout_width="176px"
+            android:layout_height="31px"
+            android:src="@drawable/goto_contacts"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="482px"
+            android:layout_height="121px"
+            android:layout_gravity="center"
+            android:layout_marginTop="45px"
+            android:background="@drawable/selector_btn_next"
+            android:tag="39"
+            android:text="連絡先から選択"
+            android:onClick="next"
+            android:textSize="39px" />
+
+        <TextView
+            android:id="@+id/btn_skip"
+            android:layout_width="482px"
+            android:layout_height="121px"
+            android:layout_gravity="center"
+            android:layout_marginTop="45px"
+            android:tag="39"
+            android:gravity="center"
+            android:text="Skip>>"
+            android:onClick="next"
+            android:textColor="@color/orange"
+            android:textSize="59px"></TextView>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/copyrights_text"
+        android:orientation="vertical"></ImageView>
+
+
+</RelativeLayout>

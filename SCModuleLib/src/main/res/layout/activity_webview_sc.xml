@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="132px"
+        android:background="@android:color/black"
+        android:orientation="horizontal">
+
+        <!--real image size is 40x50px-->
+        <ImageView
+            android:id="@+id/img_left_header"
+            android:layout_width="67px"
+            android:layout_height="80px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25px"
+            android:layout_marginTop="22px"
+            android:padding="10px"
+            android:scaleType="fitCenter"
+            android:src="@drawable/yellow_left_arrow" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Header"
+            android:textSize="40px"
+            android:tag="40"
+            android:textColor="@color/common_sc_main_color"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/wv_campus_work_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ProgressBar
+            android:id="@+id/prgb_campus_work_webview"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8px"
+            android:progressDrawable="@drawable/progressbar_horizontal" />
+    </RelativeLayout>
+</LinearLayout>

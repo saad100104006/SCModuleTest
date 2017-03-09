@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_dark"
+    tools:context="jp.co.scmodule.Login_mail">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.3"
+        android:visibility="gone"
+        android:background="@drawable/pixel_perfect_login"></FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="55px">
+
+        <ImageView
+            android:layout_width="550px"
+            android:layout_height="45px"
+            android:layout_marginBottom="55px"
+            android:layout_marginTop="20px"
+            android:scaleType="fitXY"
+            android:src="@drawable/input_email_mail" />
+
+        <EditText
+            android:id="@+id/sc_login_et_email"
+            android:layout_width="870px"
+            android:layout_height="110px"
+            android:layout_marginBottom="33px"
+            android:layout_marginTop="10px"
+            android:background="@android:color/white"
+            android:hint="@string/email"
+            android:paddingLeft="8dp"
+            android:singleLine="true"
+            android:tag="39"
+            android:textColorHint="@color/hint_color"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/sc_login_et_password"
+            android:layout_width="870px"
+            android:layout_height="110px"
+            android:layout_marginBottom="55px"
+            android:background="@android:color/white"
+            android:hint="パスワードを入力"
+            android:paddingLeft="8dp"
+            android:password="true"
+            android:singleLine="true"
+            android:tag="39"
+            android:textColorHint="@color/hint_color"
+            android:textSize="16sp" />
+
+
+        <ImageButton
+            android:id="@+id/sc_login_page"
+            android:layout_width="620px"
+            android:layout_height="45px"
+            android:layout_marginBottom="40px"
+            android:background="@drawable/reset_password"
+            android:visibility="gone"
+            android:onClick="password_reset" />
+
+
+        <Button
+            android:id="@+id/sc_login_btn_login"
+            android:layout_width="487px"
+            android:layout_height="120px"
+            android:background="@drawable/login_mail"
+            android:onClick="afterClickLogin"
+            android:tag="37"
+            android:textSize="37px" />
+    </LinearLayout>
+
+
+</RelativeLayout>
+
