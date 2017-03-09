@@ -174,7 +174,7 @@
 
                                 <jp.co.scmodule.widgets.SCSingleLineTextView
                                     android:id="@+id/scmain_tv_point"
-                                    android:layout_width="360px"
+                                    android:layout_width="390px"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="-10px"
                                     android:gravity="right"
