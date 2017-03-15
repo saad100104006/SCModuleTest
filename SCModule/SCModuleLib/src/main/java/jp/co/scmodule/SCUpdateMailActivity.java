@@ -181,7 +181,7 @@ public class  SCUpdateMailActivity extends SCMyActivity {
 //                            }
                           //  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             //SCUpdateMailActivity.this.startActivity(intent);
-                            Intent intent = new Intent(SCUpdateMailActivity.this,Login_mail.class);
+                            Intent intent = new Intent(SCUpdateMailActivity.this,SCLoginMail.class);
                             intent.putExtra("updated_mail",mEtEmail.getText() + "");
                             startActivity(intent);
                             overridePendingTransition(R.anim.anim_slide_in_left,

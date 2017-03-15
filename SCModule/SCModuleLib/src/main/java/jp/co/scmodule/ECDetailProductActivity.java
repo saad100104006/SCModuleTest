@@ -828,7 +828,7 @@ public class ECDetailProductActivity extends SCMyActivity implements View.OnClic
     }
 
     private void loginWithEmail(final int codeType) {
-        Intent i = new Intent(mContext, SCLoginActivity.class);
+        Intent i = new Intent(mContext, SCMailRegistrationActivity.class);
         i.putExtra(Integer.class.toString(), codeType);
         startActivityForResult(i, codeType);
         overridePendingTransition(R.anim.anim_slide_in_right,

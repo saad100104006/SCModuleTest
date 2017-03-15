@@ -915,13 +915,13 @@ public class SCMainActivity extends SCMyActivity {
                             SCGlobalUtils.ishashpass = "0";
                             SCSharedPreferencesUtils.putString(SCMainActivity.this, SCConstants.TAG_PASSWORD, "");
                         }
-                        try {
-                            Intent myIntent = new Intent(SCMainActivity.this, Class.forName("tcapp.com.LoginActivity"));
-                            myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(myIntent);
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+//                            Intent myIntent = new Intent(SCMainActivity.this, Class.forName("tcapp.com.LoginActivity"));
+                        Intent myIntent = new Intent(SCMainActivity.this, SCMultiLoginPage.class);
+
+                        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                        startActivity(myIntent);
+
                         finish();
                         overridePendingTransition(R.anim.anim_slide_in_right,
                                 R.anim.anim_slide_out_left);
@@ -981,7 +981,7 @@ public class SCMainActivity extends SCMyActivity {
         String appId = mUserObj.getAppId();
         String applicationId = "";
         //if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-            applicationId = SCConstants.APP_ID_TADACOPY;
+        applicationId = SCConstants.APP_ID_TADACOPY;
 //        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //            applicationId = SCConstants.APP_ID_CANPASS;
 //        }
@@ -1130,7 +1130,7 @@ public class SCMainActivity extends SCMyActivity {
         String appId = mUserObj.getAppId();
         String applicationId = "";
 //        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-            applicationId = SCConstants.APP_ID_TADACOPY;
+        applicationId = SCConstants.APP_ID_TADACOPY;
 //        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //            applicationId = SCConstants.APP_ID_CANPASS;
 //        }

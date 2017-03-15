@@ -468,13 +468,12 @@ public class SCProfileInfoActivity extends SCMyActivity {
                             SCGlobalUtils.ishashpass = "0";
                             SCSharedPreferencesUtils.putString(SCProfileInfoActivity.this, SCConstants.TAG_PASSWORD, "");
                         }
-                        try {
-                            Intent myIntent = new Intent(SCProfileInfoActivity.this,Class.forName("tcapp.com.LoginActivity"));
-                            myIntent .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(myIntent );
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        }
+
+//                            Intent myIntent = new Intent(SCProfileInfoActivity.this,Class.forName("tcapp.com.LoginActivity"));
+                        Intent myIntent = new Intent(SCProfileInfoActivity.this, SCMultiLoginPage.class);
+                        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(myIntent);
+//
                         finish();
                         overridePendingTransition(R.anim.anim_slide_in_right,
                                 R.anim.anim_slide_out_left);
@@ -1103,7 +1102,7 @@ public class SCProfileInfoActivity extends SCMyActivity {
                     mUserObj = SCUserObject.getInstance();
                 }
 
-                if(SCGlobalUtils.is_point_updated.equals("true")){
+                if (SCGlobalUtils.is_point_updated.equals("true")) {
                     show_getpoint_dialog();
                 }
 

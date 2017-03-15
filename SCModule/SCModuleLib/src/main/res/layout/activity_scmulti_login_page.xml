@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_dark"
+    tools:context="jp.co.scmodule.SCMultiLoginPage">
+
+    <LinearLayout
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16px"
+        android:onClick="back">
+
+        <ImageView
+            android:layout_width="38px"
+            android:layout_height="53px"
+            android:layout_marginLeft="36px"
+            android:layout_marginTop="40px"
+            android:scaleType="fitXY"
+            android:src="@drawable/yellow_left_arrow" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="510px"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="750px"
+                android:layout_height="120px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="320px"
+                android:paddingLeft="15px"
+                android:layout_marginBottom="15px"
+                android:paddingTop="1dp"
+                android:src="@drawable/text_multilogin" />
+
+            <TextView
+                android:id="@+id/tv_email_login"
+                android:layout_width="740px"
+                android:layout_height="120px"
+                android:layout_marginLeft="22px"
+                android:background="@drawable/email_btn_new" />
+
+
+            <Button
+                android:id="@+id/btn_facebook_login"
+                android:layout_width="740px"
+                android:layout_height="120px"
+                android:layout_marginLeft="22px"
+                android:layout_marginTop="29px"
+                android:background="@drawable/btn_login_facebook_background_new" />
+
+
+            <Button
+                android:id="@+id/btn_twitter_login"
+                android:layout_width="740px"
+                android:layout_height="120px"
+                android:layout_marginLeft="22px"
+                android:layout_marginTop="35px"
+                android:layout_marginBottom="30px"
+                android:background="@drawable/btn_login_twitter_background_new" />
+            <Button
+                android:id="@+id/btn_line_login"
+                android:layout_width="740px"
+                android:layout_height="120px"
+                android:layout_marginLeft="22px"
+                android:layout_marginBottom="30px"
+                android:background="@drawable/btn_login_line_new" />
+
+            <ImageButton
+                android:id="@+id/imgbtn_gotowebpage"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="52dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                android:src="@drawable/gotowebpage_btn"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,7 +38,6 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.skyfishjy.library.RippleBackground;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.Result;
@@ -74,7 +71,6 @@ import jp.co.scmodule.utils.SCAPIUtils;
 import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
-import jp.co.scmodule.utils.SCSharedPreferencesUtils;
 import jp.co.scmodule.widgets.SCCircleImageView;
 import jp.co.scmodule.widgets.SCSingleLineTextView;
 
@@ -1015,7 +1011,7 @@ public class ECMainActivity extends SCMyActivity {
     }
 
     private void loginWithEmail(final int codeType) {
-        Intent i = new Intent(mContext, SCLoginActivity.class);
+        Intent i = new Intent(mContext, SCMailRegistrationActivity.class);
         i.putExtra(Integer.class.toString(), codeType);
         startActivityForResult(i, codeType);
         overridePendingTransition(R.anim.anim_slide_in_right,

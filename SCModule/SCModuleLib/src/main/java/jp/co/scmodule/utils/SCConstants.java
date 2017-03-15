@@ -304,5 +304,27 @@ public class SCConstants {
 //    for line testing
 //    public static final String CHANNEL_ID_LINE = "1502467581";
     public static final int REQUEST_CODE_FOR_LINE = 112;
-    public static String PROVIDER_LINE = "line";
+    public static final String PROVIDER_LINE = "line";
+
+
+
+    public static final String ACTION_OPEN_TUTORIAL_TADACOPY = "tcapp.com.TutorialActivity";
+    public static final String ACTION_OPEN_TUTORIAL_CANPASS = "jp.co.canpass.TutorialActivity";
+
+    public static final String PACKAGE_TORETAN_RELEASE = "jp.co.toretan";
+    public static final String PACKAGE_TADACOPY_RELEASE = "tcapp.com";
+    public static final String PACKAGE_CANPASS_RELEASE = "jp.co.canpass";
+
+    public static final String PACKAGE_TORETAN_DEBUG = "jp.co.toretan.debug";
+    public static final String PACKAGE_TADACOPY_DEBUG = "tcapp.com.debug";
+    public static final String PACKAGE_CANPASS_DEBUG = "jp.co.canpass.debug";
+    public static final String PACKAGE_MODULE = "jp.co.scmodule";
+
+    public static final String PACKAGE_TORETAN_STAGING = "jp.co.toretan.staging";
+    public static final String PACKAGE_TADACOPY_STAGING = "tcapp.com.staging";
+    public static final String PACKAGE_CANPASS_STAGING = "jp.co.canpass.staging";
+    public static final String ACTION_OPEN_SNS_TADACOPY = "tcapp.com.SNSActivity";
+    public static final String ACTION_OPEN_SNS_CANPASS = "jp.co.canpass.SNSActivity";
+
+
 }
