@@ -63,7 +63,9 @@ import jp.co.scmodule.widgets.SCPinnedHeaderListView;
 import jp.co.scmodule.widgets.SCPixelScrollDetector;
 import jp.co.scmodule.widgets.SCClockView;
 import jp.co.scmodule.widgets.SCSingleLineTextView;
-
+/*
+* This is SCDashboard
+* */
 public class SCMainActivity extends SCMyActivity {
     private static final String TAG_LOG = "SCMainActivity";
     private Context mContext = null;
@@ -231,108 +233,6 @@ public class SCMainActivity extends SCMyActivity {
 //            requestGetGroupDetails();
 //        }
     }
-    //added ads api but specification was different
-//    private void requestGetAdvertise() {
-//        long time = SCGlobalUtils.getTimeInMilisecond();
-//        String LastUpdate = SCGlobalUtils.getBannerLastUpdate(mActivity);
-//        String app_id = mUserObj.getAppId();
-//        String key = SCGlobalUtils.getMD5Key(SCConstants.SECRET_KEY, app_id, time);
-//        HashMap<String, Object> param = new HashMap<>();
-//        param.put(SCConstants.PAR_GET_BANNER_KEY, key);
-//        param.put(SCConstants.PAR_GET_BANNER_APP_ID, app_id);
-//        param.put(SCConstants.PAR_GET_BANNER_DATE, time + "");
-//        param.put(SCConstants.PAR_GET_BANNER_LAST_UPDATE, LastUpdate);
-//        param.put(SCConstants.PAR_APPLICATION_ID, SCConstants.APPLICATION_ID_TADACOPY);
-//
-//        mSCRequestAsyncTask = new SCRequestAsyncTask(this, SCConstants.REQUEST_GET_BANNERS, param, new SCRequestAsyncTask.AsyncCallback() {
-//            @Override
-//            public void done(String result) {
-//                mIsLoadInfoDone = true;
-//                SCGlobalUtils.dismissLoadingProgress();
-//
-//                Log.e("API GET_BANNER", result);
-//                try {
-//                    JSONObject jsonObject = new JSONObject(result);
-//                    //get TOP BANNER
-//                    if (jsonObject.has(SCConstants.TAG_GET_BANNER_TYPE_TOP)) {
-//
-//                        JSONArray jsonArrayTop = jsonObject.getJSONArray(SCConstants.TAG_GET_BANNER_TYPE_TOP);
-//                        if (jsonArrayTop.length() > 0) {
-//                            for (int i = 0; i < jsonArrayTop.length(); i++) {
-//                                JSONObject jsonObjectTOP = jsonArrayTop.getJSONObject(i);
-//                                SCBannerItem bannerItemTOP = new SCBannerItem();
-//                                bannerItemTOP.ParseJSONGetBanner(SCConstants.TAG_GET_BANNER_TYPE_TOP, jsonObjectTOP);
-//                                mListBannerTop.add(bannerItemTOP);
-//                            }
-//                        }
-//
-//                    }
-//
-//                    //get MAIN BANNER
-//                    if (jsonObject.has(SCConstants.TAG_GET_BANNER_TYPE_MAIN)) {
-//
-//                        JSONArray jsonArrayMAIN = jsonObject.getJSONArray(SCConstants.TAG_GET_BANNER_TYPE_MAIN);
-//                        if (jsonArrayMAIN.length() > 0) {
-//                            for (int i = 0; i < jsonArrayMAIN.length(); i++) {
-//                                JSONObject jsonObjectMAIN = jsonArrayMAIN.getJSONObject(i);
-//                                SCBannerItem bannerItemMAIN = new SCBannerItem();
-//                                bannerItemMAIN.ParseJSONGetBanner(SCConstants.TAG_GET_BANNER_TYPE_MAIN, jsonObjectMAIN);
-//                                mListBannerMain.add(bannerItemMAIN);
-//                            }
-//                        }
-//
-//                    }
-//                    //get SUB BANNER
-//
-//                    if (jsonObject.has(SCConstants.TAG_GET_BANNER_TYPE_SUB)) {
-//                        JSONArray jsonArraySUB = jsonObject.getJSONArray(SCConstants.TAG_GET_BANNER_TYPE_SUB);
-//
-//                        if (jsonArraySUB.length() > 0) {
-//                            for (int i = 0; i < jsonArraySUB.length(); i++) {
-//                                JSONObject jsonObjectSUB = jsonArraySUB.getJSONObject(i);
-//                                SCBannerItem bannerItemSUB = new SCBannerItem();
-//                                bannerItemSUB.ParseJSONGetBanner(SCConstants.TAG_GET_BANNER_TYPE_SUB, jsonObjectSUB);
-//                                mListBannerSub.add(bannerItemSUB);
-//                            }
-//                        }
-//                    }
-//
-//
-//                    if (SCGlobalUtils.mListBanner.size() > 0) {
-//                        if (SCGlobalUtils.mListBanner.get(SCConstants.TAG_GET_BANNER_TYPE_TOP).size() != 0) {
-//                            SCBannerItem bannerItem = (SCBannerItem) (SCGlobalUtils.mListBanner.get(SCConstants.TAG_GET_BANNER_TYPE_TOP).get(0));
-//                            //bannerItem.runAPILookBanner(userObj.getAppId(), ConstantsUtil.APPLICATION_ID, mActivity);
-//                        }
-//                    }
-//                    SCGlobalUtils.saveBannerLastUpdate(mActivity, SCGlobalUtils.getTimeInMilisecond() + "");
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }
-//
-//            @Override
-//            public void progress() {
-//                SCGlobalUtils.showLoadingProgress(mContext);
-//            }
-//
-//            @Override
-//            public void onInterrupted(Exception e) {
-//                mIsLoadInfoDone = true;
-//                SCGlobalUtils.dismissLoadingProgress();
-//            }
-//
-//            @Override
-//            public void onException(Exception e) {
-//                mIsLoadInfoDone = true;
-//                SCGlobalUtils.dismissLoadingProgress();
-//            }
-//        });
-//
-//        mSCRequestAsyncTask.execute();
-//
-//    }
 
 
     private void requestGetGroupDetails() {

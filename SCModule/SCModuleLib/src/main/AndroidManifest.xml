@@ -83,7 +83,6 @@
         <activity
             android:name=".SCLoginMail"
             android:screenOrientation="portrait" />
-        <activity android:name=".SCLoginForOld" />
         <activity
             android:name=".WebviewActivity"
             android:screenOrientation="portrait"
