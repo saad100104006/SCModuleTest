@@ -355,7 +355,8 @@ public class SCMainActivity extends SCMyActivity {
             @Override
             public void onClick(View v) {
                 mDialog_tut2.dismiss();
-                show_tut_three();
+                if(mUserObj.getStudent_group_name() == null && mUserObj.getStudent_group_name().equals(""))
+                        show_tut_three();
 
             }
         });

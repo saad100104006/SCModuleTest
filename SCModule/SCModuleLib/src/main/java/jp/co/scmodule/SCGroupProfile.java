@@ -41,7 +41,7 @@ import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
 
-public class SCGroupProfile extends SCMyActivity {
+public class   SCGroupProfile extends SCMyActivity {
     private static final String TAG_LOG = "SCGroupProfile";
     private Context mContext = null;
     private Activity mActivity = null;

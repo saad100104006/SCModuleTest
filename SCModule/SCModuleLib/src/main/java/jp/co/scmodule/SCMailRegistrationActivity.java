@@ -262,7 +262,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 //        }
         Intent intent = new Intent(SCMailRegistrationActivity.this,SCLoginMail.class);
         startActivity(intent);
-        //finish();
+        finish();
         overridePendingTransition(R.anim.anim_slide_in_right,
                 R.anim.anim_slide_out_left);
     }

@@ -21,5 +21,12 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
+    <style name="checkbox_theme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </style>
 
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/orange</item>
+        <item name="colorControlActivated">@color/orange</item>
+        <item name="android:textColorSecondary">@color/orange</item>
+    </style>
 </resources>

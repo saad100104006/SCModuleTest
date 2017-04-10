@@ -111,7 +111,9 @@
         <activity
             android:name=".SCGroupAdminPage"
             android:screenOrientation="portrait" />
-        <activity android:name=".SCMultiLoginPage"></activity>
+        <activity
+            android:name=".SCMultiLoginPage"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.3"
-        android:visibility="gone"
-        android:background="@drawable/pixel_perfect_login"></FrameLayout>
+        android:background="@drawable/pixel_perfect_login"
+        android:visibility="gone"></FrameLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:id="@+id/sc_login_et_password"
             android:layout_width="870px"
             android:layout_height="110px"
-            android:layout_marginBottom="55px"
+            android:layout_marginBottom="25px"
             android:background="@android:color/white"
             android:hint="パスワードを入力"
             android:paddingLeft="8dp"
@@ -61,6 +61,20 @@
             android:tag="39"
             android:textColorHint="@color/hint_color"
             android:textSize="16sp" />
+
+
+
+        <CheckBox
+            android:id="@+id/password_check"
+            android:theme="@style/MyCheckBox"
+            android:layout_width="400px"
+            android:layout_height="70px"
+            android:layout_gravity="left"
+            android:layout_marginBottom="55px"
+            android:checked="false"
+            android:tag="30"
+            android:button="@drawable/custom_checkbox"
+           />
 
 
         <ImageButton

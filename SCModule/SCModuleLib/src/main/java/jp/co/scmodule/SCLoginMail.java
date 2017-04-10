@@ -9,12 +9,17 @@ import android.net.Uri;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -59,6 +64,22 @@ public class SCLoginMail extends Activity {
     String mail = null;
     String pass = null;
     private CorrectSizeUtil mCorrectSize = null;
+    private CheckBox password_check = null;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        afterClickBack();
+    }
+
+    private void afterClickBack() {
+        Intent intent = new Intent(SCLoginMail.this, SCMailRegistrationActivity.class);
+        startActivity(intent);
+        finish();
+//        overridePendingTransition(R.anim.anim_slide_in_left,
+//                R.anim.anim_slide_out_right);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,18 +95,18 @@ public class SCLoginMail extends Activity {
         mPassword = getIntent().getStringExtra(SCConstants.TAG_PASSWORD);
         mScheme = getIntent().getStringExtra(SCConstants.TAG_SCHEME);
         mCodeType = getIntent().getIntExtra(Integer.class.toString(), 0);
-
+        password_check = (CheckBox) findViewById(R.id.password_check);
 
         // get email and password from pref
         mail = SCSharedPreferencesUtils.getString(SCLoginMail.this, SCConstants.TAG_EMAIL);
         pass = SCSharedPreferencesUtils.getString(SCLoginMail.this, SCConstants.TAG_PASSWORD);
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null){
+        if (extras != null) {
             String from_update_mail_page = extras.getString("updated_mail");
-            if(from_update_mail_page != null){
+            if (from_update_mail_page != null) {
                 String title = "";
-                String message =from_update_mail_page+"宛に確認メールを送信しました。\n" +
+                String message = from_update_mail_page + "宛に確認メールを送信しました。\n" +
                         "メール本文内の認証URLにアクセス後メールアドレスの\n" +
                         "更新が完了します。\n" +
                         "※迷惑メール対策などでドメイン指定受信をしている場合\n" +
@@ -113,8 +134,8 @@ public class SCLoginMail extends Activity {
             mEtPassword.setText(mPassword);
 
             String title = null;
-           // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                title = getResources().getString(R.string.dialog_tadacopy_new_app_title);
+            // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+            title = getResources().getString(R.string.dialog_tadacopy_new_app_title);
 //            } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //                title = getResources().getString(R.string.dialog_canpass_new_app_title);
 //            }
@@ -124,12 +145,27 @@ public class SCLoginMail extends Activity {
             SCGlobalUtils.showInfoDialog(mContext, title, body, action, null);
 
             String description = "";
-          //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                description = getResources().getString(R.string.login_description_1_tadacopy);
+            //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+            description = getResources().getString(R.string.login_description_1_tadacopy);
 //            } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //                description = getResources().getString(R.string.login_description_1_canpass);
 //            }
         }
+
+        password_check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                password_check.setChecked(isChecked);
+                if (!isChecked) {
+                    // show password
+                    mEtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    // hide password
+                    mEtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
+
         //Init variable
         mCorrectSize = CorrectSizeUtil.getInstance(this);
         mCorrectSize.correctSize();
@@ -288,8 +324,8 @@ public class SCLoginMail extends Activity {
                             setResult(RESULT_OK);
                         } else {
                             Intent intent = new Intent();
-                          //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                                intent.setAction(SCConstants.ACTION_OPEN_DEFAULT_TADACOPY);
+                            //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                            intent.setAction(SCConstants.ACTION_OPEN_DEFAULT_TADACOPY);
 //                            } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //                                intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
 //                            }
@@ -352,7 +388,7 @@ public class SCLoginMail extends Activity {
                 Log.e("url", url);
                 Uri uri = Uri.parse(url);
                 if (url.contains("code=") && !url.contains("success=0")) {
-                    if(!getCode) {
+                    if (!getCode) {
                         getCode = true;
                         authCode = uri.getQueryParameter("code");
                         Log.i("", "CODE : " + authCode);
@@ -461,7 +497,7 @@ public class SCLoginMail extends Activity {
                                 if ((userObj.getUniversityId() == null || (userObj.getUniversityId().equals("0") || userObj.getUniversityId().equals("")))
                                         || (userObj.getCampusId() == null || (userObj.getCampusId().equals("0") || userObj.getCampusId().equals("")))
                                         || (userObj.getDepartmentId() == null || (userObj.getDepartmentId().equals("0") || userObj.getDepartmentId().equals("")))
-                                       // || (userObj.getMajorId() == null || (userObj.getMajorId().equals("0") || userObj.getMajorId().equals("")))
+                                        // || (userObj.getMajorId() == null || (userObj.getMajorId().equals("0") || userObj.getMajorId().equals("")))
                                         || (userObj.getEnrollmentYear() == null || (userObj.getEnrollmentYear().equals("0") || userObj.getEnrollmentYear().equals("")))) {
 
                                     Intent intent = new Intent(getApplicationContext(), SCEditInfoOneActivity.class);
@@ -472,11 +508,11 @@ public class SCLoginMail extends Activity {
 
                                 } else {
                                     Intent intent = new Intent();
-                                  //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                                        intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
-                                  //  } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
+                                    //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                                    intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
+                                    //  } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
                                     //    intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
-                                  //  }
+                                    //  }
                                     intent.putExtra(SCUserObject.class.toString(), mUserObj);
                                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);

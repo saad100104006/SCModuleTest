@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import jp.co.scmodule.ECDetailProductActivity;
+import jp.co.scmodule.ECDetailShopActivity;
 import jp.co.scmodule.ECMainActivity;
 import jp.co.scmodule.R;
 import jp.co.scmodule.SCProfileInfoActivity;
@@ -279,7 +280,11 @@ public class ECProductAdapter extends BaseAdapter {
 
     private void showDialogConfirmExchangeStage2(ECProductObject productObj) {
         requestPayExchangeItem();
-        ((ECMainActivity) mContext).after_success_show_thanks_page();
+
+        if(mContext instanceof  ECMainActivity)
+            ((ECMainActivity) mContext).after_success_show_thanks_page();
+        else if(mContext instanceof ECDetailShopActivity)
+            ((ECDetailShopActivity) mContext).after_success_show_thanks_page();
 
 //        String title = mContext.getResources().getString(R.string.dialog_exchange_stage_2_title);
 //        String body = mContext.getResources().getString(R.string.dialog_body_exchange_point_stage_2);

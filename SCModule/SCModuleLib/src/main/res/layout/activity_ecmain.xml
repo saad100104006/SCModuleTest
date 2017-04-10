@@ -217,10 +217,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="49px"
                 android:gravity="center_vertical"
-                android:tag="51"
+                android:tag="45"
                 android:text=""
                 android:textColor="@android:color/white"
-                android:textSize="51px"
+                android:textSize="45px"
                 android:textStyle="bold"/>
 
         </RelativeLayout>

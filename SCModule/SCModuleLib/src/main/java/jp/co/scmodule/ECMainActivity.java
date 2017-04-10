@@ -300,7 +300,7 @@ public class ECMainActivity extends SCMyActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setAction(SCConstants.ACTION_OPEN_DEFAULT_TADACOPY);
+                intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
                 intent.putExtra(SCUserObject.class.toString(), SCUserObject.getInstance());
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

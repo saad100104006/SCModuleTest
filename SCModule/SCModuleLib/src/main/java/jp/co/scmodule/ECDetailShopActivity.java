@@ -1,17 +1,23 @@
 package jp.co.scmodule;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -30,6 +36,9 @@ import com.twitter.sdk.android.core.TwitterAuthException;
 import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -75,7 +84,8 @@ public class ECDetailShopActivity extends SCMyActivity {
     private GridView mGvProduct = null;
     private ImageView mIbtnBack = null;
     private SCSingleLineTextView mTvShopName = null;
-
+    private View DialogView;
+    Dialog mDialog_tut1 = null;
     private ECShopObject mShopObj = null;
     private String mShopId = null;
 
@@ -99,7 +109,8 @@ public class ECDetailShopActivity extends SCMyActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
-        mTwitterClient.onActivityResult(requestCode, resultCode, data);
+        if (mTwitterClient != null)
+            mTwitterClient.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -169,6 +180,9 @@ public class ECDetailShopActivity extends SCMyActivity {
         mGvProduct = (GridView) findViewById(R.id.ecdetail_shop_gv_item);
         mIbtnBack = (ImageView) findViewById(R.id.ecdetail_shop_ibtn_back);
         mTvShopName = (SCSingleLineTextView) findViewById(R.id.ecdetail_shop_tv_shop_name);
+
+        DialogView = this.getLayoutInflater().inflate(R.layout.dialog_thanks_page, null);
+        mDialog_tut1 = new Dialog(this, android.R.style.Theme_Black_NoTitleBar);
     }
 
     @Override
@@ -598,4 +612,128 @@ public class ECDetailShopActivity extends SCMyActivity {
             }
         });
     }
+
+    public void after_success_show_thanks_page(){
+        requestRecommendExchangeItem();
+    }
+
+    public void requestRecommendExchangeItem() {
+        String appId = SCUserObject.getInstance().getAppId();
+        HashMap<String, Object> parameter = new HashMap<String, Object>();
+        parameter.put(SCConstants.PARAM_APP_ID, appId);
+
+        SCRequestAsyncTask SCRequestAsyncTask = new SCRequestAsyncTask(mContext, SCConstants.REQUEST_GET_RECOMMEND_ITEM_DETAILS, parameter, new SCRequestAsyncTask.AsyncCallback() {
+            @Override
+            public void done(String result) {
+                SCGlobalUtils.dismissLoadingProgress();
+
+                Log.e(TAG_LOG, result);
+
+                try {
+                    JSONObject jObj = new JSONObject(result);
+                    if (jObj.getString("success").equals("true")) {
+                        JSONObject jsonObject = jObj.getJSONObject("item");
+                        String image_URL = jsonObject.getString("image");
+                        String is_fav = jsonObject.getString("is_favorite");
+
+                        String point = jsonObject.getString("point");
+                        String product = jsonObject.getString("name");
+                        String shopname = jsonObject.getString("shop_name");
+
+                        show_thanks_dialog(image_URL,is_fav,point,product,shopname);
+                    } else {
+                        Toast.makeText(ECDetailShopActivity.this, jObj.getString("error"), Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+            }
+
+            @Override
+            public void progress() {
+                SCGlobalUtils.showLoadingProgress(mContext);
+            }
+
+            @Override
+            public void onInterrupted(Exception e) {
+                SCGlobalUtils.dismissLoadingProgress();
+            }
+
+            @Override
+            public void onException(Exception e) {
+                SCGlobalUtils.dismissLoadingProgress();
+            }
+        });
+
+        SCRequestAsyncTask.execute();
+    }
+
+    public void show_thanks_dialog(String image_URL,String is_favourite,String point,String product,String shopname) {
+        View v = DialogView;
+        ImageView image_header = (ImageView) v.findViewById(R.id.image_header);
+        if(is_favourite.equals("true")){
+            image_header.setImageResource(R.drawable.header_with_fav);
+        }else{
+            image_header.setImageResource(R.drawable.header_without_fav);
+        }
+        ImageView image = (ImageView) v.findViewById(R.id.image);
+
+        TextView item_ec_tv_owner = (TextView) v.findViewById(R.id.item_ec_tv_owner);
+        item_ec_tv_owner.setText(shopname);
+
+        TextView item_ec_tv_name = (TextView) v.findViewById(R.id.item_ec_tv_name);
+        item_ec_tv_name.setText(product);
+
+        TextView item_ec_tv_point = (TextView) v.findViewById(R.id.item_ec_tv_point);
+        item_ec_tv_point.setText(point+ " " + mContext.getResources().getString(R.string.common_point));
+
+        ImageView close = (ImageView) v.findViewById(R.id.btn_close_copy_code);
+        ImageView dashboard = (ImageView) v.findViewById(R.id.btn_go_to_dashboard);
+        Button campus = (Button) v.findViewById(R.id.btn_goto_campus);
+        ImageLoader.getInstance().displayImage(image_URL, image, SCGlobalUtils.sOptForImgLoader);
+        campus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
+                intent.putExtra(SCUserObject.class.toString(), SCUserObject.getInstance());
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                overridePendingTransition(R.anim.anim_slide_in_right,
+                        R.anim.anim_slide_out_left);
+                SCGlobalUtils.showCampusWork = true;
+            }
+        });
+
+        dashboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afterClickAvatar();
+            }
+        });
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog_tut1.dismiss();
+            }
+        });
+        SCMultipleScreen.resizeAllView((ViewGroup) v);
+        mDialog_tut1.setCancelable(false);
+        mDialog_tut1.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        mDialog_tut1.getWindow().setLayout(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
+        mDialog_tut1.setContentView(v);
+        mDialog_tut1.show();
+    }
+
+    private void afterClickAvatar() {
+        Intent i = new Intent(this, ECPointManager.class);
+        startActivityForResult(i, SCConstants.CODE_SHOW_POINT_MANAGER);
+        overridePendingTransition(R.anim.anim_slide_in_right,
+                R.anim.anim_slide_out_left);
+    }
+
 }
