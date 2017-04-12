@@ -40,9 +40,11 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
     private void afterClickBack() {
         SCGlobalUtils.ShowTutorial = false;
         Intent intent = new Intent();
+
+        String name = getPackageName();
         if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_TUTORIAL_TADACOPY);
-        } else if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_TUTORIAL_CANPASS);
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -80,6 +82,13 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
         gotoWebPage.setOnClickListener(this);
         mTvEmailLogin.setOnClickListener(this);
         mCorrectSize.correctSize();
+
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            btnLineLogin.setVisibility(View.VISIBLE);
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            btnLineLogin.setVisibility(View.GONE);
+        }
     }
 
 
@@ -118,7 +127,7 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
         Intent intent = new Intent();
         if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_SNS_TADACOPY);
-        } else if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_SNS_CANPASS);
         }
         intent.putExtra("login_type", SCConstants.PROVIDER_LINE);
@@ -130,7 +139,7 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
         Intent intent = new Intent();
         if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_SNS_TADACOPY);
-        } else if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_SNS_CANPASS);
         }
         intent.putExtra("login_type", SCConstants.PROVIDER_TWITTER);
@@ -142,7 +151,7 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
         Intent intent = new Intent();
         if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_SNS_TADACOPY);
-        } else if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
             intent.setAction(SCConstants.ACTION_OPEN_SNS_CANPASS);
         }
         intent.putExtra("login_type", SCConstants.PROVIDER_FACEBOOK);

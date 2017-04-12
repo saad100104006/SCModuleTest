@@ -10,6 +10,7 @@ public class SCUrlConstants {
     //Developement Server after implementing protocol
     public static final String URL_DOMAIN = "https://devapi2.smart-campus.jp";
     public static final String URL_BASE_LOGIN = "https://devapi2.smart-campus.jp/api/";
+
 //  public static final String URL_GET_BANNERS_CAMPUSAN = "http://devcanapi.smart-campus.jp/sc/collections/pickup_banner";
 
 

@@ -53,6 +53,37 @@ public class SCUserObject implements Parcelable {
     private String campusName = null; // string
     private String loginCount = null; // string
 
+
+    private String uni_logo = null;
+    private String uni_url = null;
+    private String uni_name = null;
+
+    public String getUni_name() {
+        return uni_name;
+    }
+
+    public void setUni_name(String uni_name) {
+        this.uni_name = uni_name;
+    }
+
+    public String getUni_url() {
+        return uni_url;
+    }
+
+    public void setUni_url(String uni_url) {
+        this.uni_url = uni_url;
+    }
+
+    public String getUni_logo() {
+        return uni_logo;
+    }
+
+    public void setUni_logo(String uni_logo) {
+        this.uni_logo = uni_logo;
+    }
+
+
+
     public String getLoginCount() {
         return loginCount;
     }

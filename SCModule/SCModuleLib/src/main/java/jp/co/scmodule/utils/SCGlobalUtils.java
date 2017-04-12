@@ -35,6 +35,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -82,10 +83,20 @@ public class SCGlobalUtils {
     public static boolean tc_device_available_in_campus = false;
     public static String old_point = "0";
     public static String new_point = "0";
-    public static int count_not_join_campus_work = 10;
+    public static int count_no_join_campus_work = 10;
     public static int special_rate = 0;
     public static int discount_rate = 0;
     public static boolean is_all_category_pressed = true;
+    //canpass is using it
+    public static String gcm_id = "";
+    public static String access_token = null;
+    public static String refresh_access_token = null;
+    public static List<String> count_not_join_campus_work = new ArrayList<String>();
+    public static String coupon_item = null;
+    public static String is_first_login = "false";
+    public static boolean update_profile = false;
+    public static boolean is_fav_selected = false;
+    public static boolean is_used_selected = false;
 
 
     public SCGlobalUtils(Context context) {
@@ -1147,5 +1158,52 @@ public class SCGlobalUtils {
         }, timerLength);
     }
 
+    public static void showInformationCouponDialog(Context context, String title, String body, String action1, final SCDialogCallback dialogCallback) {
+        final SCCustomDialog infoDialog = new SCCustomDialog(context, R.style.CustomDialogTheme);
+        LayoutInflater inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.dialog_coupon_info, null);
 
+        new SCMultipleScreen(context);
+        SCMultipleScreen.resizeAllView((ViewGroup) v);
+
+        infoDialog.setContentView(v);
+
+        TextView btnCancel = (TextView) infoDialog.findViewById(R.id.tv_close);
+        TextView tvTitle = (TextView) infoDialog.findViewById(R.id.tv_coupon_name);
+        TextView tvBody = (TextView) infoDialog.findViewById(R.id.tv_coupon_info);
+
+        if (title == null) {
+            tvTitle.setVisibility(View.GONE);
+        } else {
+            tvTitle.setText(title);
+        }
+
+        if (body == null) {
+            tvBody.setVisibility(View.GONE);
+        } else {
+            if (isHtml(body)) {
+                tvBody.setText(Html.fromHtml(body));
+            } else {
+                tvBody.setText(body);
+            }
+        }
+
+        if (action1 != null) {
+            btnCancel.setText(action1);
+        }
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //your business logic
+                if (dialogCallback != null) {
+                    dialogCallback.onAction1();
+                }
+                infoDialog.dismiss();
+            }
+        });
+
+
+        infoDialog.show();
+    }
 }

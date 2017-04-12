@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatCheckBox;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -226,9 +225,10 @@ public class SCLoginMail extends Activity {
 
     private void requestlogin() {
         long date = SCGlobalUtils.getTimeInMilisecond();
-        String key = SCConstants.SECRET_KEY + date + SCConstants.TADACOPY_CLIENT_ID_SECRET;
-        String state = SCGlobalUtils.md5(key);
+        String key = "";
+        String postData = "";
         String UUID = "";
+
         if (SCSharedPreferencesUtils.getString(this, SCConstants.TAG_DEVICE_ID, null) == null) {
             if (SCGlobalUtils.DEVICEUUID != null)
                 UUID = SCGlobalUtils.DEVICEUUID;
@@ -241,18 +241,41 @@ public class SCLoginMail extends Activity {
         } else {
             UUID = SCSharedPreferencesUtils.getString(this, SCConstants.TAG_DEVICE_ID, null);
         }
-        //create the posdata for webview to load
-        String postData = "client_id=" + SCConstants.TADACOPY_CLIENT_ID
-                + "&redirect_uri=" + SCConstants.TADACOPY_REDIRECT_URI
-                + "&response_type=" + "code"
-                + "&email=" + mEtEmail.getText().toString().trim()
-                + "&password=" + mEtPassword.getText().toString().trim()
-                + "&password_is_hash=" + SCGlobalUtils.ishashpass + ""
-                + "&state=" + state
-                + "&date=" + date
-                + "&uuid=" + UUID
-                + "&application_id=" + SCConstants.TADACOPY_DEFAULT_APP_ID_SECRET;
-        //set the invisible webview
+
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+
+             key = SCConstants.SECRET_KEY + date + SCConstants.TADACOPY_CLIENT_ID_SECRET;
+            String state = SCGlobalUtils.md5(key);
+            //create the posdata for webview to load
+             postData = "client_id=" + SCConstants.TADACOPY_CLIENT_ID
+                    + "&redirect_uri=" + SCConstants.TADACOPY_REDIRECT_URI
+                    + "&response_type=" + "code"
+                    + "&email=" + mEtEmail.getText().toString().trim()
+                    + "&password=" + mEtPassword.getText().toString().trim()
+                    + "&password_is_hash=" + SCGlobalUtils.ishashpass + ""
+                    + "&state=" + state
+                    + "&date=" + date
+                    + "&uuid=" + UUID
+                    + "&application_id=" + SCConstants.TADACOPY_DEFAULT_APP_ID_SECRET;
+            //set the invisible webview
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+             key = SCConstants.SECRET_KEY + date + SCConstants.CANPASS_CLIENT_ID_SECRET;
+            String state = SCGlobalUtils.md5(key);
+            //create the posdata for webview to load
+             postData = "client_id=" + SCConstants.CANPASS_CLIENT_ID
+                    + "&redirect_uri=" + SCConstants.CANPASS_REDIRECT_URI
+                    + "&response_type=" + "code"
+                    + "&email=" + mEtEmail.getText().toString().trim()
+                    + "&password=" + mEtPassword.getText().toString().trim()
+                    + "&password_is_hash=" + SCGlobalUtils.ishashpass + ""
+                    + "&state=" + state
+                    + "&date=" + date
+                    + "&uuid=" + UUID
+                    + "&application_id=" + SCConstants.CANPASS_DEFAULT_APP_ID_SECRET;
+            //set the invisible webview
+        }
+
         Log.e("postdata", postData);
         String url = "";
         //post in webview
@@ -452,7 +475,7 @@ public class SCLoginMail extends Activity {
         @Override
         protected JSONObject doInBackground(String... args) {
             GetAccessToken jParser = new GetAccessToken();
-            JSONObject json = jParser.gettoken(mContext, authCode, SCConstants.TADACOPY_CLIENT_ID, SCConstants.TADACOPY_CLIENT_ID_SECRET, SCConstants.TADACOPY_REDIRECT_URI);
+            JSONObject json = jParser.gettoken(mContext, authCode, SCConstants.CANPASS_CLIENT_ID, SCConstants.CANPASS_CLIENT_ID_SECRET, SCConstants.CANPASS_REDIRECT_URI);
             return json;
         }
 
@@ -509,10 +532,15 @@ public class SCLoginMail extends Activity {
                                 } else {
                                     Intent intent = new Intent();
                                     //  if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                                    intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
                                     //  } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
                                     //    intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
                                     //  }
+
+                                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                                        intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
+                                    } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+                                        intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
+                                    }
                                     intent.putExtra(SCUserObject.class.toString(), mUserObj);
                                     //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);

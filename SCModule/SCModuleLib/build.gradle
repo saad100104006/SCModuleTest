@@ -22,7 +22,7 @@ repositories {
 }
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     defaultConfig {
@@ -57,6 +57,5 @@ dependencies {
     compile 'com.skyfishjy.ripplebackground:library:1.0.1'
     compile 'it.sephiroth.android.library.horizontallistview:hlistview:1.2.2'
     compile 'com.facebook.android:facebook-android-sdk:4.1.+'
-//    compile 'com.android.support:appcompat-v7:21.0.3'
-    compile 'com.android.support:appcompat-v7:22.2.0'
+   //compile 'com.android.support:appcompat-v7:21.0.3'
 }

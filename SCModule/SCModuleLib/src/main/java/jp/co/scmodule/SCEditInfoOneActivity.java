@@ -526,11 +526,11 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                             R.anim.anim_slide_out_left);
                 } else {
                     Intent intent = new Intent();
-                   // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
                         intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
-//                    } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
-//                        intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
-//                    }
+                    } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+                        intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
+                    }
                     //intent.putExtra(SCUserObject.class.toString(), mUserObj);
                     SCUserObject.updateInstance(mUserObj);
                     startActivity(intent);
@@ -644,11 +644,11 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                         SCSharedPreferencesUtils.putString(mContext, SCConstants.TAG_LOGIN_TYPE, SCConstants.PROVIDER_GUEST);
 
                         Intent intent = new Intent();
-                       // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
                             intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
-//                        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
-//                            intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
-//                        }
+                        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+                            intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
+                        }
                         intent.putExtra(SCUserObject.class.toString(), mUserObj);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);

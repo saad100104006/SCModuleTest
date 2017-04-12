@@ -200,7 +200,7 @@ public class SCConstants {
     public static final int CODE_SHOW_POINT_MANAGER = 1003;
 
     public static final String ACTION_OPEN_LOGIN_CANPASS = "jp.co.canpass.LoginActivity";
-    public static final String ACTION_OPEN_CONTENT_CANPASS = "jp.co.canpass.ContentActivity";
+    public static final String ACTION_OPEN_CONTENT_CANPASS = "com.canpassapp.ContentActivity";
     public static final String ACTION_OPEN_LOGIN_TADACOPY = "tcapp.com.LoginActivity";
     public static final String ACTION_OPEN_CONTENT_TADACOPY = "tcapp.com.ContentActivity";
     public static final String ACTION_OPEN_DEFAULT_TADACOPY = "tcapp.com.DefaultActivity";
@@ -309,22 +309,51 @@ public class SCConstants {
 
 
     public static final String ACTION_OPEN_TUTORIAL_TADACOPY = "tcapp.com.TutorialActivity";
-    public static final String ACTION_OPEN_TUTORIAL_CANPASS = "jp.co.canpass.TutorialActivity";
+    public static final String ACTION_OPEN_TUTORIAL_CANPASS = "com.canpassapp.TutorialActivity";
 
     public static final String PACKAGE_TORETAN_RELEASE = "jp.co.toretan";
     public static final String PACKAGE_TADACOPY_RELEASE = "tcapp.com";
-    public static final String PACKAGE_CANPASS_RELEASE = "jp.co.canpass";
+    public static final String PACKAGE_CANPASS_RELEASE = "com.canpassapp";
 
     public static final String PACKAGE_TORETAN_DEBUG = "jp.co.toretan.debug";
     public static final String PACKAGE_TADACOPY_DEBUG = "tcapp.com.debug";
-    public static final String PACKAGE_CANPASS_DEBUG = "jp.co.canpass.debug";
+    public static final String PACKAGE_CANPASS_DEBUG = "com.canpassapp.debug";
     public static final String PACKAGE_MODULE = "jp.co.scmodule";
 
     public static final String PACKAGE_TORETAN_STAGING = "jp.co.toretan.staging";
     public static final String PACKAGE_TADACOPY_STAGING = "tcapp.com.staging";
-    public static final String PACKAGE_CANPASS_STAGING = "jp.co.canpass.staging";
+    public static final String PACKAGE_CANPASS_STAGING = "com.canpassapp.staging";
     public static final String ACTION_OPEN_SNS_TADACOPY = "tcapp.com.SNSActivity";
-    public static final String ACTION_OPEN_SNS_CANPASS = "jp.co.canpass.SNSActivity";
+    public static final String ACTION_OPEN_SNS_CANPASS = "com.canpassapp.SNSActivity";
 
+
+    //for canpass added
+    public static final String CANPASS_CLIENT_ID = "fa2cb8e983854764b7fe4ce1268b5b11";
+    public static final String CANPASS_CLIENT_ID_SECRET = "b06f9c8acc824ff1877af375c09fd467";
+
+    public static final String CANPASS_REDIRECT_URI ="canpass://getcode";
+    public static final String CANPASS_DEFAULT_APP_ID_SECRET ="2";
+
+
+    public static final String SHARED_PREFERENCES_TC_POINT = "TC_POINT";
+    public static final String SHARED_PREFERENCES_USER_SEX = "USER_SEX";
+    public static final String SHARED_PREFERENCES_USER_ENROLLMENT_YEAR = "USER_ENROLLMENT_YEAR";
+
+    public static final String SHARED_PREFERENCES_OFFLINED_STATUS = "OFFLINED_STATUS";
+    public static final String SHARED_PREFERENCES_GET_CONTENT = "LAST_UPDATE_GET_CONTENT";
+    public static final String APPLICATION_ID = "1";
+    public static final String CATEGORY_DRINKS = "drink";
+    public static final String CATEGORY_SWEETS = "sweets";
+    public static final String CATEGORY_FOOD = "food";
+    public static final String CATEGORY_ALL= "all";
+    public static final String CATEGORY_SPECIAL = "special";
+    public static final String CATEGORY_OTHERS = "other";
+    public static final int REQUEST_LIKE_COUPON = 1140;
+
+
+    public static final String CHANNEL_ID_LINE = "1502626114";
+
+    public static final String APPLICATION_ID_CANPASS = "2";
+    public static final String TAG_IS_COUPON = "is_coupon";
 
 }

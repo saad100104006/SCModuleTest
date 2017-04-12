@@ -490,7 +490,7 @@ public class SCSlideMenu extends RelativeLayout implements SCNotificationAdapter
                                     initNotificationList();
 
                                     new SCMultipleScreen(mContext);
-                                    if (mUserObj.getIsGuest().equals("false")) {
+                                    if (mUserObj.getIsGuest()!= null && !mUserObj.getIsGuest().equals("") && mUserObj.getIsGuest().equals("false")) {
                                         if (mListInformations.size() == 0) {
                                             //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
                                             mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);

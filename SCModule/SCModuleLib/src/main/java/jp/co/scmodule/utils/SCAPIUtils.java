@@ -1345,6 +1345,16 @@ public class SCAPIUtils {
                 }
 
             }
+
+            if (((JSONObject) src).has(SCConstants.TAG_IS_COUPON)) {
+                if (((JSONObject) src).getBoolean(SCConstants.TAG_IS_COUPON)) {
+                    SCGlobalUtils.coupon_item = "true";
+                } else {
+                    SCGlobalUtils.coupon_item = null;
+
+                }
+
+            }
             ArrayList<LessonObject> mUserLesson = new ArrayList<LessonObject>();
             if (((JSONObject) src).has(SCConstants.TAG_LESSONS)) {
                     JSONArray jArrayLessons = ((JSONObject) src).getJSONArray(SCConstants.TAG_LESSONS);

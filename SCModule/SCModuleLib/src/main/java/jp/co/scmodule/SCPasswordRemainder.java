@@ -50,7 +50,11 @@ public class SCPasswordRemainder extends Activity {
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put(SCConstants.PARAM_EMAIL, mEtEmail.getText().toString().trim());
-        params.put(SCConstants.PARAM_APPLICATION_ID, SCConstants.APPLICATION_ID_TADACOPY);
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            params.put(SCConstants.PARAM_APPLICATION_ID, SCConstants.APPLICATION_ID_TADACOPY);
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            params.put(SCConstants.PARAM_APPLICATION_ID, SCConstants.APPLICATION_ID_CANPASS);
+        }
         SCRequestAsyncTask requestAsync = new SCRequestAsyncTask(SCPasswordRemainder.this, SCConstants.REQUEST_PASSWORD_REMINDER, params, new SCRequestAsyncTask.AsyncCallback() {
 
             @Override
