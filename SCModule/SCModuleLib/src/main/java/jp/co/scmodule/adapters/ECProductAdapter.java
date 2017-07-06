@@ -214,7 +214,6 @@ public class ECProductAdapter extends BaseAdapter {
         } else {
             int userPoint = Integer.parseInt(SCUserObject.getInstance().getCampusPoint());
             int productPoint = Integer.parseInt(productObj.getPoint());
-
             if (userPoint < productPoint) {
                 showDialogNotEnoughPoint(productObj);
                 return;
