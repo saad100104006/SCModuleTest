@@ -123,6 +123,14 @@ public class SCGroupChooseAdapter extends BaseAdapter {
 
         mHolder.btnMain.setContentDescription("main");
 
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.tvNo.setTextColor(mContext.getResources().getColor(R.color.common_sc_main_color));
+            mHolder.btnMain.setBackgroundResource(R.drawable.common_btn_yellow_selector);
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.tvNo.setTextColor(mContext.getResources().getColor(R.color.canpass_main));
+            mHolder.btnMain.setBackgroundResource(R.drawable.common_btn_yellow_selector_canpass);
+        }
+
         // set listener
         initListener(position);
         setListenerForView();

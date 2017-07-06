@@ -75,6 +75,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/copyrights_text"
+        android:background="@drawable/txt_copyright_white"
         android:orientation="vertical"></ImageView>
 </RelativeLayout>

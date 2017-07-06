@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /Users/lipuhossain/Documents/AndroidStudio Projects/SCModuleLibrary/SCModule/devsmartAndroid/src/main/aidl/com/devsmart/android/ILocationService.aidl
+ * Original file: /Users/mdmunirhossain/Documents/AndroidProjects/SC-module-Android/SCModule/devsmartAndroid/src/main/aidl/com/devsmart/android/ILocationService.aidl
  */
 package com.devsmart.android;
 public interface ILocationService extends android.os.IInterface

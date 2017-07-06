@@ -479,12 +479,13 @@
 
 
                     <ImageView
+                        android:id="@+id/dialog_header"
                         android:layout_width="550px"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginRight="25px"
                         android:layout_marginTop="36px"
                         android:scaleType="fitCenter"
-                        android:layout_marginRight="25px"
                         android:src="@drawable/point_dialog_header" />
 
                     <ImageView
@@ -503,7 +504,11 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10px"
                         android:layout_marginTop="45px"
-                        android:background="@drawable/gotowebpage" />
+                        android:text="くわしくはコチラ"
+                        android:textSize="40px"
+                        android:tag="40"
+                        android:textStyle="normal"
+                        android:background="@drawable/selector_btn_next" />
 
                     <ImageView
                         android:id="@+id/btn_close_copy_code"

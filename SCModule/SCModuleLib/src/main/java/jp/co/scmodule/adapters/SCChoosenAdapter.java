@@ -122,6 +122,12 @@ public class SCChoosenAdapter extends BaseAdapter {
             mHolder.imgNarrow.setVisibility(View.GONE);
         }
 
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.btnMain.setBackgroundResource(R.drawable.common_btn_yellow_selector);
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.btnMain.setBackgroundResource(R.drawable.common_btn_yellow_selector_canpass);
+        }
+
         mHolder.btnMain.setContentDescription("main");
 
         // set listener

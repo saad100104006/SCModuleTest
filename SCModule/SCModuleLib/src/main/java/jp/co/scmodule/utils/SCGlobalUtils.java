@@ -753,6 +753,56 @@ public class SCGlobalUtils {
         });
     }
 
+    public static void showLoginDialogGoBackToApp(Context mContext, final SCDialogCallback dialogCallback) {
+        final SCCustomDialog infoDialog = new SCCustomDialog(mContext, R.style.CustomDialogTheme);
+        LayoutInflater inflator = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.dialog_back_to_app, null);
+
+        new SCMultipleScreen(mContext);
+        SCMultipleScreen.resizeAllView((ViewGroup) v);
+
+        infoDialog.setContentView(v);
+
+
+        ImageView btnClose = (ImageView) v.findViewById(R.id.btn_close);
+        Button btn_cancel = (Button) v.findViewById(R.id.btn_cancel);
+        Button btn_ok = (Button) v.findViewById(R.id.btn_ok);
+
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            btn_ok.setBackgroundResource(R.drawable.btn_selector_rounded);
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            btn_ok.setBackgroundResource(R.drawable.btn_selector_rounded_canpass);
+        }
+
+
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCallback.onAction1();
+                infoDialog.dismiss();
+            }
+        });
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCallback.onAction2();
+                infoDialog.dismiss();
+            }
+        });
+
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogCallback.onAction4();
+                infoDialog.dismiss();
+            }
+        });
+
+        infoDialog.show();
+
+    }
+
     public static void showConfirmDialog(Context context, String title, String body, String action1, String action2, final SCDialogCallback dialogCallback) {
         final SCCustomDialog infoDialog = new SCCustomDialog(context, R.style.CustomDialogTheme);
         LayoutInflater inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -841,37 +891,46 @@ public class SCGlobalUtils {
         tv_last_label.setText("ポイントGET\n" +
                 "まであと"+remainng+"日");
         View[] views = new View[]{};
+        int coin_on = R.drawable.get_count_coin_image_on;
+
+        if (context.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || context.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || context.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            coin_on = R.drawable.get_count_coin_image_on;
+            tv_last_label.setBackgroundResource(R.drawable.tv_yellow_backgroung);
+        } else if (context.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || context.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || context.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            coin_on = R.drawable.get_count_coin_image_on_cp;
+            tv_last_label.setBackgroundResource(R.drawable.tv_yellow_backgroung_canpass);
+        }
         switch (new_value) {
             case "0":
                 break;
             case "1":
-                one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                one.setImageResource(coin_on);
                 views = new View[]{tvOld, one, tv_last_label};
                 break;
             case "2":
-                one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                one.setImageResource(coin_on);
+                two.setImageResource(coin_on);
                 views = new View[]{tvOld, one, two, tv_last_label};
                 break;
             case "3":
-                one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                three.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                one.setImageResource(coin_on);
+                two.setImageResource(coin_on);
+                three.setImageResource(coin_on);
                 views = new View[]{tvOld, one, two, three, tv_last_label};
                 break;
             case "4":
-                one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                three.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                four.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                one.setImageResource(coin_on);
+                two.setImageResource(coin_on);
+                three.setImageResource(coin_on);
+                four.setImageResource(coin_on);
                 views = new View[]{tvOld, one, two, three, four, tv_last_label};
                 break;
             case "5":
-                one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                three.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                four.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                five.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                one.setImageResource(coin_on);
+                two.setImageResource(coin_on);
+                three.setImageResource(coin_on);
+                four.setImageResource(coin_on);
+                five.setImageResource(coin_on);
                 views = new View[]{tvOld, one, two, three, four, five, tv_last_label};
                 break;
         }
@@ -1206,4 +1265,6 @@ public class SCGlobalUtils {
 
         infoDialog.show();
     }
+
+
 }

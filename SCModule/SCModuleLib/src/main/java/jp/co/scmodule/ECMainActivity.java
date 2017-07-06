@@ -174,7 +174,7 @@ public class ECMainActivity extends SCMyActivity {
         }
 
         mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
-        if(mTwitterClient != null){
+        if (mTwitterClient != null) {
             mTwitterClient.onActivityResult(requestCode, resultCode, data);
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -207,11 +207,11 @@ public class ECMainActivity extends SCMyActivity {
         try {
             if (mTwitterClient != null)
                 mTwitterClient = new TwitterAuthClient();
-        }catch (TwitterApiException e){
+        } catch (TwitterApiException e) {
             e.printStackTrace();
-        }catch (TwitterAuthException e){
+        } catch (TwitterAuthException e) {
             e.printStackTrace();
-        }catch (TwitterException e){
+        } catch (TwitterException e) {
             e.printStackTrace();
         }
         // init facebook sdk
@@ -268,17 +268,17 @@ public class ECMainActivity extends SCMyActivity {
         mDialog_tut1 = new Dialog(this, android.R.style.Theme_Black_NoTitleBar);
     }
 
-    public void after_success_show_thanks_page(){
+    public void after_success_show_thanks_page() {
         requestRecommendExchangeItem();
     }
 
 
-    public void show_thanks_dialog(String image_URL,String is_favourite,String point,String product,String shopname) {
+    public void show_thanks_dialog(String image_URL, String is_favourite, String point, String product, String shopname) {
         View v = DialogView;
         ImageView image_header = (ImageView) v.findViewById(R.id.image_header);
-        if(is_favourite.equals("true")){
+        if (is_favourite.equals("true")) {
             image_header.setImageResource(R.drawable.header_with_fav);
-        }else{
+        } else {
             image_header.setImageResource(R.drawable.header_without_fav);
         }
         ImageView image = (ImageView) v.findViewById(R.id.image);
@@ -290,7 +290,7 @@ public class ECMainActivity extends SCMyActivity {
         item_ec_tv_name.setText(product);
 
         TextView item_ec_tv_point = (TextView) v.findViewById(R.id.item_ec_tv_point);
-        item_ec_tv_point.setText(point+ " " + mContext.getResources().getString(R.string.common_point));
+        item_ec_tv_point.setText(point + " " + mContext.getResources().getString(R.string.common_point));
 
         ImageView close = (ImageView) v.findViewById(R.id.btn_close_copy_code);
         ImageView dashboard = (ImageView) v.findViewById(R.id.btn_go_to_dashboard);
@@ -300,7 +300,11 @@ public class ECMainActivity extends SCMyActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
+                if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                    intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
+                } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+                    intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
+                }
                 intent.putExtra(SCUserObject.class.toString(), SCUserObject.getInstance());
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -597,14 +601,13 @@ public class ECMainActivity extends SCMyActivity {
                         String product = jsonObject.getString("name");
                         String shopname = jsonObject.getString("shop_name");
 
-                        show_thanks_dialog(image_URL,is_fav,point,product,shopname);
+                        show_thanks_dialog(image_URL, is_fav, point, product, shopname);
                     } else {
                         Toast.makeText(ECMainActivity.this, jObj.getString("error"), Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
 
             }
@@ -929,24 +932,24 @@ public class ECMainActivity extends SCMyActivity {
                 SCGlobalUtils.dismissLoadingProgress();
 
                 Log.e(TAG_LOG + "EXCHANGE", result);
-               try {
-                   JSONObject jsonObject = new JSONObject(result);
-                   if (jsonObject.has("discount_rate")) {
-                       String discount_rate = jsonObject.getString("discount_rate");
-                       if (discount_rate != null) {
-                           if (!discount_rate.equals("null")) {
-                               SCGlobalUtils.discount_rate = Integer.parseInt(discount_rate);
-                           } else {
-                               SCGlobalUtils.discount_rate = 0;
-                           }
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    if (jsonObject.has("discount_rate")) {
+                        String discount_rate = jsonObject.getString("discount_rate");
+                        if (discount_rate != null) {
+                            if (!discount_rate.equals("null")) {
+                                SCGlobalUtils.discount_rate = Integer.parseInt(discount_rate);
+                            } else {
+                                SCGlobalUtils.discount_rate = 0;
+                            }
 
-                       } else {
-                           SCGlobalUtils.discount_rate = 0;
-                       }
-                   }
-               }catch (JSONException e){
-                   e.printStackTrace();
-               }
+                        } else {
+                            SCGlobalUtils.discount_rate = 0;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 HashMap<String, Object> returnHash = SCAPIUtils.parseJSON(SCConstants.REQUEST_GET_EXCHANGE_ITEMS, result);
 
                 if (returnHash.containsKey(SCConstants.TAG_ITEMS)) {

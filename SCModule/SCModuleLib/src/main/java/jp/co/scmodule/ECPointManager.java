@@ -112,6 +112,7 @@ public class ECPointManager extends SCMyActivity implements View.OnClickListener
     private SCRequestAsyncTask mSCRequestAsyncTask;
 
     private boolean mIsFirstLoad = true;
+    private boolean mIsPointExpanded = false;
 
     private Activity mActivity;
     private Context mContext;
@@ -179,7 +180,7 @@ public class ECPointManager extends SCMyActivity implements View.OnClickListener
         grvShop = (ECExpandableGridView) findViewById(R.id.ec_point_grv_shop);
         grvShop.setExpanded(true);
         pointHisory = (ECExpandableGridView) findViewById(R.id.ec_point_history);
-        pointHisory.setExpanded(true);
+        pointHisory.setExpanded(false);
 
         ecChart = (ECChart) findViewById(R.id.ec_chart_view);
 
@@ -261,6 +262,7 @@ public class ECPointManager extends SCMyActivity implements View.OnClickListener
             header.setVisibility(View.VISIBLE);
             bottom_line.setVisibility(View.VISIBLE);
             pointHisory.setVisibility(View.VISIBLE);
+            mIsPointExpanded = true;
         } else if (view.getContentDescription().equals(BTN_SHOW_MORE_FEATURE)) {
             mFavoriteAdapter.expand();
             mFavoriteAdapter.notifyDataSetChanged();
@@ -410,7 +412,8 @@ public class ECPointManager extends SCMyActivity implements View.OnClickListener
                 if (mListPointHistory.size() == 0) {
                     imgShowMoreHistoryPoint.setVisibility(View.GONE);
                 } else {
-                    imgShowMoreHistoryPoint.setVisibility(View.VISIBLE);
+                    if(!mIsPointExpanded)
+                        imgShowMoreHistoryPoint.setVisibility(View.VISIBLE);
                 }
             }
 

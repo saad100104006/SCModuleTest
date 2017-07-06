@@ -41,7 +41,7 @@ import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
 
-public class   SCGroupProfile extends SCMyActivity {
+public class SCGroupProfile extends SCMyActivity {
     private static final String TAG_LOG = "SCGroupProfile";
     private Context mContext = null;
     private Activity mActivity = null;
@@ -57,6 +57,7 @@ public class   SCGroupProfile extends SCMyActivity {
     private View DialogView;
     private Dialog mDialog = null;
     private Button share_line;
+    private TextView header_tv = null;
 
     @Override
     protected void onDestroy() {
@@ -166,6 +167,7 @@ public class   SCGroupProfile extends SCMyActivity {
 
     @Override
     protected void findViewById() {
+        header_tv = (TextView) findViewById(R.id.header_tv);
         name = (EditText) findViewById(R.id.group_et_name);
         gridView = (GridView) findViewById(R.id.gridView);
         profile_ibtn_back = (ImageButton) findViewById(R.id.profile_ibtn_back);
@@ -173,6 +175,19 @@ public class   SCGroupProfile extends SCMyActivity {
         share_line = (Button) findViewById(R.id.edit_info_one_btn_next);
         mDialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar);
 
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        header_tv.setTextColor(getResources().getColor(R.color.canpass_main));
+        share_line.setBackgroundResource(R.drawable.selector_btn_next_canpass);
     }
 
     @Override

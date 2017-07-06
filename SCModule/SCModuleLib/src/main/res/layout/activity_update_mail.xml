@@ -11,6 +11,7 @@
         android:background="@color/main_dark">
 
         <TextView
+            android:id="@+id/header_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -82,5 +83,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="29px"
         android:gravity="center_horizontal"
-        android:src="@drawable/txt_copy_right" />
+        android:src="@drawable/txt_copyright_white" />
 </RelativeLayout>

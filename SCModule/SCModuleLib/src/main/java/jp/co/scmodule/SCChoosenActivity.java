@@ -150,7 +150,22 @@ public class SCChoosenActivity extends SCMyActivity {
         rl_main = (RelativeLayout) findViewById(R.id.rl_main);
         fake_main = (FrameLayout) findViewById(R.id.fake_edit);
         et_fake = (EditText) findViewById(R.id.et_fake);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
     }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        mTvTitle.setTextColor(getResources().getColor(R.color.canpass_main));
+
+    }
+
 
     @Override
     protected void initListeners() {

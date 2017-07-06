@@ -13,6 +13,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -78,7 +79,7 @@ public class SCGroupAdminPage extends SCMyActivity {
     private ImageButton btn_sort = null;
     private SCSingleLineTextView group_point = null;
     private SCSingleLineTextView total_group_point = null;
-    ImageButton btn_circlepass_web = null;
+    Button btn_circlepass_web = null;
     private SCMemberListAdapter listAdapter = null;
     private SCPinnedHeaderListView mLvNotification = null;
     private boolean sort_asc = true;
@@ -88,6 +89,7 @@ public class SCGroupAdminPage extends SCMyActivity {
     private ImageButton share_line, dialog_manual;
     private ImageView image_content = null;
     private ImageButton scmain_img_scicon = null;
+    private TextView tv_label = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -309,7 +311,7 @@ public class SCGroupAdminPage extends SCMyActivity {
         group_name = (TextView) findViewById(R.id.scmain_tv_name);
         group_point = (SCSingleLineTextView) findViewById(R.id.scmain_tv_point);
         total_group_point = (SCSingleLineTextView) findViewById(R.id.tv_total_point);
-        btn_circlepass_web = (ImageButton) findViewById(R.id.btn_circlepass_web);
+        btn_circlepass_web = (Button) findViewById(R.id.btn_circlepass_web);
         mPbMoneyLine = (ProgressBar) findViewById(R.id.scmain_pb_money_line);
         member_list = (ListView) findViewById(R.id.member_list);
         mLvNotification = (SCPinnedHeaderListView) findViewById(R.id.scmain_lv_notification);
@@ -319,6 +321,20 @@ public class SCGroupAdminPage extends SCMyActivity {
         dialog_manual = (ImageButton) findViewById(R.id.dialog_manual);
         scmain_img_scicon = (ImageButton) findViewById(R.id.scmain_img_scicon);
         mDialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar);
+        tv_label = (TextView) findViewById(R.id.tv_label);
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        tv_label.setTextColor(getResources().getColor(R.color.canpass_main));
+        btn_circlepass_web.setBackgroundResource(R.drawable.circle_pass_btn_selector_canpass);
     }
 
     @Override

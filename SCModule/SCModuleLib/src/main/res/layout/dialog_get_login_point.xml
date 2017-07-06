@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:background="#80000000">
-
+   >
+    <!--android:background="#80000000"-->
 
     <RelativeLayout
         android:id="@+id/rlt_code_dialog"

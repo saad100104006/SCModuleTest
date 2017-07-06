@@ -57,11 +57,14 @@
             android:tag="39"
             android:textColorHint="@color/hint_color"
             android:textSize="16sp" />
-        <ImageView
+        <TextView
             android:id="@+id/btn_contact"
             android:layout_width="176px"
             android:layout_height="31px"
-            android:src="@drawable/goto_contacts"
+            android:text="送信先を追加"
+            android:textSize="30px"
+            android:tag="30"
+            android:textColor="@color/main"
             android:layout_gravity="center"/>
 
         <Button
@@ -95,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/copyrights_text"
+        android:background="@drawable/txt_copyright_white"
         android:orientation="vertical"></ImageView>
 
 

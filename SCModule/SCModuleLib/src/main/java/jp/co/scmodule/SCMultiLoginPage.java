@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import jp.co.scmodule.utils.CorrectSizeUtil;
@@ -23,6 +24,7 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
     private ImageButton gotoWebPage = null;
     private TextView mTvEmailLogin = null;
     private Context mActivity;
+    private ImageView back_image = null;
 
 
     @Override
@@ -74,7 +76,7 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
         btnLineLogin = (Button) findViewById(R.id.btn_line_login);
         gotoWebPage = (ImageButton) findViewById(R.id.imgbtn_gotowebpage);
         mTvEmailLogin = (TextView) findViewById(R.id.tv_email_login);
-
+        back_image = (ImageView) findViewById(R.id.back_image);
         //action
         btnTwitterLogin.setOnClickListener(this);
         btnLineLogin.setOnClickListener(this);
@@ -85,10 +87,18 @@ public class SCMultiLoginPage extends Activity implements View.OnClickListener {
 
 
         if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
-            btnLineLogin.setVisibility(View.VISIBLE);
+            setUpViewsForTadacopy();
         } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
-            btnLineLogin.setVisibility(View.GONE);
+            setUpViewsForCanpass();
         }
+    }
+
+    private void setUpViewsForCanpass() {
+        btnLineLogin.setVisibility(View.GONE);
+        back_image.setImageResource(R.drawable.yellow_left_arrow_canpass);
+    }
+
+    private void setUpViewsForTadacopy() {
     }
 
 

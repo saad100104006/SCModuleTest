@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.brickred.socialauth.util.Base64;
 import org.json.JSONObject;
@@ -41,6 +42,7 @@ public class  SCUpdateMailActivity extends SCMyActivity {
     private SCRequestAsyncTask mRequestAsync = null;
 
     private SCUserObject mUserObj = null;
+    private TextView header_text = null;
 
     @Override
     protected void onDestroy() {
@@ -98,9 +100,24 @@ public class  SCUpdateMailActivity extends SCMyActivity {
 
     @Override
     protected void findViewById() {
+        header_text = (TextView) findViewById(R.id.header_text);
         mEtEmail = (EditText) findViewById(R.id.sc_update_email_et_email);
         mBtnUpdate = (Button) findViewById(R.id.sc_update_mail_btn_update);
         mImgBtnBack = (ImageButton) findViewById(R.id.sc_update_email_ibtn_back);
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        mBtnUpdate.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+        header_text.setTextColor(getResources().getColor(R.color.canpass_main));
+
     }
 
     @Override

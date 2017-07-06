@@ -38,7 +38,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
     private Button mBtnRegister = null;
     private ImageButton mLoginPage = null;
     //private TextView mTvDescription = null;
-   // private LinearLayout mLlDescription = null;
+    // private LinearLayout mLlDescription = null;
 
 
     private OnClickListener mOnClickListener = null;
@@ -64,7 +64,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 
     @Override
     public void onBackPressed() {
-       // afterClickBack();
+        // afterClickBack();
         super.onBackPressed();
     }
 
@@ -113,8 +113,8 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 
             if (!mEmail.equals("")) {
                 String title = null;
-               // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                    title = getResources().getString(R.string.dialog_tadacopy_new_app_title);
+                // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                title = getResources().getString(R.string.dialog_tadacopy_new_app_title);
 //                } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //                    title = getResources().getString(R.string.dialog_canpass_new_app_title);
 //                }
@@ -125,8 +125,8 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 
 
                 String description = "";
-               // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                    description = getResources().getString(R.string.login_description_1_tadacopy);
+                // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                description = getResources().getString(R.string.login_description_1_tadacopy);
 //                } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //                    description = getResources().getString(R.string.login_description_1_canpass);
 //                }
@@ -146,7 +146,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 
     @Override
     protected void initListeners() {
-       // mBtnLogin.setContentDescription("login");
+        // mBtnLogin.setContentDescription("login");
         mBtnRegister.setContentDescription("register");
         mLoginPage.setContentDescription("loginPage");
         mOnClickListener = new OnClickListener() {
@@ -177,11 +177,22 @@ public class SCMailRegistrationActivity extends SCMyActivity {
         mEtEmail = (EditText) findViewById(R.id.sc_login_et_email);
         mEtPassword = (EditText) findViewById(R.id.sc_login_et_password);
         mEtPasswordConfirm = (EditText) findViewById(R.id.sc_confirm_pass);
-        //mBtnLogin = (Button) findViewById(R.id.sc_login_btn_login);
         mBtnRegister = (Button) findViewById(R.id.sc_login_btn_register);
         mLoginPage = (ImageButton) findViewById(R.id.sc_login_page);
-       // mTvDescription = (TextView) findViewById(R.id.sc_login_et_description);
-       // mLlDescription = (LinearLayout) findViewById(R.id.sc_login_ll_description);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForCanpass() {
+        mLoginPage.setBackgroundResource(R.drawable.login_text_new_canpass);
+        mBtnRegister.setBackgroundResource(R.drawable.login_mail_canpass);
+    }
+
+    private void setUpViewsForTadacopy() {
     }
 
     @Override
@@ -239,7 +250,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
             dialogBody = getResources().getString(R.string.dialog_body_email_invalid_label);
             SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
             return;
-        }else if(!password_retype.equals(password)){
+        } else if (!password_retype.equals(password)) {
             dialogBody = getResources().getString(R.string.dialog_body_password_invalid_match);
             SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
             return;
@@ -260,7 +271,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 //            overridePendingTransition(R.anim.anim_slide_in_left,
 //                    R.anim.anim_slide_out_right);
 //        }
-        Intent intent = new Intent(SCMailRegistrationActivity.this,SCLoginMail.class);
+        Intent intent = new Intent(SCMailRegistrationActivity.this, SCLoginMail.class);
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.anim_slide_in_right,
@@ -361,17 +372,16 @@ public class SCMailRegistrationActivity extends SCMyActivity {
         String date = String.valueOf(System.currentTimeMillis());
         String appId = SCUserObject.getInstance().getAppId();
         String uuid = "";
-        if( SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null){
-            if(SCGlobalUtils.DEVICEUUID != null)
+        if (SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null) {
+            if (SCGlobalUtils.DEVICEUUID != null)
                 uuid = SCGlobalUtils.DEVICEUUID;
-            else
-            {
+            else {
                 uuid = SCGlobalUtils.getDeviceUUID(this);
-                if(uuid.equals("")) {
+                if (uuid.equals("")) {
                     Toast.makeText(this, "UUID Missing", Toast.LENGTH_LONG).show();
                 }
             }
-        }else{
+        } else {
             uuid = SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null);
         }
 
@@ -423,8 +433,8 @@ public class SCMailRegistrationActivity extends SCMyActivity {
                                     R.anim.anim_slide_out_right);
                         } else {
                             Intent intent = new Intent();
-                           // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-                                intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
+                            // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+                            intent.setAction(SCConstants.ACTION_OPEN_CONTENT_TADACOPY);
 //                            } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //                                intent.setAction(SCConstants.ACTION_OPEN_CONTENT_CANPASS);
 //                            }
@@ -467,17 +477,16 @@ public class SCMailRegistrationActivity extends SCMyActivity {
         String key = SCGlobalUtils.md5Hash(src);
         String agent = SCConstants.AGENT;
         String uuid = "";
-        if( SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null){
-            if(SCGlobalUtils.DEVICEUUID != null)
+        if (SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null) {
+            if (SCGlobalUtils.DEVICEUUID != null)
                 uuid = SCGlobalUtils.DEVICEUUID;
-            else
-            {
+            else {
                 uuid = SCGlobalUtils.getDeviceUUID(this);
-                if(uuid.equals("")) {
+                if (uuid.equals("")) {
                     Toast.makeText(this, "UUID Missing", Toast.LENGTH_LONG).show();
                 }
             }
-        }else{
+        } else {
             uuid = SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null);
         }
         String applicationId = "";
@@ -506,7 +515,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
                 Log.e(TAG_LOG, result);
 
                 HashMap<String, Object> returnHashMap = SCAPIUtils.parseJSON(SCConstants.REQUEST_LOGIN_MAIL, result);
-                SCUserObject userObj = null;
+                SCUserObject LoginuserObj = null;
                 String errCode = null;
 
                 String title = null;
@@ -542,7 +551,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
 //                    }
                 } else {
                     //save email and password for use
-                    SCSharedPreferencesUtils.putString(SCMailRegistrationActivity.this, SCConstants.TAG_EMAIL,  mEtEmail.getText().toString().trim());
+                    SCSharedPreferencesUtils.putString(SCMailRegistrationActivity.this, SCConstants.TAG_EMAIL, mEtEmail.getText().toString().trim());
                     SCSharedPreferencesUtils.putString(SCMailRegistrationActivity.this, SCConstants.TAG_PASSWORD, mEtPassword.getText().toString().trim());
                     title = getResources().getString(R.string.dialog_title_register_success);
                     body = "「" + mEtEmail.getText().toString().trim() + "」" + String.format(getResources().getString(R.string.dialog_content_register_success),
@@ -581,7 +590,7 @@ public class SCMailRegistrationActivity extends SCMyActivity {
     }
 
 
-    public void test(View v){
-       //go to webpage
+    public void test(View v) {
+        //go to webpage
     }
 }

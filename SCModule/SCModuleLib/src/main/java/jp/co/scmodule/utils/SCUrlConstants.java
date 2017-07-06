@@ -13,7 +13,6 @@ public class SCUrlConstants {
 
 //  public static final String URL_GET_BANNERS_CAMPUSAN = "http://devcanapi.smart-campus.jp/sc/collections/pickup_banner";
 
-
     //Live Server after implementing protocol
 //     public static final String URL_DOMAIN = "https://api2.smart-campus.jp";
 //     public static final String URL_BASE_LOGIN = "https://api2.smart-campus.jp/api/";
@@ -88,4 +87,6 @@ public class SCUrlConstants {
 
     public static final String URL_FOR_GET_MAGAZINES = URL_DOMAIN + "/api_contents/get_magazines";
     public static final String URL_FOR_GET_CAMPUS_WORK = URL_DOMAIN + "/api_contents/get_campus_works";
+    public static final String URL_GET_BEACONS = URL_DOMAIN + "/api_contents/get_beacons";
+    public static final String URL_GET_BEACONS_OLD = URL_DOMAIN + "/api_point/checkin_beacon_old";
 }

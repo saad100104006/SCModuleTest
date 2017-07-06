@@ -26,14 +26,21 @@
             android:id="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_gravity="center"
-            android:text="Header"
-            android:textSize="40px"
+            android:gravity="center"
             android:tag="40"
-            android:textColor="@color/common_sc_main_color"/>
+            android:text="Header"
+            android:textColor="@color/common_sc_main_color"
+            android:textSize="40px" />
 
     </LinearLayout>
+
+
+    <View
+        android:id="@+id/header_divider"
+        android:layout_width="match_parent"
+        android:layout_height="10px"
+        android:background="@color/main"></View>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,5 +57,60 @@
             android:layout_width="match_parent"
             android:layout_height="8px"
             android:progressDrawable="@drawable/progressbar_horizontal" />
+
+
+        <LinearLayout
+            android:id="@+id/history_ln"
+            android:layout_width="300px"
+            android:layout_height="120px"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="30px"
+            android:elevation="10px"
+            android:background="@drawable/round_white_background"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <ImageView
+                android:id="@+id/history_back"
+                android:layout_width="67px"
+                android:layout_height="80px"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25px"
+                android:layout_marginTop="22px"
+                android:layout_weight="1"
+                android:padding="10px"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gray_left_arrow" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="2px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10px"
+                    android:layout_marginTop="10px"
+                    android:background="@color/common_gray"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/history_forward"
+                android:layout_width="67px"
+                android:layout_height="80px"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="25px"
+                android:layout_marginTop="22px"
+                android:layout_weight="1"
+                android:padding="10px"
+                android:scaleType="fitCenter"
+                android:src="@drawable/gray_right_arrow" />
+
+        </LinearLayout>
+
     </RelativeLayout>
 </LinearLayout>

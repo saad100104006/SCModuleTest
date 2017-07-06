@@ -49,7 +49,7 @@ public class SCAddGroup extends SCMyActivity {
     protected void init() {
         super.init();
         mContext = this;
-        if(groupObject != null){
+        if (groupObject != null) {
             mBtnGroup.setText(groupObject.getGruop_name());
         }
     }
@@ -66,6 +66,21 @@ public class SCAddGroup extends SCMyActivity {
         mBtnGroup = (Button) findViewById(R.id.edit_info_one_btn_group);
         mBtnBack = (ImageView) findViewById(R.id.img_left_header);
         mBtnNext = (Button) findViewById(R.id.edit_info_one_btn_next);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        mBtnNext.setBackgroundResource(R.drawable.login_mail_canpass);
+        mBtnBack.setImageResource(R.drawable.yellow_left_arrow_canpass);
+
     }
 
 
@@ -117,10 +132,10 @@ public class SCAddGroup extends SCMyActivity {
     }
 
     private void afterClickNext() {
-        if(groupObject!=null)
+        if (groupObject != null)
             requestJoinAPi();
         else {
-            SCGlobalUtils.showInfoDialog(mContext, "エラー", "学生団体名を選択してください", null,null);
+            SCGlobalUtils.showInfoDialog(mContext, "エラー", "学生団体名を選択してください", null, null);
         }
 
     }
@@ -155,7 +170,7 @@ public class SCAddGroup extends SCMyActivity {
                     overridePendingTransition(R.anim.anim_slide_in_right,
                             R.anim.anim_slide_out_left);
 
-                }else{
+                } else {
                     if (returnHashMap.containsKey(SCConstants.TAG_ERROR_CODE)) {
                         String errCode = null;
 

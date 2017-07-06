@@ -56,15 +56,7 @@ public class SCUserObject implements Parcelable {
 
     private String uni_logo = null;
     private String uni_url = null;
-    private String uni_name = null;
 
-    public String getUni_name() {
-        return uni_name;
-    }
-
-    public void setUni_name(String uni_name) {
-        this.uni_name = uni_name;
-    }
 
     public String getUni_url() {
         return uni_url;
@@ -410,6 +402,8 @@ public class SCUserObject implements Parcelable {
         dest.writeString(student_group_id);
         dest.writeString(student_group_leader);
         dest.writeString(student_group_name);
+        dest.writeString(uni_logo);
+        dest.writeString(uni_url);
         dest.writeTypedList(mUserLesson);
         dest.writeTypedList(mUserLocation);
     }
@@ -444,6 +438,8 @@ public class SCUserObject implements Parcelable {
         this.student_group_id = in.readString();
         this.student_group_leader = in.readString();
         this.student_group_name = in.readString();
+        this.uni_logo = in.readString();
+        this.uni_url = in.readString();
         in.readTypedList(mUserLesson, LessonObject.CREATOR);
         in.readTypedList(mUserLocation, SCLocationObject.CREATOR);
     }
@@ -480,6 +476,10 @@ public class SCUserObject implements Parcelable {
         mInstance.student_group_name = userObj.getStudent_group_name();
         mInstance.mUserLesson = userObj.getmUserLesson();
         mInstance.mUserLocation = userObj.getmUserLocation();
+
+
+        mInstance.uni_logo = userObj.getUni_logo();
+        mInstance.uni_url = userObj.getUni_url();
     }
 
     // default creator for parcelable

@@ -277,58 +277,68 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
                 String old_value = SCGlobalUtils.old_point;
                 String new_value = SCGlobalUtils.new_point;
                 int remainng = 5;
-                if(new_value != null && !new_value.equals("")) {
-                     remainng = 5 - Integer.parseInt(new_value);
-                }else{
+                if (new_value != null && !new_value.equals("")) {
+                    remainng = 5 - Integer.parseInt(new_value);
+                } else {
                     SCGlobalUtils.new_point = new_value = "0";
-                    if(old_value != null && !old_value.equals("")){
+                    if (old_value != null && !old_value.equals("")) {
                         new_value = old_value;
-                         remainng = 5 - Integer.parseInt(new_value);
-                    }else{
-                        SCGlobalUtils.old_point=old_value = "0";
+                        remainng = 5 - Integer.parseInt(new_value);
+                    } else {
+                        SCGlobalUtils.old_point = old_value = "0";
                     }
                 }
                 tv_last_label.setText("ポイントGET\n" +
-                        "まであと"+remainng+"日");
+                        "まであと" + remainng + "日");
 
                 tvOld.setText(old_value);
                 tvNew.setText(new_value);
+
+                int coin_on = R.drawable.get_count_coin_image_on;
+
+                if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                    coin_on = R.drawable.get_count_coin_image_on;
+                    tv_last_label.setBackgroundResource(R.drawable.tv_yellow_backgroung);
+                } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+                    coin_on = R.drawable.get_count_coin_image_on_cp;
+                    tv_last_label.setBackgroundResource(R.drawable.tv_yellow_backgroung_canpass);
+                }
                 switch (new_value) {
                     case "0":
                         break;
                     case "1":
-                        one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                        one.setImageResource(coin_on);
                         views = new View[]{tvOld, one, tv_last_label};
                         break;
                     case "2":
-                        one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                        one.setImageResource(coin_on);
+                        two.setImageResource(coin_on);
                         views = new View[]{tvOld, one, two, tv_last_label};
                         break;
                     case "3":
-                        one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        three.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                        one.setImageResource(coin_on);
+                        two.setImageResource(coin_on);
+                        three.setImageResource(coin_on);
                         views = new View[]{tvOld, one, two, three, tv_last_label};
                         break;
                     case "4":
-                        one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        three.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        four.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                        one.setImageResource(coin_on);
+                        two.setImageResource(coin_on);
+                        three.setImageResource(coin_on);
+                        four.setImageResource(coin_on);
                         views = new View[]{tvOld, one, two, three, four, tv_last_label};
                         break;
                     case "5":
-                        one.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        two.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        three.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        four.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
-                        five.setImageResource(jp.co.scmodule.R.drawable.get_count_coin_image_on);
+                        one.setImageResource(coin_on);
+                        two.setImageResource(coin_on);
+                        three.setImageResource(coin_on);
+                        four.setImageResource(coin_on);
+                        five.setImageResource(coin_on);
                         views = new View[]{tvOld, one, two, three, four, five, tv_last_label};
                         break;
                 }
 
-                if(!SCGlobalUtils.old_point.equals(SCGlobalUtils.new_point)) {
+                if (!SCGlobalUtils.old_point.equals(SCGlobalUtils.new_point)) {
                     SCGlobalUtils.old_point = SCGlobalUtils.new_point;
                     // 100ms delay between Animations
                     long delayBetweenAnimations = 500l;
@@ -365,7 +375,7 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
                             R.anim.move_animation);
                     tvOld.startAnimation(animMove);
                     tvNew.startAnimation(animMove);
-                }else{
+                } else {
                     Animation animMove = AnimationUtils.loadAnimation(getApplicationContext(),
                             R.anim.move_animation);
                     animMove.setDuration(0);
@@ -385,7 +395,7 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
                 TextView ad_tv_one = (TextView) convertView.findViewById(R.id.ad_text_one);
                 TextView ad_tv_two = (TextView) convertView.findViewById(R.id.ad_text_two);
 
-                if(mListSection.get(section).getmListData().size() != 0) {
+                if (mListSection.get(section).getmListData().size() != 0) {
                     Object item_one = mListSection.get(section).getmListData().get(0);
                     Object item_two = mListSection.get(section).getmListData().get(1);
 
@@ -396,7 +406,7 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
                         ad_image_one.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Activity activity = (Activity)mContext;
+                                Activity activity = (Activity) mContext;
                                 Intent mIntent = new Intent(mContext, WebviewActivity.class);
                                 mIntent.putExtra("url", "autoLoginWebview");
                                 mIntent.putExtra("collectionUrl", adObject_one.getCollection_url());
@@ -407,7 +417,7 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
                             }
                         });
 
-                    }else {
+                    } else {
                         ad_image_one.setVisibility(View.GONE);
                         ad_tv_one.setVisibility(View.GONE);
 
@@ -421,7 +431,7 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
                             @Override
                             public void onClick(View v) {
                                 //open a webview
-                                Activity activity = (Activity)mContext;
+                                Activity activity = (Activity) mContext;
                                 Intent mIntent = new Intent(mContext, WebviewActivity.class);
                                 mIntent.putExtra("url", "autoLoginWebview");
                                 mIntent.putExtra("collectionUrl", adObject_two.getCollection_url());
@@ -559,7 +569,11 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
         mHolder = new SCNotificationHolder();
 
         mHolder.tvHeaderTitle = (TextView) convertView.findViewById(R.id.notification_header_tv_title);
-
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.tvHeaderTitle.setTextColor(mContext.getResources().getColor(R.color.common_sc_main_color));
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.tvHeaderTitle.setTextColor(mContext.getResources().getColor(R.color.canpass_main));
+        }
         new SCMultipleScreen(mContext);
         SCMultipleScreen.resizeAllView((ViewGroup) convertView);
 
@@ -626,7 +640,11 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
         }
         mHolder.tvUnit.setVisibility(View.GONE);
         mHolder.tvNumber.setText("");
-        mHolder.rlMain.setBackgroundResource(R.drawable.item_notifcation_specical);
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.rlMain.setBackgroundResource(R.drawable.item_notifcation_specical);
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.rlMain.setBackgroundResource(R.drawable.item_notifcation_canpass_specical);
+        }
         if (position == APP_MAX_SIZE - 1) {
             mHolder.rlFooter.setVisibility(View.VISIBLE);
             mHolder.tvFooterToretan.setVisibility(View.GONE);
@@ -716,6 +734,12 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
             if (SCUserObject.getInstance().getIsGuest().equals("true")) {
                 mHolder.tvFooterToretan.setText(mContext.getResources().getString(R.string.toretan_guest_footer));
             }
+        }
+
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.tvFooterToretan.setTextColor(mContext.getResources().getColor(R.color.common_sc_main_color));
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.tvFooterToretan.setTextColor(mContext.getResources().getColor(R.color.canpass_main));
         }
     }
 

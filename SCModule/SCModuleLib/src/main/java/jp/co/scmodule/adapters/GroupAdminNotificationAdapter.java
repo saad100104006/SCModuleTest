@@ -119,68 +119,67 @@ public class GroupAdminNotificationAdapter extends SCSectionedBaseAdapter {
 
     @Override
     public int getCountForSection(int section) {
-            //TODO: below codes for remove list lesson (temp)
-            if (section == 1) {
-                if (mListSection.get(section).getmListData().size() < APP_MAX_SIZE) {
-                    APP_MAX_SIZE = mListSection.get(section).getmListData().size();
-                }
-                return APP_MAX_SIZE;
+        //TODO: below codes for remove list lesson (temp)
+        if (section == 1) {
+            if (mListSection.get(section).getmListData().size() < APP_MAX_SIZE) {
+                APP_MAX_SIZE = mListSection.get(section).getmListData().size();
             }
+            return APP_MAX_SIZE;
+        }
 
-            return mListSection.get(section).getmListData().size();
+        return mListSection.get(section).getmListData().size();
     }
 
     @Override
     public View getItemView(int section, int position, View convertView, ViewGroup parent) {
 //        if (convertView == null) {
-         LayoutInflater inflator = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflator.inflate(R.layout.item_notification, null);
-            mHolder = new SCNotificationHolder();
+        LayoutInflater inflator = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        convertView = inflator.inflate(R.layout.item_notification, null);
+        mHolder = new SCNotificationHolder();
 
-            mHolder.tvNumber = (TextView) convertView.findViewById(R.id.notification_tv_number);
-            mHolder.tvBody = (TextView) convertView.findViewById(R.id.notification_tv_body);
-            mHolder.btnMain = (Button) convertView.findViewById(R.id.notification_btn_main);
-            mHolder.rlMain = (RelativeLayout) convertView.findViewById(R.id.notification_rl_main);
-            mHolder.rlFooter = (RelativeLayout) convertView.findViewById(R.id.notification_footer_rl);
-            mHolder.tvFooterViewAll = (TextView) convertView.findViewById(R.id.notification_footer_tv_show_all);
-            mHolder.tvFooterToretan = (TextView) convertView.findViewById(R.id.notification_footer_tv_toretan);
-            mHolder.tvUnit = (TextView) convertView.findViewById(R.id.notification_tv_unit);
+        mHolder.tvNumber = (TextView) convertView.findViewById(R.id.notification_tv_number);
+        mHolder.tvBody = (TextView) convertView.findViewById(R.id.notification_tv_body);
+        mHolder.btnMain = (Button) convertView.findViewById(R.id.notification_btn_main);
+        mHolder.rlMain = (RelativeLayout) convertView.findViewById(R.id.notification_rl_main);
+        mHolder.rlFooter = (RelativeLayout) convertView.findViewById(R.id.notification_footer_rl);
+        mHolder.tvFooterViewAll = (TextView) convertView.findViewById(R.id.notification_footer_tv_show_all);
+        mHolder.tvFooterToretan = (TextView) convertView.findViewById(R.id.notification_footer_tv_toretan);
+        mHolder.tvUnit = (TextView) convertView.findViewById(R.id.notification_tv_unit);
 
-            new SCMultipleScreen(mContext);
-            SCMultipleScreen.resizeAllView((ViewGroup) convertView);
+        new SCMultipleScreen(mContext);
+        SCMultipleScreen.resizeAllView((ViewGroup) convertView);
 
-            convertView.setTag(mHolder);
+        convertView.setTag(mHolder);
 //        } else {
 //            mHolder = (SCNotificationHolder) convertView.getTag();
 //        }
 
-            LessonObject lessonObj = null;
-            SCInformationObject infoObj = null;
+        LessonObject lessonObj = null;
+        SCInformationObject infoObj = null;
 
-            Object item = mListSection.get(section).getmListData().get(position);
+        Object item = mListSection.get(section).getmListData().get(position);
 
-            if (item instanceof LessonObject) {
-                lessonObj = (LessonObject) item;
-                showViewWithLessonObject(lessonObj, position);
-            }
+        if (item instanceof LessonObject) {
+            lessonObj = (LessonObject) item;
+            showViewWithLessonObject(lessonObj, position);
+        }
 
-            if (item instanceof SCInformationObject) {
-                infoObj = (SCInformationObject) item;
-                showViewWithInfoObject(infoObj, position);
-            }
+        if (item instanceof SCInformationObject) {
+            infoObj = (SCInformationObject) item;
+            showViewWithInfoObject(infoObj, position);
+        }
 
-            mHolder.btnMain.setContentDescription("main");
-            mHolder.tvFooterViewAll.setContentDescription("viewAll");
-            mHolder.tvFooterToretan.setContentDescription("toretanText");
+        mHolder.btnMain.setContentDescription("main");
+        mHolder.tvFooterViewAll.setContentDescription("viewAll");
+        mHolder.tvFooterToretan.setContentDescription("toretanText");
 
-            // set listener
-            initListener(section, position);
-            setListenerForView();
+        // set listener
+        initListener(section, position);
+        setListenerForView();
 
-            return convertView;
+        return convertView;
 
     }
-
 
 
     @Override
@@ -191,6 +190,11 @@ public class GroupAdminNotificationAdapter extends SCSectionedBaseAdapter {
         mHolder = new SCNotificationHolder();
 
         mHolder.tvHeaderTitle = (TextView) convertView.findViewById(R.id.notification_header_tv_title);
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.tvHeaderTitle.setTextColor(mContext.getResources().getColor(R.color.common_sc_main_color) );
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.tvHeaderTitle.setTextColor(mContext.getResources().getColor(R.color.canpass_main) );
+        }
 
         new SCMultipleScreen(mContext);
         SCMultipleScreen.resizeAllView((ViewGroup) convertView);
@@ -201,14 +205,14 @@ public class GroupAdminNotificationAdapter extends SCSectionedBaseAdapter {
 //        }
         String title = "";
 
-            //TODO: below codes for remove list lesson (temp)
-            SCSectionObject s1 = mListSection.get(0);
-            if (section == 0 && s1.getmSectionSize() == 0) {
-                title = mContext.getResources().getString(R.string.app_notification_on_empty_header);
-            } else if (section == 0 && s1.getmSectionSize() != 0) {
-                title = String.format(mContext.getResources().getString(R.string.app_notification_on_header),
-                        s1.getmSectionSize());
-            }
+        //TODO: below codes for remove list lesson (temp)
+        SCSectionObject s1 = mListSection.get(0);
+        if (section == 0 && s1.getmSectionSize() == 0) {
+            title = mContext.getResources().getString(R.string.app_notification_on_empty_header);
+        } else if (section == 0 && s1.getmSectionSize() != 0) {
+            title = String.format(mContext.getResources().getString(R.string.app_notification_on_header),
+                    s1.getmSectionSize());
+        }
 
         // set header text
         mHolder.tvHeaderTitle.setText(title);
@@ -226,7 +230,11 @@ public class GroupAdminNotificationAdapter extends SCSectionedBaseAdapter {
         }
         mHolder.tvUnit.setVisibility(View.GONE);
         mHolder.tvNumber.setText("");
-        mHolder.rlMain.setBackgroundResource(R.drawable.item_notifcation_specical);
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            mHolder.rlMain.setBackgroundResource(R.drawable.item_notifcation_specical);
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            mHolder.rlMain.setBackgroundResource(R.drawable.item_notifcation_canpass_specical);
+        }
         if (position == APP_MAX_SIZE - 1) {
             mHolder.rlFooter.setVisibility(View.VISIBLE);
             mHolder.tvFooterToretan.setVisibility(View.GONE);
@@ -390,8 +398,8 @@ public class GroupAdminNotificationAdapter extends SCSectionedBaseAdapter {
     }
 
     private void afterClickViewAll(int section, int position) {
-            viewAll(section);
-            notifyDataSetChanged();
+        viewAll(section);
+        notifyDataSetChanged();
 
 
     }
@@ -449,7 +457,7 @@ public class GroupAdminNotificationAdapter extends SCSectionedBaseAdapter {
                         }
                     }
                 } else {
-                    if (url!=null && !url.equals("")) {
+                    if (url != null && !url.equals("")) {
                         if (URLUtil.isValidUrl(url)) {
 //                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 //                    mContext.startActivity(browserIntent);

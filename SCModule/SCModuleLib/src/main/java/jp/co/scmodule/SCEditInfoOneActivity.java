@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -21,6 +22,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import io.repro.android.Repro;
 import jp.co.scmodule.apis.SCRequestAsyncTask;
 import jp.co.scmodule.classes.SCMyActivity;
 import jp.co.scmodule.objects.SCDepartmentObject;
@@ -59,6 +61,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
     private SCEnrollmentObject mEnrollmentObj = null;
     private SCGenderObject mGenderObj = null;
     private int mCodeType = 0;
+    private ImageView header_lbl = null;
 
     @Override
     protected void onDestroy() {
@@ -74,16 +77,16 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_CANCELED) {
+        if (resultCode == RESULT_CANCELED) {
             return;
         }
 
-        if(requestCode == SCConstants.TYPE_GENDER) {
+        if (requestCode == SCConstants.TYPE_GENDER) {
             mGenderObj = data.getParcelableExtra(SCGenderObject.class.toString());
             mBtnGender.setText(mGenderObj.getName());
         }
 
-        if(requestCode == SCConstants.TYPE_UNIVERSITY) {
+        if (requestCode == SCConstants.TYPE_UNIVERSITY) {
             mUniversityObj = data.getParcelableExtra(SCUniversityObject.class.toString());
             mBtnUniversity.setText(mUniversityObj.getName());
 
@@ -96,7 +99,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         } else if (requestCode == SCConstants.TYPE_DEPARTMENT) {
             mDepartmentObj = data.getParcelableExtra(SCDepartmentObject.class.toString());
             mBtnDepartment.setText(mDepartmentObj.getName());
-            if(mDepartmentObj.getHaveMajor().equals("false")) {
+            if (mDepartmentObj.getHaveMajor().equals("false")) {
                 mBtnMajor.setTextColor(getResources().getColor(android.R.color.darker_gray));
                 mBtnMajor.setClickable(false);
                 mBtnMajor.setSelected(true);
@@ -120,7 +123,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
     @Override
     public void onBackPressed() {
-       afterClickBack();
+        afterClickBack();
         //super.onBackPressed();
     }
 
@@ -154,50 +157,42 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mContext = this;
         mActivity = this;
 
-        if(mUserObj != null) {
+        if (mUserObj != null) {
             showInfo();
         }
     }
+
     //filtering emojis
-    public static InputFilter getEditTextFilterEmoji()
-    {
-        return new InputFilter()
-        {
+    public static InputFilter getEditTextFilterEmoji() {
+        return new InputFilter() {
             @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
-            {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 CharSequence sourceOriginal = source;
                 source = replaceEmoji(source);
                 end = source.toString().length();
 
-                if (end == 0) return ""; //Return empty string if the input character is already removed
+                if (end == 0)
+                    return ""; //Return empty string if the input character is already removed
 
-                if (! sourceOriginal.toString().equals(source.toString()))
-                {
+                if (!sourceOriginal.toString().equals(source.toString())) {
                     char[] v = new char[end - start];
                     TextUtils.getChars(source, start, end, v, 0);
 
                     String s = new String(v);
 
-                    if (source instanceof Spanned)
-                    {
+                    if (source instanceof Spanned) {
                         SpannableString sp = new SpannableString(s);
                         TextUtils.copySpansFrom((Spanned) source, start, end, null, sp, 0);
                         return sp;
-                    }
-                    else
-                    {
+                    } else {
                         return s;
                     }
-                }
-                else
-                {
+                } else {
                     return null; // keep original
                 }
             }
 
-            private String replaceEmoji(CharSequence source)
-            {
+            private String replaceEmoji(CharSequence source) {
 
                 String notAllowedCharactersRegex = "[^a-zA-Z0-9@#\\$%\\&\\-\\+\\(\\)\\*;:!\\?\\~`£\\{\\}\\[\\]=\\.,_/\\\\\\s'\\\"<>\\^\\|÷×]";
                 return source.toString()
@@ -219,8 +214,22 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mBtnMajor = (Button) findViewById(R.id.edit_info_one_btn_major);
         mBtnEnrollment = (Button) findViewById(R.id.edit_info_one_btn_enrollment);
         mBtnNext = (Button) findViewById(R.id.edit_info_one_btn_next);
-
+        header_lbl = (ImageView) findViewById(R.id.header_lbl);
         mBtnGender = (Button) findViewById(R.id.edit_info_two_btn_gender);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        mBtnNext.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+        header_lbl.setImageResource(R.drawable.fill_info_step_1_canpass);
     }
 
     @Override
@@ -235,19 +244,39 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mOnClickListener = new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(v.getContentDescription() == null) {
+                if (v.getContentDescription() == null) {
                     return;
-                } else if(v.getContentDescription().equals("university")) {
+                } else if (v.getContentDescription().equals("university")) {
+                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                        Repro.track(SCConstants.REGISTER_UNIVERSITY_TAG);
+                        Log.e("Repro Tag Sent ", SCConstants.REGISTER_UNIVERSITY_TAG);
+                    }
                     afterClickUniversity();
-                } else if(v.getContentDescription().equals("department")) {
+                } else if (v.getContentDescription().equals("department")) {
+                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                        Repro.track(SCConstants.REGISTER_DEPARTMENT_TAG);
+                        Log.e("Repro Tag Sent ", SCConstants.REGISTER_DEPARTMENT_TAG);
+                    }
                     afterClickDepartment();
-                } else if(v.getContentDescription().equals("major")) {
+                } else if (v.getContentDescription().equals("major")) {
+                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                        Repro.track(SCConstants.REGISTER_MAJOR_TAG);
+                        Log.e("Repro Tag Sent ", SCConstants.REGISTER_MAJOR_TAG);
+                    }
                     afterClickMajor();
-                } else if(v.getContentDescription().equals("enrollment")) {
+                } else if (v.getContentDescription().equals("enrollment")) {
+                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                        Repro.track(SCConstants.REGISTER_ENROLLMENT_TAG);
+                        Log.e("Repro Tag Sent ", SCConstants.REGISTER_ENROLLMENT_TAG);
+                    }
                     afterClickEnrollment();
-                } else if(v.getContentDescription().equals("next")) {
+                } else if (v.getContentDescription().equals("next")) {
                     afterClickNext();
-                }else if(v.getContentDescription().equals("gender")) {
+                } else if (v.getContentDescription().equals("gender")) {
+                    if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+                        Repro.track(SCConstants.REGISTER_GENDER_TAG);
+                        Log.e("Repro Tag Sent ", SCConstants.REGISTER_GENDER_TAG);
+                    }
                     afterClickGender();
                 }
             }
@@ -298,15 +327,15 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
     private void afterClickNext() {
         String dialogBody = null;
-        if(mEtName.getText().toString().trim().equals("")) {
+        if (mEtName.getText().toString().trim().equals("")) {
             dialogBody = getResources().getString(R.string.dialog_body_empty_nickname);
             SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
             return;
-        } else if(mUniversityObj == null) {
+        } else if (mUniversityObj == null) {
             dialogBody = getResources().getString(R.string.dialog_body_empty_university);
             SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
             return;
-        } else if(mDepartmentObj == null) {
+        } else if (mDepartmentObj == null) {
             dialogBody = getResources().getString(R.string.dialog_body_empty_department);
             SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
             return;
@@ -316,13 +345,13 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 //            SCGlobalUtils.showInfoDialog(null, dialogBody, null);
 //            return;
 //        }
-        else if(mEnrollmentObj == null) {
+        else if (mEnrollmentObj == null) {
             dialogBody = getResources().getString(R.string.dialog_body_empty_enrollment);
             SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
             return;
         }
 
-        if(mUserObj == null) {
+        if (mUserObj == null) {
             requestRegisterUserStageOne();
         } else {
             requestUpdateUser();
@@ -335,7 +364,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         Intent intent = new Intent(this, SCChoosenActivity.class);
         switch (type) {
             case SCConstants.TYPE_DEPARTMENT:
-                if(mUniversityObj == null) {
+                if (mUniversityObj == null) {
                     dialogBody = getResources().getString(R.string.dialog_body_empty_university);
                     SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
                     return;
@@ -345,7 +374,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                 break;
 
             case SCConstants.TYPE_MAJOR:
-                if(mDepartmentObj == null) {
+                if (mDepartmentObj == null) {
                     dialogBody = getResources().getString(R.string.dialog_body_empty_department);
                     SCGlobalUtils.showInfoDialog(mContext, null, dialogBody, null, null);
                     return;
@@ -363,10 +392,10 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
     private void afterClickBack() {
 
-        if(mUserObj.getIsGuest().equals("true")){
+        if (mUserObj.getIsGuest().equals("true")) {
             callLogoutAPI();
-            Log.e("Guest","This is a guest user,So Logout");
-        }else {
+            Log.e("Guest", "This is a guest user,So Logout");
+        } else {
 //            finish();
 //            overridePendingTransition(R.anim.anim_slide_in_left,
 //                    R.anim.anim_slide_out_right);
@@ -377,7 +406,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         SCGlobalUtils.showLoadingProgress(SCEditInfoOneActivity.this);
-        SCRequestAsyncTask requestAsync = new SCRequestAsyncTask(SCEditInfoOneActivity.this,SCConstants.REQUEST_LOGOUT,params,new SCRequestAsyncTask.AsyncCallback() {
+        SCRequestAsyncTask requestAsync = new SCRequestAsyncTask(SCEditInfoOneActivity.this, SCConstants.REQUEST_LOGOUT, params, new SCRequestAsyncTask.AsyncCallback() {
 
             @Override
             public void done(String result) {
@@ -386,7 +415,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                 SCGlobalUtils.dismissLoadingProgress();
                 try {
                     JSONObject jObj = new JSONObject(result);
-                    if(jObj.getString("success").equals("true")){
+                    if (jObj.getString("success").equals("true")) {
                         if (SCSharedPreferencesUtils.getString(SCEditInfoOneActivity.this, SCConstants.TAG_LOGIN_TYPE, null).equals(SCConstants.PROVIDER_GUEST)) {
                             SCSharedPreferencesUtils.putBoolean(SCEditInfoOneActivity.this, SCConstants.TAG_USED_GUEST_ONCE, true);
                         }
@@ -397,17 +426,17 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                         SCSharedPreferencesUtils.removeComponent(SCEditInfoOneActivity.this, SCConstants.CODE);
                         SCSharedPreferencesUtils.removeComponent(SCEditInfoOneActivity.this, SCConstants.TIME);
                         SCSharedPreferencesUtils.removeComponent(SCEditInfoOneActivity.this, SCConstants.TAG_NOTIFICATION);
-                        SCGlobalUtils.tc_device_available_in_campus =false;
+                        SCGlobalUtils.tc_device_available_in_campus = false;
 
                         SCUserObject.resetInstant();
-                        if(SCGlobalUtils.ishashpass.equals("1")){
+                        if (SCGlobalUtils.ishashpass.equals("1")) {
                             SCGlobalUtils.ishashpass = "0";
                             SCSharedPreferencesUtils.putString(SCEditInfoOneActivity.this, SCConstants.TAG_PASSWORD, "");
                         }
                         finish();
                         overridePendingTransition(R.anim.anim_slide_in_left,
                                 R.anim.anim_slide_out_right);
-                    }else{
+                    } else {
                         Toast.makeText(SCEditInfoOneActivity.this, jObj.getString("error"), Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
@@ -436,7 +465,6 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         requestAsync.execute();
 
 
-
     }
 
     private void requestUpdateUser() {
@@ -445,17 +473,16 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         String appId = mUserObj.getAppId();
         String agent = SCConstants.AGENT;
         String uuid = "";
-        if( SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null){
-            if(SCGlobalUtils.DEVICEUUID != null)
+        if (SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null) {
+            if (SCGlobalUtils.DEVICEUUID != null)
                 uuid = SCGlobalUtils.DEVICEUUID;
-            else
-            {
+            else {
                 uuid = SCGlobalUtils.getDeviceUUID(this);
-                if(uuid.equals("")) {
+                if (uuid.equals("")) {
                     Toast.makeText(this, "UUID Missing", Toast.LENGTH_LONG).show();
                 }
             }
-        }else{
+        } else {
             uuid = SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null);
         }
 
@@ -476,11 +503,11 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         params.put(SCConstants.PARAM_AGENT, agent);
         params.put(SCConstants.PARAM_DEVICE_ID, uuid);
 
-        if(!mBtnGender.getText().toString().equals(getResources().getString(R.string.edit_info_two_gender))) {
+        if (!mBtnGender.getText().toString().equals(getResources().getString(R.string.edit_info_two_gender))) {
             params.put(SCConstants.PARAM_SEX, (mBtnGender.getText().equals(
                     Arrays.asList(getResources().getStringArray(R.array.gender_array)).get(0))) ? SCConstants.MALE : SCConstants.FEMALE);
-        }else{
-            params.put(SCConstants.PARAM_SEX,"0");
+        } else {
+            params.put(SCConstants.PARAM_SEX, "0");
         }
 
         mRequestAsync = new SCRequestAsyncTask(mContext, SCConstants.REQUEST_UPDATE_USER, params, new SCRequestAsyncTask.AsyncCallback() {
@@ -495,13 +522,13 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
                 String title = null;
                 String body = null;
-                if(returnHashMap.containsKey(SCConstants.TAG_APP_USER)) {
-                    userObj = (SCUserObject)returnHashMap.get(SCConstants.TAG_APP_USER);
+                if (returnHashMap.containsKey(SCConstants.TAG_APP_USER)) {
+                    userObj = (SCUserObject) returnHashMap.get(SCConstants.TAG_APP_USER);
                     userObj.setAppId(mUserObj.getAppId());
                     mUserObj = userObj;
                 }
 
-                if(returnHashMap.containsKey(SCConstants.TAG_ERROR_CODE)) {
+                if (returnHashMap.containsKey(SCConstants.TAG_ERROR_CODE)) {
                     return;
                 }
 
@@ -517,7 +544,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 //                overridePendingTransition(R.anim.anim_slide_in_right,
 //                        R.anim.anim_slide_out_left);
 
-                if(mCodeType == SCConstants.CODE_LOGIN_FOR_PAY_ECHANGE_ITEM
+                if (mCodeType == SCConstants.CODE_LOGIN_FOR_PAY_ECHANGE_ITEM
                         || mCodeType == SCConstants.CODE_LOGIN_FOR_ADD_FAVORITE_ITEM
                         || mCodeType == SCConstants.CODE_LOGIN_FOR_FOLLOW_SHOP) {
                     setResult(RESULT_OK);
@@ -570,23 +597,22 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         String enrollmentYear = mEnrollmentObj.getName();
         String date = String.valueOf(System.currentTimeMillis());
         String uuid = "";
-        if( SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null){
-            if(SCGlobalUtils.DEVICEUUID != null)
+        if (SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null) == null) {
+            if (SCGlobalUtils.DEVICEUUID != null)
                 uuid = SCGlobalUtils.DEVICEUUID;
-            else
-            {
+            else {
                 uuid = SCGlobalUtils.getDeviceUUID(this);
-                if(uuid.equals("")) {
+                if (uuid.equals("")) {
                     Toast.makeText(this, "UUID Missing", Toast.LENGTH_LONG).show();
                 }
             }
-        }else{
+        } else {
             uuid = SCSharedPreferencesUtils.getString(mContext, SCConstants.TAG_DEVICE_ID, null);
         }
         String agent = SCConstants.AGENT;
         String applicationId = "";
-       // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-            applicationId = SCConstants.APP_ID_TADACOPY;
+        // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
+        applicationId = SCConstants.APP_ID_TADACOPY;
 //        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
 //            applicationId = SCConstants.APP_ID_CANPASS;
 //        }
@@ -607,11 +633,11 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         params.put(SCConstants.PARAM_DEVICE_ID, uuid);
         params.put(SCConstants.PARAM_AGENT, agent);
 
-        if(!mBtnGender.getText().toString().equals(getResources().getString(R.string.edit_info_two_gender))) {
+        if (!mBtnGender.getText().toString().equals(getResources().getString(R.string.edit_info_two_gender))) {
             params.put(SCConstants.PARAM_SEX, (mBtnGender.getText().equals(
                     Arrays.asList(getResources().getStringArray(R.array.gender_array)).get(0))) ? SCConstants.MALE : SCConstants.FEMALE);
-        }else{
-            params.put(SCConstants.PARAM_SEX,"0");
+        } else {
+            params.put(SCConstants.PARAM_SEX, "0");
         }
 
         mRequestAsync = new SCRequestAsyncTask(mContext, SCConstants.REQUEST_REGISTER_USER, params, new SCRequestAsyncTask.AsyncCallback() {
@@ -622,7 +648,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
 
                 try {
                     String appId = (String) SCAPIUtils.parseJSON(SCConstants.REQUEST_REGISTER_USER, result).get(SCConstants.TAG_APP_ID);
-                    if(appId != null) {
+                    if (appId != null) {
                         //Toast.makeText(mContext, appId, Toast.LENGTH_SHORT).show();
                         mUserObj = SCUserObject.getInstance();
                         mUserObj.setNickname(mEtName.getText().toString());
@@ -636,7 +662,6 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                         mUserObj.setEnrollmentYear(mEnrollmentObj.getName());
                         mUserObj.setAppId(appId);
                         mUserObj.setIsGuest("true");
-
 
 
                         // save app_id into shared preference
@@ -656,7 +681,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                         overridePendingTransition(R.anim.anim_slide_in_right,
                                 R.anim.anim_slide_out_left);
                     }
-                }catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -682,14 +707,14 @@ public class SCEditInfoOneActivity extends SCMyActivity {
     }
 
     private void showInfo() {
-        if(!mUserObj.getSex().equals("")) {
-            if(mUserObj.getSex().equals(SCConstants.MALE)) {
+        if (!mUserObj.getSex().equals("")) {
+            if (mUserObj.getSex().equals(SCConstants.MALE)) {
                 mBtnGender.setText(
                         Arrays.asList(getResources().getStringArray(R.array.gender_array)).get(0));
-            } else if(mUserObj.getSex().equals(SCConstants.FEMALE)) {
+            } else if (mUserObj.getSex().equals(SCConstants.FEMALE)) {
                 mBtnGender.setText(
                         Arrays.asList(getResources().getStringArray(R.array.gender_array)).get(1));
-            }else {
+            } else {
                 mBtnGender.setText(R.string.edit_info_two_gender);
             }
         }

@@ -73,6 +73,19 @@ public class SCGroupName extends SCMyActivity {
         mBtnBack = (ImageView) findViewById(R.id.img_left_header);
         mBtnNext = (Button) findViewById(R.id.edit_info_one_btn_next);
         group_name_et = (EditText) findViewById(R.id.et_group_name);
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        mBtnNext.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+        mBtnBack.setImageResource(R.drawable.yellow_left_arrow_canpass);
     }
 
     @Override

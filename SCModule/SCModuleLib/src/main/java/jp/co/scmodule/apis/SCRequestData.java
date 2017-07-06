@@ -878,6 +878,50 @@ public class SCRequestData {
                 nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_AUTH_DATE,
                         (String) parameters.get(SCConstants.PARAM_AUTH_DATE)));
                 break;
+
+            case SCConstants.REQUEST_FOR_GET_BEACONS:
+                mRestType = SCConstants.REST_POST;
+                REQUEST_DATA_URL = SCUrlConstants.URL_GET_BEACONS;
+
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_APP_ID,
+                        (String) parameters.get(SCConstants.PARAM_APP_ID)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_KEY,
+                        (String) parameters.get(SCConstants.PARAM_KEY)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_DATE,
+                        (String) parameters.get(SCConstants.PARAM_DATE)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_APPLICATION_ID,
+                        (String) parameters.get(SCConstants.PARAM_APPLICATION_ID)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_BEACON_TYPE_ID,
+                        (String) parameters.get(SCConstants.PARAM_BEACON_TYPE_ID)));
+
+                SCGlobalUtils.addAditionalHeader = true;
+                SCGlobalUtils.additionalHeaderTag = "Authorization";
+                SCGlobalUtils.additionalHeaderValue = "Bearer " + getBase64(SCSharedPreferencesUtils.getString(mContex, SCConstants.TAG_ACCESS_TOKEN, null));
+                break;
+            case SCConstants.REQUEST_FOR_GET_BEACONS_OLD:
+                mRestType = SCConstants.REST_POST;
+                REQUEST_DATA_URL = SCUrlConstants.URL_GET_BEACONS_OLD;
+
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_APP_ID,
+                        (String) parameters.get(SCConstants.PARAM_APP_ID)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_KEY,
+                        (String) parameters.get(SCConstants.PARAM_KEY)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_DATE,
+                        (String) parameters.get(SCConstants.PARAM_DATE)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_APPLICATION_ID,
+                        (String) parameters.get(SCConstants.PARAM_APPLICATION_ID)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_BEACON_ID,
+                        (String) parameters.get(SCConstants.PARAM_BEACON_ID)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_BEACON_LATITUDE,
+                        (String) parameters.get(SCConstants.PARAM_BEACON_LATITUDE)));
+                nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_BEACON_LONGITUDE,
+                        (String) parameters.get(SCConstants.PARAM_BEACON_LONGITUDE)));
+
+                SCGlobalUtils.addAditionalHeader = true;
+                SCGlobalUtils.additionalHeaderTag = "Authorization";
+                SCGlobalUtils.additionalHeaderValue = "Bearer " + getBase64(SCSharedPreferencesUtils.getString(mContex, SCConstants.TAG_ACCESS_TOKEN, null));
+                break;
+
             default:
                 break;
         }

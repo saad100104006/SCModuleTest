@@ -356,4 +356,24 @@ public class SCConstants {
     public static final String APPLICATION_ID_CANPASS = "2";
     public static final String TAG_IS_COUPON = "is_coupon";
 
+    public static final String PARAM_BEACON_TYPE_ID = "beacon_type_id";
+    public static final int REQUEST_FOR_GET_BEACONS = 1152;
+
+    public static final String TAG_TYPE = "type";
+    public static final String TAG_LATITUDE = "latitude";
+    public static final String TAG_LONGITUDE = "longitude";
+    public static final String TAG_PRIORITY = "priority";
+    public static final String TAG_BEACONS = "beacons";
+
+    public static final String PARAM_BEACON_ID = "beacon_id";
+    public static final String PARAM_BEACON_LATITUDE = "latitude";
+    public static final String PARAM_BEACON_LONGITUDE = "longitude";
+    public static final int REQUEST_FOR_GET_BEACONS_OLD = 1153;
+    public static final String TAG_COMPANY = "company";
+
+    public static final String REGISTER_GENDER_TAG = "プロフィール登録＋　タップ　＋Campus Works Detail　＋　タッブ　性別を選択";
+    public static final String REGISTER_UNIVERSITY_TAG = "プロフィール登録＋　タップ　＋Campus Works Detail　＋　タッブ　大学を選択";
+    public static final String REGISTER_DEPARTMENT_TAG = "プロフィール登録＋　タップ　＋Campus Works Detail　＋　タッブ　学部を選択";
+    public static final String REGISTER_MAJOR_TAG = "プロフィール登録　＋　タップ　＋Campus Works Detail　＋　タッブ　学科を選択";
+    public static final String REGISTER_ENROLLMENT_TAG = "プロフィール登録　＋　タップ　＋Campus Works Detail　＋　タッブ　入学年度を選択";
 }

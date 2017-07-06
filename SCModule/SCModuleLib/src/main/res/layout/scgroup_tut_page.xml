@@ -536,7 +536,11 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="10px"
                         android:layout_marginTop="65px"
-                        android:background="@drawable/gotowebpage_circlepass" />
+                        android:text="詳細はコチラ"
+                        android:textSize="40px"
+                        android:tag="40"
+                        android:textStyle="normal"
+                        android:background="@drawable/selector_btn_next" />
 
                     <ImageView
                         android:id="@+id/btn_close_copy_code"

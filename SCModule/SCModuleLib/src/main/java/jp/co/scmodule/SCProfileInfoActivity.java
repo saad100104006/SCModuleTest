@@ -127,6 +127,7 @@ public class SCProfileInfoActivity extends SCMyActivity {
     private String old_point = null;
     private String current_point = null;
     private String get_point_for_update = null;
+    private TextView header_label = null;
 
     @Override
     protected void onDestroy() {
@@ -281,6 +282,22 @@ public class SCProfileInfoActivity extends SCMyActivity {
 
         DialogView1 = this.getLayoutInflater().inflate(R.layout.layout_point_dialog, null);
         mDialog_tut1 = new Dialog(this, android.R.style.Theme_Black_NoTitleBar);
+
+        header_label = (TextView) findViewById(R.id.header_label);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+
+        header_label.setTextColor(getResources().getColor(R.color.canpass_main));
     }
 
     @Override

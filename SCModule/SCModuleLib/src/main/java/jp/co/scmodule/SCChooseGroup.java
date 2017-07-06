@@ -148,6 +148,19 @@ public class SCChooseGroup extends SCMyActivity {
         mRlSearch = (RelativeLayout) findViewById(R.id.choosen_rl_search);
         mEtSearch = (EditText) findViewById(R.id.choosen_et_search);
         btn_new_group = (Button) findViewById(R.id.btn_new_group);
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        btn_new_group.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+
     }
 
     @Override

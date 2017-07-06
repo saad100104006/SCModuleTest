@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import org.json.JSONException;
@@ -19,15 +20,30 @@ import jp.co.scmodule.utils.SCGlobalUtils;
 public class SCPasswordRemainder extends Activity {
     private EditText mEtEmail;
     private CorrectSizeUtil mCorrectSize = null;
+    private Button sc_change_password = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_remainder);
         mEtEmail = (EditText) findViewById(R.id.sc_login_et_email);
+        sc_change_password = (Button) findViewById(R.id.sc_change_password);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
         //Init variable
         mCorrectSize = CorrectSizeUtil.getInstance(this);
         mCorrectSize.correctSize();
+    }
+
+    private void setUpViewsForCanpass() {
+        sc_change_password.setBackgroundResource(R.drawable.btn_reset_pass_canpass);
+    }
+
+    private void setUpViewsForTadacopy() {
     }
 
     public void submitEmail(View v) {

@@ -63,6 +63,7 @@ import jp.co.scmodule.widgets.SCPinnedHeaderListView;
 import jp.co.scmodule.widgets.SCPixelScrollDetector;
 import jp.co.scmodule.widgets.SCClockView;
 import jp.co.scmodule.widgets.SCSingleLineTextView;
+
 /*
 * This is SCDashboard
 * */
@@ -118,6 +119,7 @@ public class SCMainActivity extends SCMyActivity {
     public ArrayList<Object> mListBannerTop = new ArrayList<Object>();
     public ArrayList<Object> mListBannerMain = new ArrayList<Object>();
     public ArrayList<Object> mListBannerSub = new ArrayList<Object>();
+    private TextView oceanize_label = null;
 
 //    public static HashMap<String, ArrayList<Object>> mListBanner;
 
@@ -289,6 +291,11 @@ public class SCMainActivity extends SCMyActivity {
     private void show_tut_one() {
 
         View v = DialogView;
+        ImageButton scmain_img_scicon = (ImageButton) v.findViewById(R.id.scmain_img_scicon);
+        ImageView dialog_header = (ImageView) v.findViewById(R.id.dialog_header);
+
+
+
         final RippleBackground rippleBackground = (RippleBackground) v.findViewById(R.id.content);
         if (Build.VERSION.SDK_INT >= 21)
             rippleBackground.setClipToOutline(true);
@@ -296,6 +303,19 @@ public class SCMainActivity extends SCMyActivity {
         ImageView imageView = (ImageView) v.findViewById(R.id.scmain_img_scicon);
         ImageView close = (ImageView) v.findViewById(R.id.btn_close_copy_code);
         Button webpage = (Button) v.findViewById(R.id.btn_goto_web);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            scmain_img_scicon.setBackgroundResource(R.drawable.smart_campus_selector);
+            dialog_header.setImageResource(R.drawable.sc_dialog_header);
+            webpage.setBackgroundResource(R.drawable.selector_btn_next);
+
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            scmain_img_scicon.setBackgroundResource(R.drawable.smart_campus_canpass_selector);
+            dialog_header.setImageResource(R.drawable.sc_dialog_header_canpass);
+            webpage.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+
+        }
+
         webpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -335,12 +355,27 @@ public class SCMainActivity extends SCMyActivity {
 
     private void show_tut_two() {
         View v = DialogView2;
+
+        ImageView dialog_header = (ImageView) v.findViewById(R.id.dialog_header);
+
+
+
         final RippleBackground rippleBackground2 = (RippleBackground) v.findViewById(R.id.content);
         if (Build.VERSION.SDK_INT >= 21)
             rippleBackground2.setClipToOutline(true);
         ImageView imageView = (ImageView) v.findViewById(R.id.scmain_img_scicon);
         ImageView close = (ImageView) v.findViewById(R.id.btn_close_copy_code);
         Button webpage = (Button) v.findViewById(R.id.btn_goto_web);
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            dialog_header.setImageResource(R.drawable.point_dialog_header);
+            webpage.setBackgroundResource(R.drawable.selector_btn_next);
+
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            dialog_header.setImageResource(R.drawable.point_dialog_header_canpass);
+            webpage.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+
+        }
+
         webpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -355,8 +390,8 @@ public class SCMainActivity extends SCMyActivity {
             @Override
             public void onClick(View v) {
                 mDialog_tut2.dismiss();
-                if(mUserObj.getStudent_group_name() == null && mUserObj.getStudent_group_name().equals(""))
-                        show_tut_three();
+                if (mUserObj.getStudent_group_name() == null || mUserObj.getStudent_group_name().equals(""))
+                    show_tut_three();
 
             }
         });
@@ -388,6 +423,14 @@ public class SCMainActivity extends SCMyActivity {
         ImageView imageView = (ImageView) v.findViewById(R.id.scmain_img_scicon);
         ImageView close = (ImageView) v.findViewById(R.id.btn_close_copy_code);
         Button webpage = (Button) v.findViewById(R.id.btn_goto_web);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            webpage.setBackgroundResource(R.drawable.selector_btn_next);
+
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            webpage.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+
+        }
         webpage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -460,6 +503,23 @@ public class SCMainActivity extends SCMyActivity {
 
         btn_add_group = (ImageButton) findViewById(R.id.btn_add_group);
         tv_add_group = (SCSingleLineTextView) findViewById(R.id.tv_add_group);
+        oceanize_label = (TextView) findViewById(R.id.oceanize_label);
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        mIbtnSCLogo.setBackgroundResource(R.drawable.smart_campus_canpass_selector);
+        mIbtnChangePoint.setBackgroundResource(R.drawable.btn_change_point_canpass_selector);
+        mPbMoneyLine.setProgressDrawable(getResources().getDrawable(R.drawable.common_pb_horizontal_canpass));
+        oceanize_label.setTextColor(getResources().getColor(R.color.canpass_main));
     }
 
     @Override
@@ -881,11 +941,11 @@ public class SCMainActivity extends SCMyActivity {
         String date = String.valueOf(System.currentTimeMillis());
         String appId = mUserObj.getAppId();
         String applicationId = "";
-        //if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-        applicationId = SCConstants.APP_ID_TADACOPY;
-//        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
-//            applicationId = SCConstants.APP_ID_CANPASS;
-//        }
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            applicationId = SCConstants.APP_ID_TADACOPY;
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            applicationId = SCConstants.APP_ID_CANPASS;
+        }
         String src = secretKey + appId + date;
         String key = SCGlobalUtils.md5Hash(src);
         HashMap<String, Object> parameter = new HashMap<String, Object>();
@@ -1030,11 +1090,11 @@ public class SCMainActivity extends SCMyActivity {
         String date = String.valueOf(System.currentTimeMillis());
         String appId = mUserObj.getAppId();
         String applicationId = "";
-//        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-        applicationId = SCConstants.APP_ID_TADACOPY;
-//        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
-//            applicationId = SCConstants.APP_ID_CANPASS;
-//        }
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            applicationId = SCConstants.APP_ID_TADACOPY;
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            applicationId = SCConstants.APP_ID_CANPASS;
+        }
         //String appId = "188TZ";
 
         String src = secretKey + appId + date;

@@ -22,6 +22,7 @@ import java.util.Comparator;
 import jp.co.scmodule.R;
 import jp.co.scmodule.SCGroupAdminPage;
 import jp.co.scmodule.objects.SCMemberObject;
+import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCMultipleScreen;
 import jp.co.scmodule.widgets.SCCircleImageView;
 import jp.co.scmodule.widgets.SCSingleLineTextView;
@@ -98,6 +99,12 @@ public class SCMemberListAdapter extends BaseAdapter {
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
+        }
+
+        if (mActivity.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mActivity.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mActivity.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            holder.mPbMoneyLine.setProgressDrawable(mActivity.getResources().getDrawable(R.drawable.common_pb_horizontal));
+        } else if (mActivity.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mActivity.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mActivity.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            holder.mPbMoneyLine.setProgressDrawable(mActivity.getResources().getDrawable(R.drawable.common_pb_horizontal_canpass));
         }
 
         SCMemberObject memberObject = new SCMemberObject();

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import jp.co.scmodule.classes.SCMyActivity;
 import jp.co.scmodule.objects.SCGroupObject;
 import jp.co.scmodule.objects.SCUserObject;
+import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
 
@@ -31,7 +32,7 @@ public class SCInviteMember extends SCMyActivity {
     private TextView btn_skip = null;
     private Button submit = null;
     private ImageView back = null;
-    private ImageView contact = null;
+    private TextView contact = null;
     private EditText et_email = null;
     private View.OnClickListener mOnClickListener = null;
     private SCGroupObject groupObject = null;
@@ -99,11 +100,29 @@ public class SCInviteMember extends SCMyActivity {
         btn_skip = (TextView) findViewById(R.id.btn_skip);
         submit = (Button) findViewById(R.id.btn_submit);
         back = (ImageView) findViewById(R.id.img_left_header);
-        contact = (ImageView) findViewById(R.id.btn_contact);
+        contact = (TextView) findViewById(R.id.btn_contact);
         et_email = (EditText) findViewById(R.id.edit_info_one_btn_group);
         if (type != null && !type.equals("")) {
             btn_skip.setVisibility(View.GONE);
         }
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        submit.setBackgroundResource(R.drawable.selector_btn_next_canpass);
+        back.setImageResource(R.drawable.yellow_left_arrow_canpass);
+
+        btn_skip.setTextColor(getResources().getColor(R.color.canpass_main));
+        contact.setTextColor(getResources().getColor(R.color.canpass_main));
+
     }
 
     @Override

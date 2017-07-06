@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 import jp.co.scmodule.R;
+import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCMultipleScreen;
 
 /**
@@ -21,9 +22,12 @@ import jp.co.scmodule.utils.SCMultipleScreen;
 public class SCClockView extends ImageView {
 
     private float mAngle = 0;
+    Context mContext = null;
 
     public SCClockView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
+
     }
 
     public float getmAngle() {
@@ -52,8 +56,14 @@ public class SCClockView extends ImageView {
         canvas.drawArc(rectF, mAngle - 90, 360 - mAngle, true, p);
 
         super.onDraw(canvas);
-
         Drawable clockwise = getContext().getResources().getDrawable(R.drawable.clockwise);
+
+        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+             clockwise = getContext().getResources().getDrawable(R.drawable.clockwise);
+        } else if (mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+             clockwise = getContext().getResources().getDrawable(R.drawable.clockwise_canpass);
+        }
+
         new SCMultipleScreen(getContext());
         Bitmap bitmap = ((BitmapDrawable) clockwise).getBitmap();
         bitmap = Bitmap.createScaledBitmap(bitmap,

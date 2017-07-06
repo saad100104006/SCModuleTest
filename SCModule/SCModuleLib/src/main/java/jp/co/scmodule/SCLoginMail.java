@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import org.apache.http.util.EncodingUtils;
@@ -64,6 +65,7 @@ public class SCLoginMail extends Activity {
     String pass = null;
     private CorrectSizeUtil mCorrectSize = null;
     private CheckBox password_check = null;
+    private ImageButton mPasswordReminderPage = null;
 
 
     @Override
@@ -89,6 +91,7 @@ public class SCLoginMail extends Activity {
         mEtEmail = (EditText) findViewById(R.id.sc_login_et_email);
         mEtPassword = (EditText) findViewById(R.id.sc_login_et_password);
         mLogin = (Button) findViewById(R.id.sc_login_btn_login);
+        mPasswordReminderPage = (ImageButton) findViewById(R.id.sc_login_page);
 
         mEmail = getIntent().getStringExtra(SCConstants.TAG_EMAIL);
         mPassword = getIntent().getStringExtra(SCConstants.TAG_PASSWORD);
@@ -165,9 +168,24 @@ public class SCLoginMail extends Activity {
             }
         });
 
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            setUpViewsForTadacopy();
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            setUpViewsForCanpass();
+        }
+
         //Init variable
         mCorrectSize = CorrectSizeUtil.getInstance(this);
         mCorrectSize.correctSize();
+    }
+
+    private void setUpViewsForTadacopy() {
+    }
+
+    private void setUpViewsForCanpass() {
+        password_check.setButtonDrawable(R.drawable.custom_checkbox_canpass);
+        mPasswordReminderPage.setBackgroundResource(R.drawable.reset_password_canpass);
+        mLogin.setBackgroundResource(R.drawable.login_mail_canpass);
     }
 
     public void password_reset(View view) {
