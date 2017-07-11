@@ -214,6 +214,11 @@ public class ECProductAdapter extends BaseAdapter {
         } else {
             int userPoint = Integer.parseInt(SCUserObject.getInstance().getCampusPoint());
             int productPoint = Integer.parseInt(productObj.getPoint());
+            if (SCGlobalUtils.discount_rate != 0) {
+                int discount_point = (Integer.parseInt(productObj.getPoint()) * SCGlobalUtils.discount_rate) / 100;
+                int updated_point = Integer.parseInt(productObj.getPoint()) - discount_point;
+                productPoint = updated_point;
+            }
             if (userPoint < productPoint) {
                 showDialogNotEnoughPoint(productObj);
                 return;
