@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="196px"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="114px"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="45px"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="100">
+
+                <View
+                    android:id="@+id/ec_point_in_above"
+                    android:layout_width="45px"
+                    android:layout_height="0px"
+                    android:layout_weight="90" />
+
+                <View
+                    android:id="@+id/ec_point_in_below"
+                    android:layout_width="45px"
+                    android:layout_height="0px"
+                    android:layout_weight="10"
+                    android:background="@android:color/white" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="30px"
+                android:layout_height="0px" />
+
+            <LinearLayout
+                android:layout_width="45px"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="100">
+
+                <View
+                    android:id="@+id/ec_point_out_above"
+                    android:layout_width="45px"
+                    android:layout_height="0px"
+                    android:layout_weight="40" />
+
+                <View
+                    android:id="@+id/ec_point_out_below"
+                    android:layout_width="45px"
+                    android:layout_height="0px"
+                    android:layout_weight="60"
+                    android:background="@color/ec_btn_go_to_shop_page_off" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:layout_centerVertical="true"
+            android:background="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80px"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="116px"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8px"
+                android:layout_marginTop="21px"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="23px"
+                    android:layout_height="17px"
+                    android:src="@drawable/ec_chart_in" />
+
+                <ImageView
+                    android:layout_width="55px"
+                    android:layout_height="18px"
+                    android:layout_marginLeft="61px"
+                    android:src="@drawable/ec_chart_out" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/ec_point_tv_month"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="9px"
+                android:tag="30"
+                android:includeFontPadding="false"
+                android:textColor="#FFFFFF"
+                android:textSize="30px" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

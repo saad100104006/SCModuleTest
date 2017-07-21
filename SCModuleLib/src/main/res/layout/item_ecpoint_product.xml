@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/item_v_blank_header"
+            android:layout_width="match_parent"
+            android:layout_height="20px"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/item_ecpoint_product_ll_main"
+            android:layout_width="287px"
+            android:layout_height="341px"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_ec_img"
+                android:layout_width="match_parent"
+                android:layout_height="184px"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/item_ecpoint_product_shop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14px"
+                android:layout_marginRight="14px"
+                android:layout_marginTop="13px"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:tag="22"
+                android:text="Beats by Dr.Dre"
+                android:textColor="@color/common_ec_blue_txt"
+                android:textSize="22px"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/item_ecpoint_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14px"
+                android:layout_marginRight="14px"
+                android:layout_marginTop="7px"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:tag="24"
+                android:text="BT OV STUDIO V2 B..."
+                android:textColor="@android:color/black"
+                android:textSize="24px" />
+
+            <Button
+                android:id="@+id/item_ecpoint_point"
+                android:layout_width="140px"
+                android:layout_height="50px"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="14px"
+                android:layout_marginTop="14px"
+                android:background="@drawable/ec_point_background_selector"
+                android:tag="24"
+                android:text="000000 pt"
+                android:textColor="@color/ec_btn_go_to_shop_page_off"
+                android:textSize="24px"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/item_v_blank_footer"
+            android:layout_width="match_parent"
+            android:layout_height="20px"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</RelativeLayout>

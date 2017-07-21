@@ -1,0 +1,257 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.co.scmodule.ECMainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- grid view here -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="269px">
+
+            <RelativeLayout
+                android:id="@+id/ecmain_rl_filter"
+                android:layout_width="match_parent"
+                android:layout_height="125px"
+                android:layout_marginTop="45px"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/ecmain_et_search"
+                    android:layout_width="810px"
+                    android:layout_height="120px"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/img_search"
+                    android:gravity="center_vertical"
+                    android:hint="@string/ecmain_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:paddingLeft="51px"
+                    android:paddingRight="51px"
+                    android:singleLine="true"
+                    android:tag="43"
+                    android:textColor="@color/common_ec_blue_txt"
+                    android:textColorHint="@color/text_dark"
+                    android:textSize="43px" />
+
+                <Spinner
+                    android:id="@+id/ecmain_spn_filter"
+                    android:layout_width="810px"
+                    android:layout_height="120px"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="118px"
+                    android:paddingRight="118px"
+                    android:visibility="visible" />
+
+                <jp.co.scmodule.widgets.SCSingleLineTextView
+                    android:id="@+id/ecmain_tv_filter"
+                    android:layout_width="810px"
+                    android:layout_height="120px"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/img_filter_selector"
+                    android:gravity="center"
+                    android:paddingLeft="118px"
+                    android:paddingRight="118px"
+                    android:singleLine="true"
+                    android:tag="43"
+                    android:textColor="@color/common_ec_blue_txt"
+                    android:textSize="43px"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <GridView
+                android:id="@+id/ecmain_gv_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ecmain_rl_filter"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="30px"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="1px"
+                android:fadingEdgeLength="0px"
+                android:gravity="center"
+                android:listSelector="@android:color/transparent"
+                android:numColumns="2"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="none" />
+
+            <View
+                android:id="@+id/ecmain_v_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/common_black_50"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ecmain_ll_slide_menu"
+            android:layout_width="1080px"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="269px"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_tab_recent"
+                android:layout_width="1080px"
+                android:layout_height="134px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_tab_most_recent_selector" />
+
+            <View
+                android:layout_width="1080px"
+                android:layout_height="1px"
+                android:background="@color/common_line_ec" />
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_tab_favor"
+                android:layout_width="1080px"
+                android:layout_height="134px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_tab_most_favor_selector" />
+
+            <View
+                android:layout_width="1080px"
+                android:layout_height="1px"
+                android:background="@color/common_line_ec" />
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_tab_point"
+                android:layout_width="1080px"
+                android:layout_height="134px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_tab_most_point_selector" />
+
+            <View
+                android:layout_width="1080px"
+                android:layout_height="1px"
+                android:background="@color/common_line_ec" />
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_tab_category"
+                android:layout_width="1080px"
+                android:layout_height="134px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_tab_most_category_selector" />
+
+            <View
+                android:layout_width="1080px"
+                android:layout_height="1px"
+                android:background="@color/common_line_ec" />
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_tab_shop"
+                android:layout_width="1080px"
+                android:layout_height="134px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_tab_most_shop_selector" />
+
+            <View
+                android:layout_width="1080px"
+                android:layout_height="1px"
+                android:background="@color/common_line_ec" />
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_tab_keyword"
+                android:layout_width="1080px"
+                android:layout_height="134px"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/btn_tab_most_keyword_selector" />
+
+            <View
+                android:layout_width="1080px"
+                android:layout_height="1px"
+                android:background="@color/common_line_ec" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/common_ec_blue_bg">
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_back"
+                android:layout_width="231px"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:paddingBottom="5px"
+                android:paddingLeft="51px"
+                android:paddingRight="51px"
+                android:paddingTop="5px"
+                android:scaleType="centerInside"
+                android:src="@drawable/ec_btn_back_selector" />
+
+            <TextView
+                android:id="@+id/ecmain_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:tag="28"
+                android:text="@string/ecmain_tab_recent"
+                android:textColor="@android:color/white"
+                android:textSize="28px"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/ecmain_image_title"
+                android:layout_width="432px"
+                android:layout_height="62px"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ecmain_image_title" />
+
+            <TextView
+                android:id="@+id/ecmain_tv_user_point"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="49px"
+                android:gravity="center_vertical"
+                android:tag="45"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="45px"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="135px"
+            android:layout_marginTop="134px"
+            android:background="@android:color/black">
+
+            <ImageButton
+                android:id="@+id/ecmain_ibtn_change_search_type"
+                android:layout_width="wrap_content"
+                android:layout_height="67px"
+                android:layout_centerInParent="true"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_most_favor_white_normal" />
+
+            <jp.co.scmodule.widgets.SCCircleImageView
+                android:id="@+id/ecmain_img_avatar"
+                android:layout_width="96px"
+                android:layout_height="96px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="12px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_avatar" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

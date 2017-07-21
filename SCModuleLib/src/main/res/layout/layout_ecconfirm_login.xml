@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/lnl_ec_root_confirm_login"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="752px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ec_dialog_confirm_login_selector"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="752px"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60px"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="32px"
+            android:tag="56"
+            android:text="@string/ec_confirm_login_message1"
+            android:textColor="@android:color/white"
+            android:textSize="56px"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30px"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="26px"
+            android:minHeight="0px"
+            android:tag="31"
+            android:text="@string/ec_confirm_login_message2"
+            android:textColor="@android:color/white"
+            android:textSize="31px"/>
+
+        <Button
+            android:id="@+id/ec_btn_login_by_facebook"
+            android:layout_width="594px"
+            android:layout_height="108px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="58px"
+            android:background="@drawable/ec_btn_login_facebook_selector"
+            android:tag="32"
+            android:text="@string/ec_confirm_login_facebook"
+            android:textColor="@android:color/white"
+            android:textSize="32px"/>
+
+        <Button
+            android:id="@+id/ec_btn_login_by_twitter"
+            android:layout_width="594px"
+            android:layout_height="108px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="38px"
+            android:background="@drawable/ec_btn_login_twitter_selector"
+            android:tag="32"
+            android:text="@string/ec_confirm_login_twitter"
+            android:textColor="@android:color/white"
+            android:textSize="32px"/>
+
+        <Button
+            android:id="@+id/ec_btn_login_by_email"
+            android:layout_width="594px"
+            android:layout_height="108px"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="38px"
+            android:background="@drawable/ec_btn_login_email_selector"
+            android:tag="32"
+            android:text="@string/ec_confirm_login_email"
+            android:textColor="@color/ec_text_login_email"
+            android:textSize="32px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="97px"
+            android:layout_marginTop="60px"
+            android:gravity="center"
+            android:lineSpacingExtra="18px"
+            android:tag="28"
+            android:text="@string/dialog_login_confirm"
+            android:textColor="@android:color/white"
+            android:textSize="28px"/>
+
+        <Button
+            android:id="@+id/ec_btn_close"
+            android:layout_width="355px"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="55px"
+            android:background="@android:color/transparent"
+            android:includeFontPadding="false"
+            android:minHeight="0px"
+            android:paddingLeft="0px"
+            android:paddingTop="0px"
+            android:tag="30"
+            android:text="@string/ec_confirm_login_cancel"
+            android:textColor="@drawable/ec_btn_cancel_selector"
+            android:textSize="30px"/>
+    </LinearLayout>
+</LinearLayout>

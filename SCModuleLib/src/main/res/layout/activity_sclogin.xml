@@ -1,0 +1,121 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_dark"
+    tools:context="jp.co.scmodule.SCMailRegistrationActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.5"
+        android:visibility="gone"
+        android:background="@drawable/pixel_perfect"></FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:layout_marginBottom="30px"
+        android:gravity="center"
+       >
+
+        <ImageView
+            android:layout_width="450px"
+            android:layout_height="45px"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="6px"
+            android:layout_marginBottom="50px"
+            android:layout_marginTop="16px"
+            android:src="@drawable/input_email" />
+
+        <EditText
+            android:id="@+id/sc_login_et_email"
+            android:layout_width="870px"
+            android:layout_height="110px"
+            android:background="@android:color/white"
+            android:hint="@string/email"
+            android:paddingLeft="33px"
+            android:paddingRight="33px"
+            android:singleLine="true"
+            android:layout_marginTop="5px"
+            android:tag="39"
+            android:textColorHint="@color/hint_color"
+            android:textSize="39px" />
+
+        <EditText
+            android:id="@+id/sc_login_et_password"
+            android:layout_width="870px"
+            android:layout_height="110px"
+            android:background="@android:color/white"
+            android:hint="パスワードを入力"
+            android:paddingLeft="33px"
+            android:paddingRight="33px"
+            android:password="true"
+            android:singleLine="true"
+            android:tag="39"
+            android:layout_marginTop="36px"
+            android:textColorHint="@color/hint_color"
+            android:textSize="39px" />
+
+
+        <EditText
+            android:id="@+id/sc_confirm_pass"
+            android:layout_width="870px"
+            android:layout_height="110px"
+            android:background="@android:color/white"
+            android:hint="パスワードを入力（確認用)"
+            android:paddingLeft="33px"
+            android:paddingRight="33px"
+            android:password="true"
+            android:singleLine="true"
+            android:tag="39"
+            android:layout_marginTop="31px"
+            android:textColorHint="@color/hint_color"
+            android:textSize="39px" />
+
+        <ImageButton
+            android:id="@+id/sc_login_page"
+            android:layout_width="600px"
+            android:layout_height="40px"
+            android:layout_marginTop="61px"
+            android:layout_marginBottom="22px"
+            android:background="@drawable/login_text_new"
+            />
+
+
+
+            <Button
+                android:id="@+id/sc_login_btn_register"
+                android:layout_width="487px"
+                android:layout_height="120px"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="2px"
+                android:layout_marginTop="25px"
+                android:layout_gravity="center"
+                android:background="@drawable/login_mail"
+                android:onClick="go_fill_information_step_1"
+                android:tag="37"
+                android:textSize="37px" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="494px"
+        android:layout_height="23px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40px"
+        android:layout_marginLeft="291px"
+        android:scaleType="fitXY"
+        android:src="@drawable/txt_copyright_white"
+        android:visibility="gone" />
+
+
+
+</RelativeLayout>

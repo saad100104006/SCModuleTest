@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frm_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="54px"
+                android:background="@drawable/copy_code_frame_selector"
+                android:orientation="vertical"
+                android:paddingBottom="30px"
+                android:paddingTop="60px">
+
+                <TextView
+                    android:id="@+id/tv_coupon_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginTop="36px"
+                    android:scaleType="fitCenter"
+                    android:tag="40"
+                    android:text="sdasdsa"
+                    android:textSize="40px"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/tv_coupon_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="36px"
+                    android:tag="40"
+                    android:text="sdasdsa"
+                    android:textSize="40px" />
+
+
+                <TextView
+                    android:id="@+id/tv_close"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40px"
+                    android:layout_marginTop="75px"
+                    android:gravity="center"
+                    android:tag="40"
+                    android:text="× 閉じる"
+                    android:textSize="40px" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</FrameLayout>

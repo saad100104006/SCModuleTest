@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frm_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:paddingLeft="100px"
+            android:paddingRight="100px">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="54px"
+                    android:paddingTop="60px"
+                    android:paddingBottom="30px"
+                    android:background="@drawable/copy_code_frame_selector"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="36px"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/guest_register_header" />
+
+
+
+                    <Button
+                        android:id="@+id/btn_goto_web"
+                        android:layout_width="705px"
+                        android:layout_height="200px"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="75px"
+                        android:background="@drawable/selector_btn_next"
+                        android:tag="39"
+                        android:text="登録へ進む" />
+
+                    <ImageView
+                        android:id="@+id/btn_close_copy_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="25px"
+                        android:layout_marginTop="45px"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/btn_close_copy_code" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+
+</FrameLayout>

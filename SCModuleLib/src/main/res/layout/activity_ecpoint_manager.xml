@@ -1,0 +1,462 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="jp.co.scmodule.ECPointManager">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/ec_btn_go_to_shop_page_off">
+
+            <ImageView
+                android:id="@+id/ec_point_btn_back"
+                android:layout_width="233px"
+                android:layout_height="match_parent"
+                android:paddingLeft="49px"
+                android:paddingRight="53px"
+                android:src="@drawable/ec_btn_back_selector" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:tag="49"
+                android:text="@string/ec_point_manager_header"
+                android:textColor="@android:color/white"
+                android:textSize="49px"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+                <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="2px"-->
+                <!--android:background="@android:color/white" />-->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="227px">
+
+                    <ImageView
+                        android:id="@+id/ec_logo"
+                        android:layout_width="140px"
+                        android:layout_height="139px"
+                        android:layout_marginLeft="47px"
+                        android:layout_marginTop="43px"
+                        android:src="@drawable/ec_logo"
+                        android:visibility="visible" />
+
+                    <jp.co.scmodule.widgets.SCSingleLineTextView
+                        android:id="@+id/ec_point_tv_user_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/ec_logo"
+                        android:layout_marginBottom="-16px"
+                        android:layout_marginRight="225px"
+                        android:layout_toEndOf="@+id/ec_logo"
+                        android:layout_toRightOf="@+id/ec_logo"
+                        android:fontFamily="@string/font_family"
+                        android:paddingLeft="30px"
+                        android:paddingRight="49px"
+                        android:tag="66"
+                        android:text="Iwani Shuntaro"
+                        android:textColor="@android:color/white"
+                        android:textSize="66px" />
+
+                    <jp.co.scmodule.widgets.SCCircleImageView
+                        android:id="@+id/ec_point_avatar"
+                        android:layout_width="140px"
+                        android:layout_height="140px"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="43px"
+                        android:layout_marginTop="43px"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/default_avatar" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="45px"
+                        android:layout_marginRight="45px"
+                        android:background="@android:color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="209px">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="95px"
+                            android:layout_height="127px"
+                            android:layout_gravity="center_vertical"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/point" />
+
+
+                        <TextView
+                            android:id="@+id/ec_point_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="50px"
+                            android:tag="126"
+                            android:text="99999"
+                            android:textColor="@android:color/white"
+                            android:textSize="126px" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="85px"
+                            android:layout_marginTop="92px"
+                            android:tag="59"
+                            android:text=" pt"
+                            android:textColor="@android:color/white"
+                            android:textSize="59px" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="45px"
+                        android:layout_marginRight="45px"
+                        android:background="@android:color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <ImageView
+                            android:layout_width="244px"
+                            android:layout_height="28px"
+                            android:layout_marginLeft="45px"
+                            android:layout_marginTop="18px"
+                            android:src="@drawable/ec_chart_point_use" />
+
+                        <jp.co.scmodule.widgets.ECChart
+                            android:id="@+id/ec_chart_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="196px"
+                            android:layout_marginBottom="25px"
+                            android:layout_marginLeft="60px"
+                            android:layout_marginRight="60px"
+                            android:layout_marginTop="12px"
+                            android:visibility="visible" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/show_more_point_history"
+                                    android:layout_width="493px"
+                                    android:layout_height="53px"
+                                    android:layout_gravity="center_horizontal"
+                                    android:layout_marginLeft="18px"
+                                    android:layout_marginTop="47px"
+                                    android:scaleType="centerInside"
+                                    android:src="@drawable/ec_btn_show_more_point_history_selector" />
+
+                                <LinearLayout
+                                    android:id="@+id/header"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="47px"
+                                    android:layout_marginLeft="84px"
+                                    android:visibility="gone"
+                                    android:layout_marginRight="82px"
+                                    android:weightSum="3"
+                                    android:orientation="horizontal">
+
+                                  <TextView
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:text="日付"
+                                      android:layout_marginLeft="60px"
+                                      android:layout_weight="1"
+                                      android:textColor="@android:color/white"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="内容"
+                                        android:layout_marginLeft="180px"
+                                        android:layout_weight="1"
+                                        android:textColor="@android:color/white"/>
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ポイント増減"
+                                        android:layout_marginLeft="150px"
+                                        android:layout_weight="1"
+                                        android:textColor="@android:color/white"/>
+
+                                </LinearLayout>
+
+                                <View
+                                    android:id="@+id/bottom_white"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="3px"
+                                    android:visibility="gone"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginLeft="45px"
+                                    android:layout_marginRight="45px"
+                                    android:layout_marginTop="20px"
+                                    android:background="@android:color/white" />
+
+
+                                <jp.co.scmodule.widgets.ECExpandableGridView
+                                    android:id="@+id/ec_point_history"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="339px"
+                                    android:layout_marginLeft="84px"
+                                    android:layout_marginRight="82px"
+                                    android:cacheColorHint="@android:color/transparent"
+                                    android:divider="@android:color/transparent"
+                                    android:dividerHeight="1px"
+                                    android:fadingEdgeLength="0px"
+                                    android:gravity="center"
+                                    android:horizontalSpacing="20px"
+                                    android:listSelector="@android:color/transparent"
+                                    android:numColumns="1"
+                                    android:scrollbarStyle="insideOverlay"
+                                    android:scrollbars="none"
+                                    android:verticalSpacing="20px"
+                                    android:visibility="gone" />
+
+
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="3px"
+                                    android:layout_marginLeft="45px"
+                                    android:layout_marginRight="45px"
+                                    android:layout_marginTop="41px"
+                                    android:background="@android:color/white" />
+                            </LinearLayout>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginLeft="45px"
+                        android:layout_marginRight="45px"
+                        android:background="@android:color/white" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="180px"
+                            android:layout_height="26px"
+                            android:layout_marginLeft="45px"
+                            android:layout_marginTop="22px"
+                            android:src="@drawable/ec_point_exchange_history" />
+
+                        <jp.co.scmodule.widgets.ECExpandableGridView
+                            android:id="@+id/ec_point_grv_history"
+                            android:layout_width="match_parent"
+                            android:layout_height="339px"
+                            android:layout_marginLeft="84px"
+                            android:layout_marginRight="82px"
+                            android:layout_marginTop="46px"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="1px"
+                            android:fadingEdgeLength="0px"
+                            android:gravity="center"
+                            android:horizontalSpacing="20px"
+                            android:listSelector="@android:color/transparent"
+                            android:numColumns="3"
+                            android:scrollbarStyle="insideOverlay"
+                            android:scrollbars="none"
+                            android:verticalSpacing="20px"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/ec_point_show_more_history"
+                            android:layout_width="493px"
+                            android:layout_height="53px"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="18px"
+                            android:layout_marginTop="47px"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ec_btn_show_more_history_selector" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3px"
+                            android:layout_marginLeft="45px"
+                            android:layout_marginRight="45px"
+                            android:layout_marginTop="41px"
+                            android:background="@android:color/white" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="203px"
+                            android:layout_height="26px"
+                            android:layout_marginLeft="46px"
+                            android:layout_marginTop="22px"
+                            android:src="@drawable/ec_point_feature" />
+
+                        <jp.co.scmodule.widgets.ECExpandableGridView
+                            android:id="@+id/ec_point_grv_feature"
+                            android:layout_width="match_parent"
+                            android:layout_height="339px"
+                            android:layout_marginLeft="84px"
+                            android:layout_marginRight="82px"
+                            android:layout_marginTop="49px"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="1px"
+                            android:fadingEdgeLength="0px"
+                            android:gravity="center"
+                            android:horizontalSpacing="20px"
+                            android:listSelector="@android:color/transparent"
+                            android:numColumns="3"
+                            android:scrollbarStyle="insideOverlay"
+                            android:scrollbars="none"
+                            android:verticalSpacing="20px"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/ec_point_show_more_feature"
+                            android:layout_width="525px"
+                            android:layout_height="53px"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="11px"
+                            android:layout_marginTop="46px"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ec_btn_show_more_present_selector" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3px"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="45px"
+                            android:layout_marginRight="45px"
+                            android:layout_marginTop="40px"
+                            android:background="@android:color/white" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="420px"
+                            android:layout_height="27px"
+                            android:layout_marginLeft="46px"
+                            android:layout_marginTop="22px"
+                            android:src="@drawable/ec_point_shop_present" />
+
+                        <jp.co.scmodule.widgets.ECExpandableGridView
+                            android:id="@+id/ec_point_grv_shop"
+                            android:layout_width="match_parent"
+                            android:layout_height="250px"
+                            android:layout_marginLeft="84px"
+                            android:layout_marginRight="82px"
+                            android:layout_marginTop="48px"
+                            android:cacheColorHint="@android:color/transparent"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="1px"
+                            android:fadingEdgeLength="0px"
+                            android:gravity="center"
+                            android:horizontalSpacing="20px"
+                            android:listSelector="@android:color/transparent"
+                            android:numColumns="3"
+                            android:scrollbarStyle="insideOverlay"
+                            android:scrollbars="none"
+                            android:verticalSpacing="20px" />
+
+                        <ImageView
+                            android:id="@+id/ec_point_show_more_shop"
+                            android:layout_width="681px"
+                            android:layout_height="53px"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="45px"
+                            android:layout_marginLeft="-5px"
+                            android:layout_marginTop="45px"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ec_btn_show_more_shop_selector"
+                            android:visibility="visible" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3px"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="45px"
+                            android:layout_marginRight="45px"
+                            android:layout_marginTop="40px" />
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>
