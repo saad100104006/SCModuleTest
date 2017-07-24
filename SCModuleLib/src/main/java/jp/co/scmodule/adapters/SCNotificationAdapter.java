@@ -50,6 +50,7 @@ import jp.co.scmodule.objects.SCUserObject;
 import jp.co.scmodule.utils.SCConstants;
 import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
+import jp.co.scmodule.utils.SCMultipleScreenToretan;
 import jp.co.scmodule.utils.SCSharedPreferencesUtils;
 import jp.co.scmodule.utils.SCUrlConstants;
 import jp.co.scmodule.widgets.SCSectionedBaseAdapter;
@@ -234,8 +235,17 @@ public class SCNotificationAdapter extends SCSectionedBaseAdapter {
             mHolder.tvFooterToretan = (TextView) convertView.findViewById(R.id.notification_footer_tv_toretan);
             mHolder.tvUnit = (TextView) convertView.findViewById(R.id.notification_tv_unit);
 
-            new SCMultipleScreen(mContext);
-            SCMultipleScreen.resizeAllView((ViewGroup) convertView);
+
+            if (mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN_STAGING)) {
+
+                new SCMultipleScreenToretan(mContext);
+                SCMultipleScreenToretan.resizeAllView((ViewGroup) convertView);
+            }
+            else{
+
+                new SCMultipleScreen(mContext);
+                SCMultipleScreen.resizeAllView((ViewGroup) convertView);
+            }
 
             convertView.setTag(mHolder);
 //        } else {

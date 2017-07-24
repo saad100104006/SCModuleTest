@@ -38,6 +38,7 @@ import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
 
 import jp.co.scmodule.R;
+import jp.co.scmodule.utils.SCMultipleScreenToretan;
 import jp.co.scmodule.utils.SCSharedPreferencesUtils;
 
 /**
@@ -489,18 +490,42 @@ public class SCSlideMenu extends RelativeLayout implements SCNotificationAdapter
                                 public void run() {
                                     initNotificationList();
 
-                                    new SCMultipleScreen(mContext);
-                                    if (mUserObj.getIsGuest()!= null && !mUserObj.getIsGuest().equals("") && mUserObj.getIsGuest().equals("false")) {
-                                        if (mListInformations.size() == 0) {
-                                            //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
-                                            mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
+                                    if (mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN_RELEASE) || mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN_DEBUG) || mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN_STAGING)) {
+
+
+                                        new SCMultipleScreenToretan(mContext);
+                                        if (mUserObj.getIsGuest().equals("false")) {
+                                            if (mListInformations.size() == 0) {
+                                                //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
+                                                mActuallySize = SCMultipleScreenToretan.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
+                                            } else {
+                                                //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MAX);
+                                                mActuallySize = SCMultipleScreenToretan.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
+                                            }
                                         } else {
-                                            //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MAX);
-                                            mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
+                                            mActuallySize = SCMultipleScreenToretan.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
                                         }
-                                    } else {
-                                        mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
                                     }
+
+                                    else{
+
+
+                                        new SCMultipleScreen(mContext);
+                                        if (mUserObj.getIsGuest()!= null && !mUserObj.getIsGuest().equals("") && mUserObj.getIsGuest().equals("false")) {
+                                            if (mListInformations.size() == 0) {
+                                                //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
+                                                mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
+                                            } else {
+                                                //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MAX);
+                                                mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
+                                            }
+                                        } else {
+                                            mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
+                                        }
+                                    }
+
+
+
 
                                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                                             mActuallySize);

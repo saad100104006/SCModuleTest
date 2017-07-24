@@ -329,6 +329,10 @@ public class SCMultipleScreen {
 	public SCMultipleScreen(Activity activity) {
 		mActivity = activity;
 		scale = screenScale();
+
+		/*if (activity.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || activity.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || activity.getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+		SCREEN_WIDTH_SIZE = 640;
+		}*/
 	}
 
 	/*--

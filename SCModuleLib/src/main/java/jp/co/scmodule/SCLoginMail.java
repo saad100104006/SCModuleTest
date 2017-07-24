@@ -194,7 +194,7 @@ public class SCLoginMail extends Activity {
     }
 
     private void setUpViewsForToretan() {
-       password_check.setButtonDrawable(R.drawable.custom_checkbox_canpass);
+       password_check.setButtonDrawable(R.drawable.custom_checkbox_toretan);
         mPasswordReminderPage.setBackgroundResource(R.drawable.reset_password_toretan);
         mLogin.setBackgroundResource(R.drawable.login_mail_toretan);
     }

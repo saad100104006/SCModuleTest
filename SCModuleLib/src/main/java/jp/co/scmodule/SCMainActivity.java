@@ -57,7 +57,6 @@ import jp.co.scmodule.utils.SCAPIUtils;
 import jp.co.scmodule.utils.SCGlobalUtils;
 import jp.co.scmodule.utils.SCMultipleScreen;
 import jp.co.scmodule.utils.SCConstants;
-import jp.co.scmodule.utils.SCMultipleScreenToretan;
 import jp.co.scmodule.utils.SCSharedPreferencesUtils;
 import jp.co.scmodule.widgets.SCCircleImageView;
 import jp.co.scmodule.widgets.SCPinnedHeaderListView;
