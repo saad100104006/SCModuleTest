@@ -18,6 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import io.repro.android.Repro;
 import jp.co.scmodule.ECDetailProductActivity;
 import jp.co.scmodule.ECDetailShopActivity;
 import jp.co.scmodule.ECMainActivity;
@@ -110,7 +111,6 @@ public class ECProductAdapter extends BaseAdapter {
         mHolder.resetView();
 
         ECProductObject productObj = (ECProductObject) mListData.get(position);
-
         if (SCGlobalUtils.discount_rate == 0) {
             mHolder.tv_special_discount.setVisibility(View.GONE);
             mHolder.tvPoint.setText(productObj.getPoint()
@@ -192,6 +192,8 @@ public class ECProductAdapter extends BaseAdapter {
                 if (v.getContentDescription() == null) {
                     return;
                 } else if (v.getContentDescription().equals("detail")) {
+                    Repro.track(SCConstants.EC_PRODUCT_TAP);
+                    Log.e("Repro Tag Sent ", SCConstants.EC_PRODUCT_TAP);
                     afterClickDetail(position);
                 } else if (v.getContentDescription().equals("exchangePoint")) {
                     afterClickExchangePoint(position);
@@ -243,6 +245,15 @@ public class ECProductAdapter extends BaseAdapter {
     }
 
     private void showDialogConfirmExchangeStage1(final ECProductObject productObj) {
+
+        int userPoint = Integer.parseInt(SCUserObject.getInstance().getCampusPoint());
+        int productPoint = Integer.parseInt(productObj.getPoint());
+        if (SCGlobalUtils.discount_rate != 0) {
+            int discount_point = (Integer.parseInt(productObj.getPoint()) * SCGlobalUtils.discount_rate) / 100;
+            int updated_point = Integer.parseInt(productObj.getPoint()) - discount_point;
+            productPoint = updated_point;
+        }
+
         String title = mContext.getResources().getString(R.string.dialog_exchange_stage_1_title);
         String body = mContext.getResources().getString(R.string.dialog_body_exchange_point_stage_1);
         body = String.format(
@@ -250,9 +261,9 @@ public class ECProductAdapter extends BaseAdapter {
                 SCUserObject.getInstance().getNickname(),
                 SCUserObject.getInstance().getEmail(),
                 productObj.getName(),
-                productObj.getPoint(),
-                SCUserObject.getInstance().getCampusPoint(),
-                String.valueOf(Integer.parseInt(SCUserObject.getInstance().getCampusPoint()) - Integer.parseInt(productObj.getPoint())));
+                String.valueOf(productPoint ),
+                String.valueOf(userPoint),
+                String.valueOf(userPoint - productPoint));
         String action1 = mContext.getResources().getString(R.string.common_ok_label);
         String action2 = mContext.getResources().getString(R.string.common_cancel_label);
         String action3 = mContext.getResources().getString(R.string.common_edit_label);

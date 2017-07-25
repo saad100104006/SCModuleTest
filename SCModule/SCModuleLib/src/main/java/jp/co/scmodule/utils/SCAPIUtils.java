@@ -1171,6 +1171,14 @@ public class SCAPIUtils {
                 }
 
             }
+            if (((JSONObject) src).has(SCConstants.TAG_IS_USER_FIRST_LOGIN)) {
+                if (!((JSONObject) src).getString(SCConstants.TAG_IS_USER_FIRST_LOGIN).equals("null")) {
+                    SCGlobalUtils.is_first_login = ((JSONObject) src).getString(SCConstants.TAG_IS_USER_FIRST_LOGIN);
+                } else {
+                    SCGlobalUtils.is_first_login = "false";
+                }
+
+            }
 
             if (((JSONObject) src).has(SCConstants.TAG_PREFECTURE_ID)) {
                 if (!((JSONObject) src).getString(SCConstants.TAG_PREFECTURE_ID).equals("null")) {
@@ -1390,6 +1398,8 @@ public class SCAPIUtils {
                 }
 
             }
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

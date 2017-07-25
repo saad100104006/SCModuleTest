@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -22,7 +23,9 @@ import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -889,7 +892,7 @@ public class SCGlobalUtils {
         final TextView tv_last_label = (TextView) infoDialog.findViewById(jp.co.scmodule.R.id.tv_last_label);
         int remainng = 5 - Integer.parseInt(new_value);
         tv_last_label.setText("ポイントGET\n" +
-                "まであと"+remainng+"日");
+                "まであと" + remainng + "日");
         View[] views = new View[]{};
         int coin_on = R.drawable.get_count_coin_image_on;
 
@@ -998,6 +1001,33 @@ public class SCGlobalUtils {
         //flip.setRepeatCount(1);
         flip.setStartDelay(200);
         flip.start();
+
+    }
+
+    public static void show_getpoint_dialog(Context context) {
+
+        final SCCustomDialog infoDialog = new SCCustomDialog(context, R.style.CustomDialogTheme);
+        LayoutInflater inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflator.inflate(R.layout.layout_login_bonus_dialog, null);
+
+        new SCMultipleScreen(context);
+        SCMultipleScreen.resizeAllView((ViewGroup) v);
+
+        infoDialog.setContentView(v);
+        FrameLayout total_view = (FrameLayout) v.findViewById(jp.co.scmodule.R.id.frm_container);
+        TextView point = (TextView) v.findViewById(jp.co.scmodule.R.id.tv_point);
+        point.setText("100");
+        total_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                infoDialog.dismiss();
+            }
+        });
+
+        infoDialog.setCancelable(true);
+        infoDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        infoDialog.getWindow().setLayout(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
+        infoDialog.show();
 
     }
 

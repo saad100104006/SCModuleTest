@@ -273,6 +273,11 @@ public class SCRequestData {
                         (String) parameters.get(SCConstants.PARAM_DEVICE_ID)));
                 nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_AGENT,
                         (String) parameters.get(SCConstants.PARAM_AGENT)));
+                if (parameters.containsKey(SCConstants.PARAM_BIRTHDAY)) {
+                    nameValueParams.add(new BasicNameValuePair(SCConstants.PARAM_BIRTHDAY,
+                            (String) parameters.get(SCConstants.PARAM_BIRTHDAY)));
+                }
+
                 break;
 
             case SCConstants.REQUEST_GET_APPLICATION:

@@ -1,6 +1,7 @@
 package jp.co.scmodule;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,8 +21,11 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import io.repro.android.Repro;
 import jp.co.scmodule.apis.SCRequestAsyncTask;
@@ -52,6 +57,8 @@ public class SCEditInfoOneActivity extends SCMyActivity {
     private Button mBtnMajor = null;
     private Button mBtnEnrollment = null;
     private Button mBtnNext = null;
+    private Button mBtnBirthday = null;
+
 
     private SCUserObject mUserObj = null;
 
@@ -62,6 +69,9 @@ public class SCEditInfoOneActivity extends SCMyActivity {
     private SCGenderObject mGenderObj = null;
     private int mCodeType = 0;
     private ImageView header_lbl = null;
+    private DatePickerDialog mBirthdayPickerDialog = null;
+    private String mBirthDay = null;
+
 
     @Override
     protected void onDestroy() {
@@ -73,6 +83,27 @@ public class SCEditInfoOneActivity extends SCMyActivity {
     protected void onRestart() {
         initGlobalUtils();
         super.onRestart();
+    }
+
+    private void initBirthdayDialog() {
+        Calendar newCalendar = Calendar.getInstance();
+        final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.JAPAN);
+        mBirthdayPickerDialog = new DatePickerDialog(this, R.style.CustomDialogTheme, new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                mBtnBirthday.setText(dateFormatter.format(newDate.getTime()));
+
+                String birthdayStr = String.format(getResources().getString(R.string.common_date), String.valueOf(dayOfMonth), String.valueOf(monthOfYear + 1), String.valueOf(year));
+                mBtnBirthday.setText(birthdayStr);
+                mBirthDay = birthdayStr;
+            }
+
+        }, (newCalendar.get(Calendar.YEAR) - 18), 0, 1);
+
+        String title = getResources().getString(R.string.edit_info_two_birthday_dialog_title);
+        mBirthdayPickerDialog.setTitle(title);
     }
 
     @Override
@@ -157,6 +188,8 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mContext = this;
         mActivity = this;
 
+        initBirthdayDialog();
+
         if (mUserObj != null) {
             showInfo();
         }
@@ -216,7 +249,8 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mBtnNext = (Button) findViewById(R.id.edit_info_one_btn_next);
         header_lbl = (ImageView) findViewById(R.id.header_lbl);
         mBtnGender = (Button) findViewById(R.id.edit_info_two_btn_gender);
-
+        mBtnBirthday = (Button) findViewById(R.id.edit_info_one_btn_birthday);
+        
         if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
             setUpViewsForTadacopy();
         } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
@@ -240,6 +274,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mBtnDepartment.setContentDescription("department");
         mBtnEnrollment.setContentDescription("enrollment");
         mBtnNext.setContentDescription("next");
+        mBtnBirthday.setContentDescription("birthday");
 
         mOnClickListener = new OnClickListener() {
             @Override
@@ -278,9 +313,16 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                         Log.e("Repro Tag Sent ", SCConstants.REGISTER_GENDER_TAG);
                     }
                     afterClickGender();
+                }else if (v.getContentDescription().equals("birthday")) {
+                    afterClickBirthday();
                 }
             }
         };
+    }
+
+    private void afterClickBirthday() {
+        mBirthdayPickerDialog.show();
+
     }
 
     private void afterClickGender() {
@@ -295,6 +337,7 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         mBtnEnrollment.setOnClickListener(mOnClickListener);
         mBtnNext.setOnClickListener(mOnClickListener);
         mBtnGender.setOnClickListener(mOnClickListener);
+        mBtnBirthday.setOnClickListener(mOnClickListener);
 
     }
 
@@ -509,6 +552,11 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         } else {
             params.put(SCConstants.PARAM_SEX, "0");
         }
+        if (!mBtnBirthday.getText().toString().equals(getResources().getString(R.string.edit_info_two_birthday))) {
+            if (mBirthDay != null) {
+                params.put(SCConstants.PARAM_BIRTHDAY, mBirthDay);
+            }
+        }
 
         mRequestAsync = new SCRequestAsyncTask(mContext, SCConstants.REQUEST_UPDATE_USER, params, new SCRequestAsyncTask.AsyncCallback() {
             @Override
@@ -611,11 +659,12 @@ public class SCEditInfoOneActivity extends SCMyActivity {
         }
         String agent = SCConstants.AGENT;
         String applicationId = "";
-        // if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY)) {
-        applicationId = SCConstants.APP_ID_TADACOPY;
-//        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS)) {
-//            applicationId = SCConstants.APP_ID_CANPASS;
-//        }
+        if (getPackageName().equals(SCConstants.PACKAGE_TADACOPY_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TADACOPY_STAGING)) {
+            applicationId = SCConstants.APP_ID_TADACOPY;
+        } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
+            applicationId = SCConstants.APP_ID_CANPASS;
+        }
+
 
         String src = secretKey + universityId + campusId + departmentId + majorId + enrollmentYear + date;
         String key = SCGlobalUtils.md5Hash(src);
@@ -638,6 +687,11 @@ public class SCEditInfoOneActivity extends SCMyActivity {
                     Arrays.asList(getResources().getStringArray(R.array.gender_array)).get(0))) ? SCConstants.MALE : SCConstants.FEMALE);
         } else {
             params.put(SCConstants.PARAM_SEX, "0");
+        }
+        if (!mBtnBirthday.getText().toString().equals(getResources().getString(R.string.edit_info_two_birthday))) {
+            if (mBirthDay != null) {
+                params.put(SCConstants.PARAM_BIRTHDAY, mBirthDay);
+            }
         }
 
         mRequestAsync = new SCRequestAsyncTask(mContext, SCConstants.REQUEST_REGISTER_USER, params, new SCRequestAsyncTask.AsyncCallback() {

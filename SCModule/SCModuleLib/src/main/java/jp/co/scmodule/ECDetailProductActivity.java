@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -322,7 +323,9 @@ public class ECDetailProductActivity extends SCMyActivity implements View.OnClic
         tvShopName.setText(mProductObj.getShop());
         tvProductName.setMaxWidth(SCMultipleScreen.getValueAfterResize(387));
         tvProductName.setText(mProductObj.getName());
-        tvDescriptionProduct.setText(mProductObj.getDescription());
+        //tvDescriptionProduct.setText(mProductObj.getDescription());
+        tvDescriptionProduct.setText(Html.fromHtml(mProductObj.getDescription()));
+
         if (this.mProductObj.getFavorite().equals("true")) {
             btnLike.setSelected(true);
             // btnLike.setTextColor(mContext.getResources().getColor(R.color.common_ec_red));
@@ -362,6 +365,11 @@ public class ECDetailProductActivity extends SCMyActivity implements View.OnClic
             } else {
                 int userPoint = Integer.parseInt(SCUserObject.getInstance().getCampusPoint());
                 int productPoint = Integer.parseInt(mProductObj.getPoint());
+                if (SCGlobalUtils.discount_rate != 0) {
+                    int discount_point = (Integer.parseInt(mProductObj.getPoint()) * SCGlobalUtils.discount_rate) / 100;
+                    int updated_point = Integer.parseInt(mProductObj.getPoint()) - discount_point;
+                    productPoint = updated_point;
+                }
                 if (userPoint < productPoint) {
                     showDialogNotEnoughPoint();
                     return;
@@ -431,6 +439,14 @@ public class ECDetailProductActivity extends SCMyActivity implements View.OnClic
     }
 
     private void showDialogConfirmExchangeStage1() {
+        int userPoint = Integer.parseInt(SCUserObject.getInstance().getCampusPoint());
+        int productPoint = Integer.parseInt(mProductObj.getPoint());
+        if (SCGlobalUtils.discount_rate != 0) {
+            int discount_point = (Integer.parseInt(mProductObj.getPoint()) * SCGlobalUtils.discount_rate) / 100;
+            int updated_point = Integer.parseInt(mProductObj.getPoint()) - discount_point;
+            productPoint = updated_point;
+        }
+
         String title = mContext.getResources().getString(R.string.dialog_exchange_stage_1_title);
         String body = mContext.getResources().getString(R.string.dialog_body_exchange_point_stage_1);
         body = String.format(
@@ -438,9 +454,10 @@ public class ECDetailProductActivity extends SCMyActivity implements View.OnClic
                 SCUserObject.getInstance().getNickname(),
                 SCUserObject.getInstance().getEmail(),
                 mProductObj.getName(),
-                mProductObj.getPoint(),
-                SCUserObject.getInstance().getCampusPoint(),
-                String.valueOf(Integer.parseInt(SCUserObject.getInstance().getCampusPoint()) - Integer.parseInt(mProductObj.getPoint())));
+                String.valueOf(productPoint ),
+                String.valueOf(userPoint),
+                String.valueOf(userPoint - productPoint));
+
         String action1 = mContext.getResources().getString(R.string.common_ok_label);
         String action2 = mContext.getResources().getString(R.string.common_cancel_label);
         String action3 = mContext.getResources().getString(R.string.common_edit_label);

@@ -101,6 +101,20 @@
             android:textStyle="bold"/>
 
         <Button
+            android:id="@+id/edit_info_one_btn_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="120px"
+            android:layout_marginTop="45px"
+            android:background="@drawable/selector_btn_type"
+            android:gravity="center"
+            android:tag="39"
+            android:text="@string/edit_info_two_birthday"
+            android:textColor="@android:color/white"
+            android:textSize="39px"
+            android:textStyle="bold"/>
+
+
+        <Button
             android:id="@+id/edit_info_one_btn_next"
             android:layout_width="482px"
             android:layout_height="121px"

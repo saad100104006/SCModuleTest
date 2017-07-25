@@ -947,6 +947,7 @@ public class ECMainActivity extends SCMyActivity {
                             SCGlobalUtils.discount_rate = 0;
                         }
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

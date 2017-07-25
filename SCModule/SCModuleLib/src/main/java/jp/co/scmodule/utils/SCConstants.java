@@ -376,4 +376,8 @@ public class SCConstants {
     public static final String REGISTER_DEPARTMENT_TAG = "プロフィール登録＋　タップ　＋Campus Works Detail　＋　タッブ　学部を選択";
     public static final String REGISTER_MAJOR_TAG = "プロフィール登録　＋　タップ　＋Campus Works Detail　＋　タッブ　学科を選択";
     public static final String REGISTER_ENROLLMENT_TAG = "プロフィール登録　＋　タップ　＋Campus Works Detail　＋　タッブ　入学年度を選択";
+    public static final String TAG_IS_USER_FIRST_LOGIN = "is_first_login" ;
+    public static final String EC_PRODUCT_TAP = "ショップページ ＋ タッブ ＋ 商品";
+
+
 }
