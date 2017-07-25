@@ -1,3 +1,0 @@
-include ':SCModuleLib'
-include ':StickyListHeaderLib'
-include ':devsmartAndroid'
