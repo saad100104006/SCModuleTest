@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_dark">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180px">
+
+        <RelativeLayout
+            android:id="@+id/item_choosen_btn_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/common_btn_yellow_selector"/>
+
+        <TextView
+            android:id="@+id/item_choosen_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="60px"
+            android:textSize="40px"
+            android:text="団体名を新規作成"
+            android:tag="40" />
+
+        <TextView
+            android:id="@+id/item_choosen_tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="60px"
+            android:textSize="40px"
+            android:text="2700"
+            android:layout_marginRight="160px"
+            android:layout_alignParentRight="true"
+            android:tag="40" />
+
+        <ImageView
+            android:id="@+id/item_choosen_img_narrow"
+            android:layout_width="21px"
+            android:layout_height="37px"
+            android:src="@drawable/img_white_narrow_right"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60px"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

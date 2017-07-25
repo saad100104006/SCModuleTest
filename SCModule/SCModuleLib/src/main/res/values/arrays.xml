@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name = "gender_array">
+        <item>男性</item>
+        <item>女性</item>
+    </array>
+
+    <array name = "point_array">
+        <item>ポイントが安い順</item>
+        <item>ポイントが高い順</item>
+    </array>
+
+    <array name = "shop_array">
+        <item>adidas</item>
+        <item>avex</item>
+        <item>BEAMS</item>
+    </array>
+
+    <array name = "category_array">
+        <item>ファッション</item>
+        <item>デジタルコンテンツ</item>
+        <item>ビューティー</item>
+    </array>
+</resources>

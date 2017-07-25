@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/frm_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.skyfishjy.library.RippleBackground
+            android:id="@+id/content"
+            android:layout_width="600px"
+            android:layout_height="600px"
+            android:background="@drawable/shaperound"
+            android:layout_marginRight="100px"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="-110px"
+            app:rb_color="#747474"
+            app:rb_duration="3000"
+            app:rb_radius="10dp"
+            app:rb_rippleAmount="5"
+            app:rb_scale="6"></com.skyfishjy.library.RippleBackground>
+    </FrameLayout>
+
+
+    <jp.co.scmodule.widgets.SCCustomRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="540px"
+            android:layout_marginLeft="44px"
+            android:layout_marginRight="46px"
+            android:visibility="invisible"
+            android:layout_marginTop="332px">
+
+            <jp.co.scmodule.widgets.SCPinnedHeaderListView
+                android:id="@+id/scmain_lv_notification"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="1px"
+                android:fadingEdgeLength="0px"
+                android:listSelector="@android:color/transparent"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="none" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:background="@color/common_line_color" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/scmain_rl_points_layout"
+            android:layout_width="match_parent"
+            android:layout_height="420px"
+            android:layout_below="@+id/scmain_rl_name_layout">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="68px"
+                    android:visibility="invisible"
+
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <!--<ImageView-->
+                    <!--<jp.co.scmodule.widgets.SCClockView-->
+                    <jp.co.scmodule.widgets.SCClockView
+                        android:id="@+id/scmain_img_sclock"
+                        android:layout_width="278px"
+                        android:layout_height="278px"
+                        android:layout_marginTop="31px"
+
+                        android:src="@drawable/campus_oclock"
+                        android:visibility="invisible"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+
+                        android:layout_marginTop="20px">
+
+                        <ImageView
+                            android:layout_width="230px"
+                            android:layout_height="52px"
+                            android:src="@drawable/remain_date" />
+
+                        <LinearLayout
+                            android:layout_width="230px"
+                            android:layout_height="52px"
+                            android:orientation="horizontal"
+                            android:paddingLeft="34px">
+
+                            <TextView
+                                android:id="@+id/scmain_tv_remain_date_0"
+                                android:layout_width="35px"
+                                android:layout_height="52px"
+                                android:gravity="center"
+                                android:maxLength="1"
+                                android:singleLine="true"
+                                android:tag="36"
+                                android:text="0"
+                                android:textColor="@android:color/black"
+                                android:textSize="36px"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/scmain_tv_remain_date_1"
+                                android:layout_width="35px"
+                                android:layout_height="52px"
+                                android:layout_marginLeft="6px"
+                                android:gravity="center"
+                                android:maxLength="1"
+                                android:singleLine="true"
+                                android:tag="36"
+                                android:text="0"
+                                android:textColor="@android:color/black"
+                                android:textSize="36px"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/scmain_tv_remain_date_2"
+                                android:layout_width="35px"
+                                android:layout_height="52px"
+                                android:layout_marginLeft="6px"
+                                android:gravity="center"
+                                android:maxLength="1"
+                                android:singleLine="true"
+                                android:tag="36"
+                                android:text="0"
+                                android:textColor="@android:color/black"
+                                android:textSize="36px"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/scmain_tv_remain_date_3"
+                                android:layout_width="35px"
+                                android:layout_height="52px"
+                                android:layout_marginLeft="5px"
+                                android:gravity="center"
+                                android:maxLength="1"
+                                android:singleLine="true"
+                                android:tag="36"
+                                android:text="0"
+                                android:textColor="@android:color/black"
+                                android:textSize="36px"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:layout_width="613px"
+                        android:layout_height="228px"
+                        android:visibility="invisible"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="67px">
+
+                        <ImageView
+                            android:layout_width="111px"
+                            android:layout_height="149px"
+                            android:layout_marginLeft="2px"
+                            android:layout_marginTop="37px"
+                            android:src="@drawable/point" />
+
+                        <RelativeLayout
+                            android:visibility="invisible"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="127px"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentTop="true"
+                                android:gravity="right"
+                                android:visibility="invisible"
+
+                                android:orientation="horizontal">
+
+                                <jp.co.scmodule.widgets.SCSingleLineTextView
+                                    android:id="@+id/scmain_tv_point"
+                                    android:layout_width="360px"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="-10px"
+                                    android:gravity="right"
+                                    android:inputType="number"
+                                    android:tag="118"
+                                    android:text="00000"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="118px" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom"
+                                    android:layout_marginRight="1px"
+                                    android:tag="56"
+                                    android:text="@string/common_point"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="58px" />
+
+                            </LinearLayout>
+
+                            <ImageButton
+                                android:id="@+id/scmain_ibtn_change_point"
+                                android:layout_width="451px"
+                                android:layout_height="60px"
+                                android:visibility="invisible"
+
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginBottom="26px"
+                                android:background="@drawable/btn_change_point_selector"
+                                android:scaleType="fitXY" />
+
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="609px"
+                        android:layout_height="3px"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="66px"
+                        android:layout_marginTop="227px"
+                        android:visibility="invisible"
+                        android:background="@color/common_line_color" />
+
+                    <RelativeLayout
+                        android:layout_width="613px"
+                        android:layout_height="189px"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="65px"
+                        android:visibility="invisible"
+
+                        android:layout_marginTop="230px">
+
+                        <ImageView
+                            android:layout_width="147px"
+                            android:layout_height="100px"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="31px"
+                            android:src="@drawable/save_money" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:visibility="invisible"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="451px"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical|right"
+                                android:visibility="invisible"
+
+                                android:orientation="vertical">
+
+                                <jp.co.scmodule.widgets.SCSingleLineTextView
+                                    android:id="@+id/scmain_tv_save_money"
+                                    android:layout_width="360px"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="right"
+                                    android:tag="87"
+                                    android:text="00000"
+                                    android:textColor="@android:color/white"
+                                    android:textSize="87px" />
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="85px"
+                                    android:visibility="invisible"
+                                    >
+
+                                    <ProgressBar
+                                        android:id="@+id/scmain_pb_money_line"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="377px"
+                                        android:layout_height="3px"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginLeft="9px"
+                                        android:layout_marginRight="10px"
+                                        android:layout_marginTop="14px"
+                                        android:progress="0"
+                                        android:progressDrawable="@drawable/common_pb_horizontal"
+                                        android:rotation="180" />
+
+                                    <ImageView
+                                        android:layout_width="386px"
+                                        android:layout_height="52px"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginRight="6px"
+                                        android:src="@drawable/save_money_ruler" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentBottom="true"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_marginBottom="11px"
+                                        android:visibility="invisible"
+
+
+                                        android:layout_marginRight="6px">
+
+                                        <TextView
+                                            android:id="@+id/scmain_tv_money_marker_left"
+                                            android:layout_width="122px"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginRight="5px"
+                                            android:gravity="center_horizontal"
+                                            android:tag="14"
+                                            android:text="100"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="14px" />
+
+                                        <TextView
+                                            android:id="@+id/scmain_tv_money_marker_middle"
+                                            android:layout_width="137px"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginRight="123px"
+                                            android:gravity="center_horizontal"
+                                            android:tag="14"
+                                            android:text="50"
+                                            android:visibility="invisible"
+
+                                            android:textColor="@android:color/white"
+                                            android:textSize="14px" />
+
+                                        <TextView
+                                            android:id="@+id/scmain_tv_money_marker_right"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentRight="true"
+                                            android:tag="14"
+                                            android:text="0"
+                                            android:visibility="invisible"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="14px" />
+
+                                    </RelativeLayout>
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="45px"
+                    android:layout_marginRight="46px"
+                    android:visibility="invisible"
+                    android:background="@color/common_line_color" />
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/scmain_rl_name_layout"
+            android:layout_width="match_parent"
+            android:layout_height="331px"
+            android:paddingTop="25px">
+
+            <ImageButton
+                android:id="@+id/scmain_img_scicon"
+                android:layout_width="175px"
+                android:layout_height="173px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="60px"
+                android:layout_marginLeft="42px"
+
+                android:visibility="invisible"
+                android:background="@drawable/smart_campus_selector" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/scmain_img_scicon"
+                android:layout_toRightOf="@+id/scmain_img_scicon"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="145px"
+                android:layout_marginRight="180px"
+                android:paddingLeft="45px"
+                android:paddingRight="49px">
+                <ImageButton
+                    android:id="@+id/btn_add_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_add_group_selector"/>
+                <jp.co.scmodule.widgets.SCSingleLineTextView
+                    android:id="@+id/tv_add_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:tag="66"
+                    android:text="fadsfds"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white"
+                    android:textSize="56px" />
+            </FrameLayout>
+
+            <jp.co.scmodule.widgets.SCSingleLineTextView
+
+                android:visibility="invisible"
+                android:id="@+id/scmain_tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="45px"
+                android:layout_marginRight="180px"
+                android:layout_toEndOf="@+id/scmain_img_scicon"
+                android:layout_toRightOf="@+id/scmain_img_scicon"
+                android:fontFamily="@string/font_family"
+                android:paddingLeft="45px"
+                android:paddingRight="49px"
+                android:tag="66"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="66px" />
+
+            <jp.co.scmodule.widgets.SCCircleImageView
+                android:id="@+id/scmain_img_avatar"
+                android:layout_width="141px"
+                android:layout_height="141px"
+
+                android:visibility="invisible"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="47px"
+                android:layout_marginRight="43px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_avatar" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="45px"
+                android:layout_marginRight="46px"
+                android:visibility="invisible"
+                android:background="@color/common_line_color" />
+
+
+        </RelativeLayout>
+
+
+
+    </jp.co.scmodule.widgets.SCCustomRelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0px">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingLeft="140px"
+            android:paddingRight="140px">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="54px"
+                    android:background="@drawable/copy_code_frame_selector"
+                    android:orientation="vertical"
+                    android:paddingBottom="30px"
+                    android:paddingTop="30px">
+
+
+                    <ImageView
+                        android:layout_width="550px"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="36px"
+                        android:scaleType="fitCenter"
+                        android:visibility="invisible"
+                        android:layout_marginRight="25px"
+                        android:src="@drawable/point_dialog_header" />
+
+                    <ImageView
+                        android:id="@+id/btn_start_arcube"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="49px"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/group_content_dialog" />
+
+                    <Button
+                        android:id="@+id/btn_goto_web"
+                        android:layout_width="560px"
+                        android:layout_height="110px"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10px"
+                        android:layout_marginTop="65px"
+                        android:text="詳細はコチラ"
+                        android:textSize="40px"
+                        android:tag="40"
+                        android:textStyle="normal"
+                        android:background="@drawable/selector_btn_next" />
+
+                    <ImageView
+                        android:id="@+id/btn_close_copy_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="75px"
+                        android:layout_marginTop="170px"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/btn_close_copy_code" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>
