@@ -494,23 +494,23 @@ public class SCSlideMenu extends RelativeLayout implements SCNotificationAdapter
 
 
                                         new SCMultipleScreenToretan(mContext);
+
                                         if (mUserObj.getIsGuest().equals("false")) {
                                             if (mListInformations.size() == 0) {
                                                 //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
                                                 mActuallySize = SCMultipleScreenToretan.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
                                             } else {
                                                 //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MAX);
-                                                mActuallySize = SCMultipleScreenToretan.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
+                                                mActuallySize = SCMultipleScreenToretan.getValueAfterResize(400);
                                             }
                                         } else {
-                                            mActuallySize = SCMultipleScreenToretan.getValueAfterResize(SLIDE_MENU_HEIGHT_MIN);
+                                            mActuallySize = SCMultipleScreenToretan.getValueAfterResize(200);
                                         }
                                     }
 
                                     else{
-
-
                                         new SCMultipleScreen(mContext);
+
                                         if (mUserObj.getIsGuest()!= null && !mUserObj.getIsGuest().equals("") && mUserObj.getIsGuest().equals("false")) {
                                             if (mListInformations.size() == 0) {
                                                 //mActuallySize = SCMultipleScreen.getValueAfterResize(SLIDE_MENU_HEIGHT_MEDIUM);
@@ -530,6 +530,8 @@ public class SCSlideMenu extends RelativeLayout implements SCNotificationAdapter
                                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
                                             mActuallySize);
                                     mRlRoot.setLayoutParams(lp);
+
+
                                     if (mListLesson.size() != 0 || mListInformations.size() != 0) {
                                         Object item = mListLesson.get(0);
                                         if (item instanceof LessonObject) {

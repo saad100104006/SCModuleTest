@@ -86,8 +86,8 @@ public class SCAddGroup extends SCMyActivity {
 
     }
     private void setUpViewsForToretan() {
-        mBtnNext.setBackgroundResource(R.drawable.login_mail_canpass);
-        mBtnBack.setImageResource(R.drawable.yellow_left_arrow_canpass);
+        mBtnNext.setBackgroundResource(R.drawable.login_mail_toretan);
+        mBtnBack.setImageResource(R.drawable.blue_left_arrow_toretan);
 
     }
 
