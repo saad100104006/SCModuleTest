@@ -303,6 +303,9 @@ public class SCMailRegistrationActivity extends SCMyActivity {
         } else if (getPackageName().equals(SCConstants.PACKAGE_CANPASS_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_CANPASS_STAGING)) {
             applicationId = SCConstants.APP_ID_CANPASS;
         }
+        else if (getPackageName().equals(SCConstants.PACKAGE_TORETAN_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TORETAN_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TORETAN_STAGING)) {
+            applicationId = SCConstants.APPLICATION_ID_TORETAN;
+        }
 
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put(SCConstants.PARAM_KEY, key);

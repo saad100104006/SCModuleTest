@@ -94,6 +94,7 @@ public class SCGroupName extends SCMyActivity {
     private void setUpViewsForToretan() {
         mBtnNext.setBackgroundResource(R.drawable.selector_btn_next_toretan);
         mBtnBack.setImageResource(R.drawable.blue_left_arrow_toretan);
+        group_name_et.setBackgroundResource(R.drawable.edittextbackground);
     }
 
     @Override

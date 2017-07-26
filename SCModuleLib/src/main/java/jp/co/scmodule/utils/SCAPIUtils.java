@@ -1172,6 +1172,15 @@ public class SCAPIUtils {
 
             }
 
+            if (((JSONObject) src).has(SCConstants.TAG_USER_ID)) {
+                if (!((JSONObject) src).getString(SCConstants.TAG_USER_ID).equals("null")) {
+                    userObj.setUserId(((JSONObject) src).getString(SCConstants.TAG_USER_ID));
+                } else {
+                    userObj.setUserId("");
+                }
+
+            }
+
             if (((JSONObject) src).has(SCConstants.TAG_PREFECTURE_ID)) {
                 if (!((JSONObject) src).getString(SCConstants.TAG_PREFECTURE_ID).equals("null")) {
                     userObj.setPrefectureId(((JSONObject) src).getString(SCConstants.TAG_PREFECTURE_ID));

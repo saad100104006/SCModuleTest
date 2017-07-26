@@ -666,17 +666,15 @@ public class SCGlobalUtils {
         LayoutInflater inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflator.inflate(R.layout.dialog_guest_register, null);
 
-        if (context.getPackageName().equals(SCConstants.PACKAGE_TORETAN)) {
+        /*if (context.getPackageName().equals(SCConstants.PACKAGE_TORETAN)) {
             new SCMultipleScreenToretan(context);
             SCMultipleScreenToretan.resizeAllView((ViewGroup) v);
         }
-        else{
+        else{*/
             new SCMultipleScreen(context);
             SCMultipleScreen.resizeAllView((ViewGroup) v);
 
-        }
-
-
+       // }
 
 
         infoDialog.setContentView(v);
@@ -811,17 +809,17 @@ public class SCGlobalUtils {
         LayoutInflater inflator = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflator.inflate(R.layout.dialog_back_to_app, null);
 
-        if (mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN)) {
+       /* if (mContext.getPackageName().equals(SCConstants.PACKAGE_TORETAN)) {
 
             new SCMultipleScreenToretan(mContext);
             SCMultipleScreenToretan.resizeAllView((ViewGroup) v);
 
-        }
+        }*/
 
-        else{
+       // else{
             new SCMultipleScreen(mContext);
             SCMultipleScreen.resizeAllView((ViewGroup) v);
-        }
+        //}
 
         infoDialog.setContentView(v);
 

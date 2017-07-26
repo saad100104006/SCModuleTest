@@ -68,6 +68,9 @@ public class SCConstants {
     public static final String PARAM_APP_EXCHANGE_LOG_ID = "app_exchange_log_id";
     public static final String PARAM_IS_HASH = "is_hash";
 
+    public static final String TAG_USER_ID = "user_id";
+
+
     public static final String TAG_APPLICATIONS = "applications";
     public static final String TAG_URL = "url";
     public static final String TAG_ICON = "icon";

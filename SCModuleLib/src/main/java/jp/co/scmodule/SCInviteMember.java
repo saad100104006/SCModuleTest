@@ -131,6 +131,8 @@ public class SCInviteMember extends SCMyActivity {
         submit.setBackgroundResource(R.drawable.selector_btn_next_toretan);
         back.setImageResource(R.drawable.blue_left_arrow_toretan);
 
+        et_email.setBackgroundResource(R.drawable.edittextbackground);
+
         btn_skip.setTextColor(getResources().getColor(R.color.toretan_main));
         contact.setTextColor(getResources().getColor(R.color.toretan_main));
 

@@ -199,6 +199,8 @@ public class WebviewActivity extends Activity implements View.OnClickListener {
         mCorrectSize.correctSize();
     }
 
+
+
     private void setUpViewsForTadacopy() {
         left_arrow = R.drawable.yellow_left_arrow;
         right_arrow = R.drawable.yellow_right_arrow;
