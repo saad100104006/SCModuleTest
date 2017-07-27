@@ -127,5 +127,8 @@
     <orderEntry type="library" exported="" name="support-annotations-21.0.3" level="project" />
     <orderEntry type="module" module-name="devsmartAndroid" exported="" />
     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-25" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-20.0.0" level="project" />
+    <orderEntry type="library" exported="" name="CWAC-SackOfViewsAdapter" level="project" />
+    <orderEntry type="library" exported="" name="support-annotations-20.0.0" level="project" />
   </component>
 </module>
