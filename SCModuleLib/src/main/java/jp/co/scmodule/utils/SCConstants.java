@@ -319,6 +319,9 @@ public class SCConstants {
     public static final String ACTION_OPEN_TUTORIAL_CANPASS = "com.canpassapp.TutorialActivity";
     public static final String ACTION_OPEN_TUTORIAL_TORETAN = "com.toretanapp.TutorialActivity";
 
+    public static final String ACTION_OPEN_SCSLIDE = "com.toretanapp.SCIntroSlider";
+
+
     public static final String PACKAGE_TORETAN_RELEASE = "jp.co.toretan";
     public static final String PACKAGE_TADACOPY_RELEASE = "tcapp.com";
     public static final String PACKAGE_CANPASS_RELEASE = "com.canpassapp";

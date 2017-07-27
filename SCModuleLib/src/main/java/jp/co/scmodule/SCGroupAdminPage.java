@@ -704,9 +704,20 @@ public class SCGroupAdminPage extends SCMyActivity {
         change_group_name.setVisibility(View.GONE);
         close.setText("キャンセル");
         change_group.setText("別の団体に登録する");
-        change_group.setTextColor(getResources().getColor(R.color.common_sc_main_color));
+
+        if (getPackageName().equals(SCConstants.PACKAGE_TORETAN_RELEASE) || getPackageName().equals(SCConstants.PACKAGE_TORETAN_DEBUG) || getPackageName().equals(SCConstants.PACKAGE_TORETAN_STAGING)) {
+            change_group.setTextColor(getResources().getColor(R.color.toretan_main));
+            change_group_name.setTextColor(getResources().getColor(R.color.toretan_main));
+
+        }
+        else{
+            change_group.setTextColor(getResources().getColor(R.color.common_sc_main_color));
+            change_group_name.setTextColor(getResources().getColor(R.color.common_sc_main_color));
+        }
+
+
         change_group_name.setText("団体名を変更する");
-        change_group_name.setTextColor(getResources().getColor(R.color.common_sc_main_color));
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
